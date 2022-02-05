@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text;
 using System.Threading;
-
+using System.Xml;
 using ServerLib;
 using ServerLib.Packet;
 
@@ -24,7 +25,11 @@ namespace ClientBot
         {
             Logger.Log(LogLevel.Temp, $"[Connect] {endPoint.ToString()}");
 
-            Send(new Ping_RQ());
+            while(true)
+            {
+                Send(new Ping_RQ());
+                Thread.Sleep(1500);
+            }
         }
 
         protected override void OnDisconnect()

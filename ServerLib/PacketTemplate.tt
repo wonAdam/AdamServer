@@ -1,0 +1,159 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Xml" #>
+<#@ output extension=".cs" #>
+
+
+/**************************************
+
+	이 파일은 자동 생성되는 파일입니다.
+		절대 직접 수정하지마세요.
+
+**************************************/
+
+<#
+	string PacketClassFormat = 
+	@"
+    public class {0} : PacketBase
+    {
+        public override ushort PacketId => Id;
+
+        public override ushort PacketSize => {1};
+        public const ushort Id = {2};
+
+        public override EError Deserialize(ArraySegment<byte> buff)
+        {
+            if (buff.Count < PacketSize)
+                return EError.PacketFragmentation;
+
+			{3}
+
+            return EError.None;
+        }
+
+        public override EError Serialize(out ArraySegment<byte> buff)
+        {
+            {4}
+
+            return EError.None;
+        }
+    }
+	";
+
+	string intSerializeFormat =
+	@"
+
+	";
+	string intDeserializeFormat =
+	@"
+	
+	";
+
+	string floatSerializeFormat =
+	@"
+
+	";
+	string floatDeserializeFormat =
+	@"
+	
+	";
+
+	string stringSerializeFormat =
+	@"
+
+	";
+	string stringDeserializeFormat =
+	@"
+	
+	";
+
+	string ushortSerializeFormat =
+	@"
+
+	";
+	string ushortDeserializeFormat =
+	@"
+	
+	";
+
+	string dateTimeSerializeFormat =
+	@"
+
+	";
+	string dateTimeDeserializeFormat =
+	@"
+	
+	";
+
+	string listSerializeFormat =
+	@"
+
+	";
+	string listDeserializeFormat =
+	@"
+	
+	";
+
+	string dictionarySerializeFormat =
+	@"
+
+	";
+	string dictionaryDeserializeFormat =
+	@"
+	
+	";
+
+	Dictionary<string, int> TypeSizeMap
+	{
+		{"int", sizeof(int)},
+		{"float", sizeof(float)},
+		{"DateTime", sizeof(DateTime)},
+		{"ushort", sizeof(ushort)},
+
+	};
+	
+#>
+
+
+
+namespace ServerLib.Packet
+{
+	<#
+		string xmlFileName = "PacketRaw.xml";
+		string dir = Path.GetDirectoryName(this.Host.TemplateFile);
+		string xmlPath = Path.Combine(dir, xmlFileName);
+
+		XmlDocument doc = new XmlDocument();
+		doc.Load(xmlPath);
+
+		int packetId = 0;
+		XmlNode PacketNode = doc.ChildNodes[0]; // Packets
+		foreach(XmlNode ClassNode in  PacketNode.ChildNodes) // Class
+		{
+			XmlNode ClassNameNode = ClassNode.SelectSingleNode("ClassName");
+			string className = ClassNameNode.InnerText;
+			XmlNode VariablesNode = ClassNode.SelectSingleNode("Variables");
+
+			Dictionary<string, string> varNameToVarType = new Dictionary<string, string>();
+			int packetSize = 0;
+			foreach(XmlNode VarNode in VariablesNode.ChildNodes)
+			{
+				XmlNode TypeNode = VarNode.SelectSingleNode("Type");
+				XmlNode NameNode = VarNode.SelectSingleNode("Name");
+
+				varNameToVarType.Add(NameNode.InnerText, TypeNode.InnerText);
+
+				packetSize += TypeSizeMap[TypeNode.InnerText];
+			}
+
+
+			String.Format(PacketClassFormat, className, 
+		}
+	#>
+	
+}

@@ -165,6 +165,7 @@ namespace ServerLib
                     }
                 }
 
+                BeginRecv();
             }
             catch (SocketException se)
             {
