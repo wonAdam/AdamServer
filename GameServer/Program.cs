@@ -13,6 +13,8 @@ namespace GameServer
 {
     class LobbySession : Session
     {
+        static int msgNo = 0;
+
         public override void OnConnect(IPEndPoint endPoint)
         {
             Logger.Log(LogLevel.Temp, $"[Connect] {endPoint.ToString()}");
@@ -26,8 +28,12 @@ namespace GameServer
         protected override void OnRecv(PacketBase packet)
         {
             Logger.Log(LogLevel.Temp, $"[Recv] {packet.GetType().Name}");
-
-            Send(new Ping_RS());
+            
+            ChatMsg_RS packetToSend = new ChatMsg_RS();
+            packetToSend.Msg = "Hello From Server!!";
+            packetToSend.MsgNo = msgNo++;
+            packetToSend.Time = DateTime.UtcNow;
+            Send(packetToSend);
         }
 
         protected override void OnSend(int sendSize)

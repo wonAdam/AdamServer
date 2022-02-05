@@ -21,12 +21,18 @@ namespace ClientBot
 
     class ServerSession : Session
     {
+        static int msgNo = 0;
         public override void OnConnect(IPEndPoint endPoint)
         {
             Logger.Log(LogLevel.Temp, $"[Connect] {endPoint.ToString()}");
 
             while(true)
             {
+                ChatMsg_RQ packetToSend = new ChatMsg_RQ();
+                packetToSend.Msg = "Hello From Client!!";
+                packetToSend.MsgNo = msgNo++;
+                packetToSend.Time = DateTime.UtcNow;
+
                 Send(new Ping_RQ());
                 Thread.Sleep(1500);
             }

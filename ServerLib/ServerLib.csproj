@@ -8,17 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="PacketTemplate.cs">
+    <None Include="PacketGenerated.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>PacketTemplate.tt</DependentUpon>
+      <DependentUpon>PacketGenerated.tt</DependentUpon>
     </None>
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="PacketTemplate.tt">
+    <None Update="PacketGenerated.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PacketTemplate.cs</LastGenOutput>
+      <LastGenOutput>PacketGenerated.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
@@ -27,6 +27,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="PacketGenerated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PacketGenerated.tt</DependentUpon>
+    </Compile>
     <Compile Update="PacketTemplate.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

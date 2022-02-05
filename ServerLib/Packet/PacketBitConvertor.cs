@@ -15,22 +15,28 @@ namespace ServerLib.Packet
 
             try
             {
+                serializeResult = new ArraySegment<byte>(new byte[packet.PacketSize + PacketHeader.Size]);
+                serializeSize = packet.PacketSize + PacketHeader.Size;
+
+                //////////////////////////////////////
+                // PacketHeader
                 PacketHeader packetHeader = new PacketHeader(packet);
 
                 EError headerError = packetHeader.Serialize(out ArraySegment<byte> headerBuff);
                 if (headerError != EError.None)
                     return headerError;
 
+                Array.Copy(headerBuff.Array, 0, serializeResult.Array, 0, headerBuff.Count); // header copy
+
+                //////////////////////////////////////
+                // PacketContent
                 EError contentError = packet.Serialize(out ArraySegment<byte> contentBuff);
                 if (contentError != EError.None)
                     return contentError;
 
-                serializeResult = new ArraySegment<byte>(new byte[packet.PacketSize + PacketHeader.Size]);
-                Array.Copy(headerBuff.Array, 0, serializeResult.Array, 0, headerBuff.Count); // header copy
                 if(contentBuff.Array != null) // size가 0이면 null일 수 있다.
                     Array.Copy(contentBuff.Array, 0, serializeResult.Array, headerBuff.Count, contentBuff.Count); // content copy
 
-                serializeSize = packet.PacketSize + PacketHeader.Size;
                 return EError.None;
             }
             catch (Exception e)

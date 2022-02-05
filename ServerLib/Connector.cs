@@ -18,6 +18,8 @@ namespace ServerLib
         {
             try
             {
+                BitConverter.ToInt16();
+                BitConverter.
                 _sessionFactory = sessionFactory;
                 _sock = new Socket(Listener.GetServerIPEndPoint().AddressFamily, SocketType.Stream, ProtocolType.Tcp);
                 _sock.BeginConnect(Listener.GetServerIPEndPoint(), new AsyncCallback(ConnectCallback), null);

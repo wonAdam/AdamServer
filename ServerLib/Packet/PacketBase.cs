@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +12,7 @@ namespace ServerLib.Packet
     /// PacketHeader에는 PacketHeader를 제외한 PacketContent의 사이즈인 _size,
     /// 그리고 해당 패킷의 아이디인 _id 로 구성됩니다.
     /// </summary>
+    [Serializable]
     public class PacketHeader
     {
         public static ushort Size
@@ -75,6 +77,7 @@ namespace ServerLib.Packet
         }
     }
 
+    [Serializable]
     public abstract class PacketBase
     {
         public abstract ushort PacketId { get; }
