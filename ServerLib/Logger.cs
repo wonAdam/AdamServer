@@ -38,7 +38,8 @@ namespace ServerLib
                     break;
             }
 
-            Console.WriteLine($"[Logger] {level.ToString()} {log}");
+            
+            Console.WriteLine($"[Logger] [{DateTime.UtcNow.ToLongDateString()} {DateTime.UtcNow.ToLongTimeString()}] {level.ToString()} {log}");
         }
     }
 }
