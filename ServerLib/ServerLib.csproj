@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="AdamBitConverterGenerated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AdamBitConverterGenerated.tt</DependentUpon>
+    </None>
     <None Include="PacketGenerated.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -16,6 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="AdamBitConverterGenerated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AdamBitConverterGenerated.cs</LastGenOutput>
+    </None>
     <None Update="PacketGenerated.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PacketGenerated.cs</LastGenOutput>
@@ -27,6 +36,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="AdamBitConverterGenerated.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AdamBitConverterGenerated.tt</DependentUpon>
+    </Compile>
     <Compile Update="PacketGenerated.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
