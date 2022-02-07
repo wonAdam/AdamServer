@@ -82,7 +82,5 @@ namespace ServerLib.Packet
     {
         public abstract ushort PacketId { get; }
         public abstract ushort PacketSize { get; }
-        public abstract EError Serialize(out ArraySegment<byte> buff);
-        public abstract EError Deserialize(ArraySegment<byte> buff);
     }
 }

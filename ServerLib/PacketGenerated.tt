@@ -8,7 +8,6 @@
 <#@ import namespace="System.Xml" #>
 <#@ output extension=".cs" #>
 
-
 /**************************************
 
 	이 파일은 자동 생성되는 파일입니다.
@@ -16,14 +15,11 @@
 
 **************************************/
 
-using System.Text;
 <#
 	// 0: 패킷 이름
 	// 1: 패킷 사이즈 
 	// 2: 패킷 아이디
 	// 3: 멤버 변수
-	// 4: Deserialization
-	// 5: Serialization
 	string PacketClassFormat = 
 	@"
     public class {0} : PacketBase
@@ -34,383 +30,129 @@ using System.Text;
         public const ushort Id = {2};
 
 		{3}
-
-        public override EError Deserialize(ArraySegment<byte> buff)
-        {{
-            if (buff.Count < PacketSize)
-                return EError.PacketFragmentation;
-
-			int cursor = 0;
-
-			{4}
-
-            return EError.None;
-        }}
-
-        public override EError Serialize(out ArraySegment<byte> buff)
-        {{
-			buff = new ArraySegment<byte>(new byte[PacketSize]);
-
-			int cursor = 0;
-
-			{5}
-
-            return EError.None;
-        }}
     }}
 	";
 
+	// 0: 타입
+	// 1: 이름
+	string MemberFormat = 
+	@"
+		public {0} {1};
+	";
+
+	string intSize =  @"sizeof(int)";
+	string uintSize = @"sizeof(uint)";
+	string shortSize = @"sizeof(short)";
+	string ushortSize = @"sizeof(ushort)";
+	string charSize = @"sizeof(char)";
+	string longSize = @"sizeof(long)";
+	string ulongSize = @"sizeof(ulong)";
+	string boolSize = @"sizeof(bool)";
+	string doubleSize = @"sizeof(double)";
+	string floatSize = @"sizeof(float)";
+
+	// 0: 변수이름
+	string DateTimeSize = @"sizeof(long)";
+
+	// 0: 변수이름
+	string StringSize = @"Encoding.UTF8.GetByteCount({0})";
+
+	// 0: 변수이름
+	// 1: 원소사이즈
+	string ListSize = @"{0}.Count * {1}";
+
+	// 0: 변수이름
+	// 1: 키사이즈
+	// 1: 값사이즈
+	string DictionarySize = @"{0}.Count * ({1} + {2})";
+
+	Dictionary<string, string> TypeToSize = new Dictionary<string, string>()
+	{
+		{ "int", intSize },
+		{ "uint", uintSize },
+		{ "short", shortSize },
+		{ "ushort", ushortSize },
+		{ "char", charSize },
+		{ "long", longSize },
+		{ "ulong", ulongSize },
+		{ "float", floatSize },
+		{ "double", doubleSize },
+		{ "bool", boolSize },
+		{ "string", StringSize },
+		{ "DateTime", DateTimeSize },
+		{ "List", ListSize },
+		{ "Dictionary", DictionarySize }
+	};
 #>
+<#
+	string xmlFileName = "PacketRaw.xml";
+	string dir = Path.GetDirectoryName(this.Host.TemplateFile);
+	string xmlPath = Path.Combine(dir, xmlFileName);
+
+	XmlDocument doc = new XmlDocument();
+	doc.Load(xmlPath);
+
+	StringBuilder result = new StringBuilder();
+
+	int packetId = 0;
+	XmlNode PacketNode = doc.ChildNodes[0]; // Packets
+	foreach(XmlNode ClassNode in  PacketNode.ChildNodes) // Class
+	{
+		XmlNode ClassNameNode = ClassNode.SelectSingleNode("Name");
+		string className = ClassNameNode.InnerText;
+		XmlNode VariablesNode = ClassNode.SelectSingleNode("Variables");
+
+		StringBuilder members = new StringBuilder();
+		List<string> sizes = new List<string>();
+		foreach(XmlNode VarNode in VariablesNode.ChildNodes)
+		{
+			string type = VarNode.Name;
+			string name = VarNode.InnerText;
+
+			members.Append(String.Format(MemberFormat, type, name));
+
+			switch(type)
+			{
+				case "List":
+				{
+					string element = VarNode.Attributes["element"].Value;
+					sizes.Add(String.Format(TypeToSize[type], element));
+					break;
+				}
+				case "Dictionary":
+				{
+					string key = VarNode.Attributes["key"].Value;
+					string value = VarNode.Attributes["value"].Value;
+					sizes.Add(String.Format(TypeToSize[type], key, value));
+					break;
+				}
+				case "string":
+				{
+					sizes.Add(String.Format(TypeToSize[type], name));
+					break;
+				}
+				default:
+				{
+					sizes.Add(TypeToSize[type]);
+					break;
+				}
+			}
+		}
+
+		// 0: 패킷 이름
+		// 1: 패킷 사이즈 
+		// 2: 패킷 아이디
+		// 3: 멤버 변수
+		string sizeStr = "(ushort)" + "(" + String.Join(" + ", sizes) + ")";
+
+		string packetClass = String.Format(PacketClassFormat, className, sizeStr, packetId++, members.ToString());
+		result.Append(packetClass);
+	}
+#>
+
+using System.Text;
 
 namespace ServerLib.Packet
 {
-	<#
-		string xmlFileName = "PacketRaw.xml";
-		string dir = Path.GetDirectoryName(this.Host.TemplateFile);
-		string xmlPath = Path.Combine(dir, xmlFileName);
-
-		XmlDocument doc = new XmlDocument();
-		doc.Load(xmlPath);
-
-		int packetId = 0;
-		XmlNode PacketNode = doc.ChildNodes[0]; // Packets
-		foreach(XmlNode ClassNode in  PacketNode.ChildNodes) // Class
-		{
-			XmlNode ClassNameNode = ClassNode.SelectSingleNode("ClassName");
-			string className = ClassNameNode.InnerText;
-			XmlNode VariablesNode = ClassNode.SelectSingleNode("Variables");
-
-			Dictionary<string, string> varNameToVarType = new Dictionary<string, string>();
-			List<string> packetSizes = new List<string>();
-			StringBuilder variableStr = new StringBuilder();
-			StringBuilder serializeStr = new StringBuilder();
-			StringBuilder deserializeStr = new StringBuilder();
-			foreach(XmlNode VarNode in VariablesNode.ChildNodes)
-			{
-				XmlNode TypeNode = VarNode.SelectSingleNode("Type");
-				XmlNode NameNode = VarNode.SelectSingleNode("Name");
-
-				varNameToVarType.Add(NameNode.InnerText, TypeNode.InnerText);
-				packetSizes.Add(GetPacketSizeFormat(TypeNode.InnerText, NameNode.InnerText));
-				variableStr.Append($"public {TypeNode.InnerText} {NameNode.InnerText};\n\t\t");
-				serializeStr.Append(GetSerializeFormat(TypeNode.InnerText, NameNode.InnerText));
-				deserializeStr.Append(GetDeserializeFormat(TypeNode.InnerText, NameNode.InnerText));
-			}
-
-			string packetSize = packetSizes.Count > 0 ? String.Join(" + ", packetSizes) : "0";
-			packetSize = $"(ushort)({packetSize})";
-
-
-			// 0: 패킷 이름
-			// 1: 패킷 사이즈 
-			// 2: 패킷 아이디
-			// 3: 멤버 변수
-			// 4: Deserialization
-			// 5: Serialization
-	#>
-			<#= String.Format(PacketClassFormat, className, packetSize, packetId++, variableStr.ToString(), deserializeStr.ToString(), serializeStr.ToString()) #>
-	<#
-		}
-	#>
+	<#= result.ToString() #>
 }
-
-<#+
-	static Dictionary<string, string> TypeSizeDic = new Dictionary<string, string>()
-	{
-		{"bool", "sizeof(bool)"},
-		{"int", "sizeof(int)"},
-		{"uint", "sizeof(uint)"},
-		{"short", "sizeof(short)"},
-		{"ushort", "sizeof(ushort)"},
-		{"long", "sizeof(long)"},
-		{"ulong", "sizeof(ulong)"},
-		{"float", "sizeof(float)"},
-		{"double", "sizeof(double)"},
-		{"char", "sizeof(char)"},
-	};
-
-	static Dictionary<string, string> BitConverterMethodDic = new Dictionary<string, string>()
-	{
-		{"bool", "ToBoolean"},
-		{"int", "ToInt32"},
-		{"uint", "ToUInt32"},
-		{"short", "ToInt16"},
-		{"ushort", "ToUInt16"},
-		{"long", "ToInt64"},
-		{"ulong", "ToUInt64"},
-		{"float", "ToSingle"},
-		{"double", "ToDouble"},
-		{"char", "ToChar"},
-	};
-
-
-	// 0: 변수 이름
-	static string bitConverterSerializeFormat = 
-	@"
-			{{
-				byte[] dataBuff = BitConverter.GetBytes({0});
-				Array.Copy(dataBuff, 0, buff.Array, buff.Offset + cursor, dataBuff.Length);
-				cursor += dataBuff.Length;
-			}}
-	";
-
-	// 0: 변수 이름
-	// 1: BitConverter 메서드
-	static bitConverterDeserializeFormat = 
-	@"
-			{{
-				{0} = BitConverter.{1}(buff.Array, buff.Offset + cursor);
-				cursor += {1};
-			}}
-	";
-
-	// 0: 변수 이름
-	static dateTimeSerializeFormat = 
-	@"
-			{{
-				byte[] dataBuff = BitConverter.GetBytes({0}.Ticks);
-				Array.Copy(dataBuff, 0, buff.Array, buff.Offset + cursor, dataBuff.Length);
-				cursor += dataBuff.Length;
-			}}
-	";
-
-	// 0: 변수 이름
-	static dateTimeDeserializeFormat = 
-	@"
-			{{
-				long ticks = BitConverter.ToInt64(buff.Array, buff.Offset + cursor);
-				{0} = new DateTime(ticks);
-				cursor += sizeof(long);
-			}}
-	";
-
-	// 0: List이름
-	// 1: List 원소타입
-	// 2: List 원소타입 Serialization
-	static string listSerializeFormat = 
-	@"
-			{{
-				byte[] lengthBuff = BitConverter.GetBytes({0}.Length);
-				Array.Copy(lengthBuff, 0, buff.Array, buff.Offset + cursor, lengthBuff.Length);
-				cursor += lengthBuff.Length;
-				foreach({1} e in {0})
-				{{
-					{2}
-				}}
-			}}
-	";
-
-	// 0: List 원소타입 
-	// 0: List 원소타입 
-	// 1: List 원소타입 크기
-	static string listDeserializeFormat = 
-	@"
-			{{
-				int length = BitConverter.ToInt32(buff.Array, buff.Offset + cursor);
-				cursor += sizeof(int);
-				for(int i = 0 ; i < length; ++i)
-				{{
-					{0} e = 
-					{2}.Add();
-				}}
-			}}
-	";
-
-	// 0: Dictionary 이름
-	// 1: Dictionary Key타입
-	// 2: Dictionary Key타입 Serialization
-	// 3: Dictionary Value타입
-	// 4: Dictionary Value타입 Serialization
-	static string DictionarySerializeFormat = 
-	@"
-			{{
-				byte[] lengthBuff = BitConverter.GetBytes({0}.Length);
-				Array.Copy(lengthBuff, 0, buff.Array, buff.Offset + cursor, lengthBuff.Length);
-				cursor += lengthBuff.Length;
-				foreach({1} e in {0}.Keys)
-				{{
-					{2}
-				}}
-				foreach({3} e in {0}.Values)
-				{{
-					{4}
-				}}
-			}}	
-	";
-
-	// 0: 변수 이름
-	static string StringSerializeFormat = 
-	@"
-			{{
-				byte[] lengthBuff = BitConverter.GetBytes({0}.Length);
-				Array.Copy(lengthBuff, 0, buff.Array, buff.Offset + cursor, lengthBuff.Length);
-				cursor += lengthBuff.Length;
-				byte[] stringBuff = Encoding.UTF8.GetBytes({0});
-				Array.Copy(stringBuff, 0, buff.Array, buff.Offset + cursor, stringBuff.Length);
-				cursor += stringBuff.Length;
-			}}	
-	";
-
-	public string GetSerializeFormat(string typeStr, string varName)
-	{
-		switch(typeStr)
-		{
-			case "bool":
-			case "int":
-			case "uint":
-			case "short":
-			case "ushort":
-			case "long":
-			case "ulong":
-			case "float":
-			case "double":
-			case "char":
-			{
-				return String.Format(bytesSerializeFormat, varName);
-			}
-			case "DateTime":
-			{
-				return String.Format(dateTimeSerializeFormat, varName);
-			}
-			default:
-			{
-				// 0: List이름
-				// 1: List 원소타입
-				// 2: List 원소타입 Serialization
-				if(typeStr.StartsWith("List"))
-				{
-					int start = "List".Length + 1;
-					int length = typeStr.Length - start - 1;
-					string valType = typeStr.Substring(start, length);
-					return String.Format(listSerializeFormat, varName, valType, GetSerializeFormat(valType, "e"));
-				}
-
-				// 0: Dictionary 이름
-				// 1: Dictionary Key타입
-				// 2: Dictionary Key타입 Serialization
-				// 3: Dictionary Value타입
-				// 4: Dictionary Value타입 Serialization
-				// string DictionarySerializeFormat;
-				else if(typeStr.StartsWith("Dictionary"))
-				{
-					int start = "Dictionary".Length + 1;
-					int length = typeStr.Length - start - 1;
-					string keyAndValue = typeStr.Substring(start, length);
-					string keyType = keyAndValue.Split(',')[0];
-					string valType = keyAndValue.Split(',')[1];
-					return String.Format(DictionarySerializeFormat, varName, keyType, GetSerializeFormat(keyType, "e"), valType, GetSerializeFormat(valType, "e"));
-				}
-
-				else if(typeStr == "string")
-				{
-					return String.Format(StringSerializeFormat, varName);
-				}
-
-				return "";
-			}
-		}
-	}
-
-	public string GetDeserializeFormat(string typeStr, string varName)
-	{
-		switch(typeStr)
-		{
-			case "bool":
-			case "int":
-			case "uint":
-			case "short":
-			case "ushort":
-			case "long":
-			case "ulong":
-			case "float":
-			case "double":
-			case "char":
-			{
-				return String.Format(GetBytesDeserializeFormat(typeStr), typeStr, varName);
-			}
-			case "DateTime":
-			{
-				return String.Format(dateTimeDeserializeFormat, varName);
-			}
-			default:
-			{
-				// 0: List 원소타입 Deserialization
-				// 1: List 원소타입 크기
-				if(typeStr.StartsWith("List"))
-				{
-					int start = "List".Length + 1;
-					int length = typeStr.Length - start - 1;
-					string valType = typeStr.Substring(start, length);
-					return String.Format(listDeserializeFormat, varName, valType, GetDeserializeFormat(valType, "e"));
-				}
-
-				// 0: Dictionary 이름
-				// 1: Dictionary Key타입
-				// 2: Dictionary Key타입 Serialization
-				// 3: Dictionary Value타입
-				// 4: Dictionary Value타입 Serialization
-				// string DictionarySerializeFormat;
-				else if(typeStr.StartsWith("Dictionary"))
-				{
-					int start = "Dictionary".Length + 1;
-					int length = typeStr.Length - start - 1;
-					string keyAndValue = typeStr.Substring(start, length);
-					string keyType = keyAndValue.Split(',')[0];
-					string valType = keyAndValue.Split(',')[1];
-					return String.Format(DictionaryDeserializeFormat, varName, keyType, GetDeserializeFormat(keyType, "e"), valType, GetDeserializeFormat(valType, "e"));
-				}
-
-				else if(typeStr == "string")
-				{
-					return String.Format(StringDeserializeFormat, varName);
-				}
-
-				return "";
-			}
-		}
-	}
-
-	public string GetPacketSizeFormat(string typeStr, string varName)
-	{
-		typeStr = typeStr.Replace(" ", "");
-
-		if(TypeSizeDic.Keys.Contains(typeStr))
-			return TypeSizeDic[typeStr];
-		
-		else if(typeStr.StartsWith("List"))
-		{
-			int start = "List".Length + 1;
-			int length = typeStr.Length - start - 1;
-			string valType = typeStr.Substring(start, length);
-			return ListSizeFormat(valType, varName);
-		}
-
-		else if(typeStr.StartsWith("Dictionary"))
-		{
-			int start = "Dictionary".Length + 1;
-			int length = typeStr.Length - start - 1;
-			string keyAndValue = typeStr.Substring(start, length);
-			string keyType = keyAndValue.Split(',')[0];
-			string valType = keyAndValue.Split(',')[1];
-			return DictionarySizeFormat(keyType, valType, varName);
-		}
-
-		else if(typeStr == "string")
-		{
-			return $"Encoding.UTF8.GetByteCount({varName})";
-		}
-
-		return "";
-	}
-
-	public string ListSizeFormat(string valType, string varName)
-	{
-		return String.Format("sizeof(int) + sizeof({0}) * {1}.Count", valType, varName);
-	}
-	public string DictionarySizeFormat(string keyType, string valType, string varName)
-	{
-		return String.Format("sizeof(int) + (sizeof({0}) + sizeof({1})) * {2}.Count", keyType, valType, varName);
-	}
-
-#>
-

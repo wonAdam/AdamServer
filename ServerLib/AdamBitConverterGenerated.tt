@@ -1,0 +1,250 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Xml" #>
+<#@ output extension=".cs" #>
+
+<#
+	// 0: 변수이름
+	string intSerialization = 
+	@"
+		byte[] memberBuff = BitConverter.GetBytes({0});
+		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(int));
+		cursor += sizeof(int);
+	";
+	// 0: 변수이름
+	string uintSerialization = 
+	@"
+		byte[] memberBuff = BitConverter.GetBytes({0});
+		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(uint));
+		cursor += sizeof(uint);
+	";
+	// 0: 변수이름
+	string shortSerialization = 
+	@"
+		byte[] memberBuff = BitConverter.GetBytes({0});
+		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(short));
+		cursor += sizeof(short);
+	";
+	// 0: 변수이름
+	string ushortSerialization = 
+	@"
+		byte[] memberBuff = BitConverter.GetBytes({0});
+		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(ushort);
+		cursor += sizeof(ushort);
+	";
+	// 0: 변수이름
+	string charSerialization = 
+	@"
+		byte[] memberBuff = BitConverter.GetBytes({0});
+		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(char));
+		cursor += sizeof(char);
+	";
+	// 0: 변수이름
+	string longSerialization = 
+	@"
+		byte[] memberBuff = BitConverter.GetBytes({0});
+		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(long));
+		cursor += sizeof(long);
+	";
+	// 0: 변수이름
+	string ulongSerialization = 
+	@"
+		byte[] memberBuff = BitConverter.GetBytes({0});
+		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(ulong));
+		cursor += sizeof(ulong);
+	";
+	// 0: 변수이름
+	string boolSerialization = 
+	@"
+		byte[] memberBuff = BitConverter.GetBytes({0});
+		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(bool));
+		cursor += sizeof(bool);
+	";
+	// 0: 변수이름
+	string doubleSerialization = 
+	@"
+		byte[] memberBuff = BitConverter.GetBytes({0});
+		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(double));
+		cursor += sizeof(double);
+	";
+	// 0: 변수이름
+	string floatSerialization = 
+	@"
+		byte[] memberBuff = BitConverter.GetBytes({0});
+		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(float));
+		cursor += sizeof(float);
+	";
+	// 0: 변수이름
+	string ListSerialization = 
+	@"
+		byte[] lengthBuff = AdamBitConverter.Serialize({0}.Count);
+		Array.Copy(lenghtBuff, 0, buff.Array, buff.Offset + cursor, lengthBuff.Length);
+		cursor += lengthBuff.Length;
+		foreach(var e in {0})
+		{{
+			byte[] eBuff = AdamBitConverter.Serialize(e, out int eSize);
+			Array.Copy(eBuff, 0, buff.Array, buff.Offset + cursor, eSize);
+			cursor += eSize;
+		}}
+	";
+
+	// 0: 변수이름
+	string DictionarySerialization = 
+	@"
+		byte[] lengthBuff = AdamBitConverter.Serialize({0}.Count, out int lenSize);
+		Array.Copy(lenghtBuff, 0, buff.Array, buff.Offset + cursor, lenSize);
+		cursor += lenSize;
+		foreach(var pair in {0})
+		{{
+			var key = e.Key;
+			var value = e.Value;
+			byte[] keyBuff = AdamBitConverter.Serialize(key, out int keySize);
+			byte[] valueBuff = AdamBitConverter.Serialize(value, out int valueSize);
+			Array.Copy(keyBuff, 0, buff.Array, buff.Offset + cursor, keySize);
+			Array.Copy(valueBuff, 0, buff.Array, buff.Offset + cursor, valueSize);
+			cursor += keySize + valueSize;
+		}}
+		
+	";
+#>
+
+<#  
+	Dictionary<string, string> typeToSerialization = new Dictionary<string, string>()
+	{
+		{ "int", intSerialization },
+		{ "uint", uintSerialization },
+		{ "short", shortSerialization },
+		{ "ushort", ushortSerialization },
+		{ "char", charSerialization },
+		{ "long", longSerialization },
+		{ "ulong", ulongSerialization },
+		{ "float", floatSerialization },
+		{ "double", doubleSerialization },
+		{ "bool", boolSerialization },
+		{ "List", ListSerialization },
+		{ "Dictionary", DictionarySerialization },
+	};
+#>
+
+<#  
+	// 0: 타입이름
+	// 1: 시리얼라이즈 몸체
+	string SerializeFunctionFormat = 
+	@"
+		public static byte[] Serialize({0} date, out int serializeSize)
+		{{
+			int cursor = 0;
+			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[date.Size]);
+
+			{1}
+
+			serializeSize = cursor;
+			return buff.Array;
+		}}
+	";
+
+	// 0: 변수이름
+	string SerializeUnit = 
+	@"
+			{{
+				byte[] memberBuff = Serialize(data.{0}, out int memberSize);
+				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
+				cursor += memberSize;
+			}}
+	";
+
+	// 0: 타입이름
+	// 1: 디시리얼라이즈 몸체
+	string DeserializeFunctionFormat = 
+	@"
+		public static {0} Deserialize(ArraySegment<byte> buff, out int deserializeSize)
+		{{
+			{1}
+		}}
+	";
+
+	// 0: 변수이름
+	string DeserializeUnit = 
+	@"
+			{{
+				{0} = Deserialize(buff, out int memberSize);
+				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
+				buff = new ArraySegment(buff.Array, buff.Offset + memberSize, buff.Count - memberSize);
+			}}
+	";
+
+#>
+
+<#
+	string AppendTab(string str, int tabCount)
+	{
+		string result = String.Copy(str);
+		result.Replace("\t", "");
+		string tabs = "";
+		for(int i = 0 ; i < tabCount; ++i) tabs += "/t";
+		result.Replace("\n", "\n" + tabs);
+
+		return result;
+	}
+#>
+
+
+<#  
+	string xmlFileName = "PacketRaw.xml";
+	string dir = Path.GetDirectoryName(this.Host.TemplateFile);
+	string xmlPath = Path.Combine(dir, xmlFileName);
+
+	XmlDocument doc = new XmlDocument();
+	doc.Load(xmlPath);
+
+	StringBuilder result = new StringBuilder();
+
+	int packetId = 0;
+	XmlNode PacketNode = doc.ChildNodes[0]; // Packets
+	foreach(XmlNode ClassNode in  PacketNode.ChildNodes) // Class
+	{
+		XmlNode ClassNameNode = ClassNode.SelectSingleNode("Name");
+		string className = ClassNameNode.InnerText;
+		XmlNode VariablesNode = ClassNode.SelectSingleNode("Variables");
+
+		StringBuilder ssb = new StringBuilder();
+		StringBuilder dsb = new StringBuilder();
+		foreach(XmlNode VarNode in VariablesNode.ChildNodes)
+		{
+			string type = VarNode.Name;
+			string name = VarNode.InnerText;
+
+			ssb.Append(String.Format(SerializeUnit, name));
+			dsb.Append(String.Format(DeserializeUnit, name));
+		}
+		string serializeFunc = String.Format(SerializeFunctionFormat, ClassNameNode.InnerText, ssb.ToString());
+		string deserializeFunc = String.Format(DeserializeFunctionFormat, ClassNameNode.InnerText, dsb.ToString());
+
+		result.Append(serializeFunc);
+		result.Append(deserializeFunc);
+		
+		
+	}
+#>
+
+/**************************************
+
+	이 파일은 자동 생성되는 파일입니다.
+		절대 직접 수정하지마세요.
+
+**************************************/
+
+namespace ServerLib.Packet
+{
+	internal class AdamBitConverter
+	{
+		
+		<#= result.ToString() #>
+
+	}
+}

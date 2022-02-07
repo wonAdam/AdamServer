@@ -1,49 +1,31 @@
 ﻿<Packets>
   <Class>
-    <ClassName>Ping_RQ</ClassName>
+    <Name>Ping_RQ</Name>
     <Variables>
+      <DateTime>time</DateTime>
     </Variables>
   </Class>
 
   <Class>
-    <ClassName>Ping_RS</ClassName>
+    <Name>Ping_RS</Name>
     <Variables>
+      <DateTime>time</DateTime>
     </Variables>
   </Class>
 
   <Class>
-    <ClassName>ChatMsg_RQ</ClassName>
+    <Name>ChatMsg_RQ</Name>
     <Variables>
-      <Var>
-        <Type>string</Type>
-        <Name>Msg</Name>
-      </Var>
-      <Var>
-        <Type>int</Type>
-        <Name>MsgNo</Name>
-      </Var>
-      <Var>
-        <Type>DateTime</Type>
-        <Name>Time</Name>
-      </Var>
+      <string>msgText</string>
+      <DateTime>time</DateTime>
     </Variables>
   </Class>
 
   <Class>
-    <ClassName>ChatMsg_RS</ClassName>
+    <Name>ChatMsg_RS</Name>
     <Variables>
-      <Var>
-        <Type>string</Type>
-        <Name>Msg</Name>
-      </Var>
-      <Var>
-        <Type>int</Type>
-        <Name>MsgNo</Name>
-      </Var>
-      <Var>
-        <Type>DateTime</Type>
-        <Name>Time</Name>
-      </Var>
+      <string>msgText</string>
+      <DateTime>time</DateTime>
     </Variables>
   </Class>
   
