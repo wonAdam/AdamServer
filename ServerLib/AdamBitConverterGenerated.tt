@@ -92,6 +92,7 @@
 		{0}= BitConverter.ToInt16(buff.Array, buff.Offset);
 		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(short), buff.Count - sizeof(short));
 	";
+
 	// 0: 변수이름
 	string ushortSerialization = 
 	@"
