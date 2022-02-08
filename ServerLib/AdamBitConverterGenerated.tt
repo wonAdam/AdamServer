@@ -9,12 +9,47 @@
 <#@ output extension=".cs" #>
 
 <#
+	string intSerializeFunc = 
+	@"
+		public byte[] Serialize(int data)
+		{
+			return bitConverter.GetBytes(data);
+		}
+	";
+	string intDeserializeFunc = 
+	@"
+		public void Deserialize(ArraySegment<byte> buff, out int data)
+		{
+			data = BitConverter.ToInt32(buff.Array, buff.Offset);
+		}
+	";
 	// 0: 변수이름
 	string intSerialization = 
 	@"
 		byte[] memberBuff = BitConverter.GetBytes({0});
 		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(int));
 		cursor += sizeof(int);
+	";
+	// 0: 변수이름
+	string intDeserialization = 
+	@"
+		{0} = BitConverter.ToInt32(buff.Array, buff.Offset);
+		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(int), buff.Count - sizeof(int));
+	";
+
+	string uintSerializeFunc = 
+	@"
+		public byte[] Serialize(uint data)
+		{
+			return bitConverter.GetBytes(data);
+		}
+	";
+	string uintDeserializeFunc = 
+	@"
+		public void Deserialize(ArraySegment<byte> buff, out uint data)
+		{
+			data = BitConverter.ToUInt32(buff.Array, buff.Offset);
+		}
 	";
 	// 0: 변수이름
 	string uintSerialization = 
@@ -24,11 +59,38 @@
 		cursor += sizeof(uint);
 	";
 	// 0: 변수이름
+	string uintDeserialization = 
+	@"
+		{0}= BitConverter.ToUInt32(buff.Array, buff.Offset);
+		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(uint), buff.Count - sizeof(uint));
+	";
+
+	string shortSerializeFunc = 
+	@"
+		public byte[] Serialize(short data)
+		{
+			return bitConverter.GetBytes(data);
+		}
+	";
+	string shortDeserializeFunc = 
+	@"
+		public void Deserialize(ArraySegment<byte> buff, out short data)
+		{
+			data = BitConverter.ToInt16(buff.Array, buff.Offset);
+		}
+	";
+	// 0: 변수이름
 	string shortSerialization = 
 	@"
 		byte[] memberBuff = BitConverter.GetBytes({0});
 		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(short));
 		cursor += sizeof(short);
+	";
+	// 0: 변수이름
+	string shortDeserialization = 
+	@"
+		{0}= BitConverter.ToInt16(buff.Array, buff.Offset);
+		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(short), buff.Count - sizeof(short));
 	";
 	// 0: 변수이름
 	string ushortSerialization = 
@@ -80,6 +142,13 @@
 		cursor += sizeof(float);
 	";
 	// 0: 변수이름
+	string stringSerialization = 
+	@"
+		byte[] memberBuff = Encoding.UTF8.GetBytes({0});
+		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, memberBuff.Length);
+		cursor += memberBuff.Length;
+	";
+	// 0: 변수이름
 	string ListSerialization = 
 	@"
 		byte[] lengthBuff = AdamBitConverter.Serialize({0}.Count);
@@ -126,8 +195,23 @@
 		{ "float", floatSerialization },
 		{ "double", doubleSerialization },
 		{ "bool", boolSerialization },
+		{ "string", stringSerialization },
 		{ "List", ListSerialization },
 		{ "Dictionary", DictionarySerialization },
+	};
+
+	Dictionary<string, int> typeToTypeSize = new Dictionary<string,int>()
+	{
+		{ "int", sizeof(int) },
+		{ "uint", sizeof(uint) },
+		{ "short", sizeof(short) },
+		{ "ushort", sizeof(ushort) },
+		{ "char", sizeof(char) },
+		{ "long", sizeof(long) },
+		{ "ulong", sizeof(ulong) },
+		{ "float", sizeof(float) },
+		{ "double", sizeof(double) },
+		{ "bool", sizeof(bool) },
 	};
 #>
 
@@ -136,14 +220,13 @@
 	// 1: 시리얼라이즈 몸체
 	string SerializeFunctionFormat = 
 	@"
-		public static byte[] Serialize({0} date, out int serializeSize)
+		public static byte[] Serialize({0} data)
 		{{
 			int cursor = 0;
-			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[date.Size]);
+			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[data.PacketSize]);
 
 			{1}
 
-			serializeSize = cursor;
 			return buff.Array;
 		}}
 	";
@@ -152,9 +235,9 @@
 	string SerializeUnit = 
 	@"
 			{{
-				byte[] memberBuff = Serialize(data.{0}, out int memberSize);
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
-				cursor += memberSize;
+				byte[] memberBuff = Serialize(data.{0});
+				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberBuff.Length);
+				cursor += memberBuff.Length;
 			}}
 	";
 
@@ -162,19 +245,31 @@
 	// 1: 디시리얼라이즈 몸체
 	string DeserializeFunctionFormat = 
 	@"
-		public static {0} Deserialize(ArraySegment<byte> buff, out int deserializeSize)
+		public static void Deserialize(ArraySegment<byte> buff, out {0} data)
 		{{
+			data = new {0}();
+
 			{1}
 		}}
 	";
 
 	// 0: 변수이름
+	// 1: 디시리얼라이즈 바이트 수
 	string DeserializeUnit = 
 	@"
 			{{
-				{0} = Deserialize(buff, out int memberSize);
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
-				buff = new ArraySegment(buff.Array, buff.Offset + memberSize, buff.Count - memberSize);
+				Deserialize(buff, out data.{0});
+				buff = new ArraySegment(buff.Array, buff.Offset + {1}, buff.Count - {1});
+			}}
+	";
+
+	// 0: 변수이름
+	string DeserializeVariableUnit = 
+	@"
+			{{
+				Deserialize(buff, out int length);
+				Deserialize(buff, length, out data.{0});
+				buff = new ArraySegment(buff.Array, buff.Offset + (length + sizeof(int)), buff.Count - (length + sizeof(int)));
 			}}
 	";
 
@@ -204,6 +299,12 @@
 
 	StringBuilder result = new StringBuilder();
 
+	// 기본 타입들의 Serializaion & Deserialization
+	
+
+
+
+	// 클래스들의 Serializaion & Deserialization
 	int packetId = 0;
 	XmlNode PacketNode = doc.ChildNodes[0]; // Packets
 	foreach(XmlNode ClassNode in  PacketNode.ChildNodes) // Class
@@ -220,7 +321,16 @@
 			string name = VarNode.InnerText;
 
 			ssb.Append(String.Format(SerializeUnit, name));
-			dsb.Append(String.Format(DeserializeUnit, name));
+
+			if(typeToTypeSize.Keys.Contains(type))
+			{
+				dsb.Append(String.Format(DeserializeUnit, name, typeToTypeSize[type])); 
+			}
+			else
+			{
+				dsb.Append(String.Format(DeserializeVariableUnit, name)); 
+			}
+
 		}
 		string serializeFunc = String.Format(SerializeFunctionFormat, ClassNameNode.InnerText, ssb.ToString());
 		string deserializeFunc = String.Format(DeserializeFunctionFormat, ClassNameNode.InnerText, dsb.ToString());
@@ -238,6 +348,13 @@
 		절대 직접 수정하지마세요.
 
 **************************************/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ServerLib.Packet
 {

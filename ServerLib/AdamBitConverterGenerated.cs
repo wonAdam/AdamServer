@@ -12,144 +12,155 @@
 
 **************************************/
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace ServerLib.Packet
 {
 	internal class AdamBitConverter
 	{
 		
 		
-		public static byte[] Serialize(Ping_RQ date, out int serializeSize)
+		public static byte[] Serialize(Ping_RQ data)
 		{
 			int cursor = 0;
-			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[date.Size]);
+			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[data.PacketSize]);
 
 			
 			{
-				byte[] memberBuff = Serialize(data.time, out int memberSize);
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
-				cursor += memberSize;
+				byte[] memberBuff = Serialize(data.time);
+				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberBuff.Length);
+				cursor += memberBuff.Length;
 			}
 	
 
-			serializeSize = cursor;
 			return buff.Array;
 		}
 	
-		public static Ping_RQ Deserialize(ArraySegment<byte> buff, out int deserializeSize)
+		public static void Deserialize(ArraySegment<byte> buff, out Ping_RQ data)
 		{
+			data = new Ping_RQ();
+
 			
 			{
-				time = Deserialize(buff, out int memberSize);
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
-				buff = new ArraySegment(buff.Array, buff.Offset + memberSize, buff.Count - memberSize);
+				Deserialize(buff, out int length);
+				Deserialize(buff, length, out data.time);
+				buff = new ArraySegment(buff.Array, buff.Offset + (length + sizeof(int)), buff.Count - (length + sizeof(int)));
 			}
 	
 		}
 	
-		public static byte[] Serialize(Ping_RS date, out int serializeSize)
+		public static byte[] Serialize(Ping_RS data)
 		{
 			int cursor = 0;
-			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[date.Size]);
+			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[data.PacketSize]);
 
 			
 			{
-				byte[] memberBuff = Serialize(data.time, out int memberSize);
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
-				cursor += memberSize;
+				byte[] memberBuff = Serialize(data.time);
+				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberBuff.Length);
+				cursor += memberBuff.Length;
 			}
 	
 
-			serializeSize = cursor;
 			return buff.Array;
 		}
 	
-		public static Ping_RS Deserialize(ArraySegment<byte> buff, out int deserializeSize)
+		public static void Deserialize(ArraySegment<byte> buff, out Ping_RS data)
 		{
+			data = new Ping_RS();
+
 			
 			{
-				time = Deserialize(buff, out int memberSize);
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
-				buff = new ArraySegment(buff.Array, buff.Offset + memberSize, buff.Count - memberSize);
+				Deserialize(buff, out int length);
+				Deserialize(buff, length, out data.time);
+				buff = new ArraySegment(buff.Array, buff.Offset + (length + sizeof(int)), buff.Count - (length + sizeof(int)));
 			}
 	
 		}
 	
-		public static byte[] Serialize(ChatMsg_RQ date, out int serializeSize)
+		public static byte[] Serialize(ChatMsg_RQ data)
 		{
 			int cursor = 0;
-			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[date.Size]);
+			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[data.PacketSize]);
 
 			
 			{
-				byte[] memberBuff = Serialize(data.msgText, out int memberSize);
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
-				cursor += memberSize;
+				byte[] memberBuff = Serialize(data.msgText);
+				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberBuff.Length);
+				cursor += memberBuff.Length;
 			}
 	
 			{
-				byte[] memberBuff = Serialize(data.time, out int memberSize);
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
-				cursor += memberSize;
+				byte[] memberBuff = Serialize(data.time);
+				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberBuff.Length);
+				cursor += memberBuff.Length;
 			}
 	
 
-			serializeSize = cursor;
 			return buff.Array;
 		}
 	
-		public static ChatMsg_RQ Deserialize(ArraySegment<byte> buff, out int deserializeSize)
+		public static void Deserialize(ArraySegment<byte> buff, out ChatMsg_RQ data)
 		{
+			data = new ChatMsg_RQ();
+
 			
 			{
-				msgText = Deserialize(buff, out int memberSize);
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
-				buff = new ArraySegment(buff.Array, buff.Offset + memberSize, buff.Count - memberSize);
+				Deserialize(buff, out int length);
+				Deserialize(buff, length, out data.msgText);
+				buff = new ArraySegment(buff.Array, buff.Offset + (length + sizeof(int)), buff.Count - (length + sizeof(int)));
 			}
 	
 			{
-				time = Deserialize(buff, out int memberSize);
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
-				buff = new ArraySegment(buff.Array, buff.Offset + memberSize, buff.Count - memberSize);
+				Deserialize(buff, out int length);
+				Deserialize(buff, length, out data.time);
+				buff = new ArraySegment(buff.Array, buff.Offset + (length + sizeof(int)), buff.Count - (length + sizeof(int)));
 			}
 	
 		}
 	
-		public static byte[] Serialize(ChatMsg_RS date, out int serializeSize)
+		public static byte[] Serialize(ChatMsg_RS data)
 		{
 			int cursor = 0;
-			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[date.Size]);
+			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[data.PacketSize]);
 
 			
 			{
-				byte[] memberBuff = Serialize(data.msgText, out int memberSize);
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
-				cursor += memberSize;
+				byte[] memberBuff = Serialize(data.msgText);
+				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberBuff.Length);
+				cursor += memberBuff.Length;
 			}
 	
 			{
-				byte[] memberBuff = Serialize(data.time, out int memberSize);
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
-				cursor += memberSize;
+				byte[] memberBuff = Serialize(data.time);
+				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberBuff.Length);
+				cursor += memberBuff.Length;
 			}
 	
 
-			serializeSize = cursor;
 			return buff.Array;
 		}
 	
-		public static ChatMsg_RS Deserialize(ArraySegment<byte> buff, out int deserializeSize)
+		public static void Deserialize(ArraySegment<byte> buff, out ChatMsg_RS data)
 		{
+			data = new ChatMsg_RS();
+
 			
 			{
-				msgText = Deserialize(buff, out int memberSize);
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
-				buff = new ArraySegment(buff.Array, buff.Offset + memberSize, buff.Count - memberSize);
+				Deserialize(buff, out int length);
+				Deserialize(buff, length, out data.msgText);
+				buff = new ArraySegment(buff.Array, buff.Offset + (length + sizeof(int)), buff.Count - (length + sizeof(int)));
 			}
 	
 			{
-				time = Deserialize(buff, out int memberSize);
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberSize);
-				buff = new ArraySegment(buff.Array, buff.Offset + memberSize, buff.Count - memberSize);
+				Deserialize(buff, out int length);
+				Deserialize(buff, length, out data.time);
+				buff = new ArraySegment(buff.Array, buff.Offset + (length + sizeof(int)), buff.Count - (length + sizeof(int)));
 			}
 	
 		}
