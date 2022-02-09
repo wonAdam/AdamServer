@@ -13,7 +13,7 @@
 	@"
 		public byte[] Serialize(int data)
 		{
-			return bitConverter.GetBytes(data);
+			return BitConverter.GetBytes(data);
 		}
 	";
 	string intDeserializeFunc = 
@@ -41,7 +41,7 @@
 	@"
 		public byte[] Serialize(uint data)
 		{
-			return bitConverter.GetBytes(data);
+			return BitConverter.GetBytes(data);
 		}
 	";
 	string uintDeserializeFunc = 
@@ -69,7 +69,7 @@
 	@"
 		public byte[] Serialize(short data)
 		{
-			return bitConverter.GetBytes(data);
+			return BitConverter.GetBytes(data);
 		}
 	";
 	string shortDeserializeFunc = 
@@ -93,12 +93,49 @@
 		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(short), buff.Count - sizeof(short));
 	";
 
+	string ushortSerializeFunc = 
+	@"
+		public byte[] Serialize(ushort data)
+		{
+			return BitConverter.GetBytes(data);
+		}
+	";
+	string ushortDeserializeFunc = 
+	@"
+		public void Deserialize(ArraySegment<byte> buff, out ushort data)
+		{
+			data = BitConverter.ToUInt16(buff.Array, buff.Offset);
+		}
+	";
 	// 0: 변수이름
 	string ushortSerialization = 
 	@"
+		byte[] memberBuff = AdamBitConverter.Serialize(buff);
 		byte[] memberBuff = BitConverter.GetBytes({0});
 		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(ushort);
 		cursor += sizeof(ushort);
+	";
+	// 0: 변수이름
+	string ushortDeserialization = 
+	@"
+		{0}= BitConverter.ToUInt16(buff.Array, buff.Offset);
+		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(ushort), buff.Count - sizeof(ushort));
+	";
+
+	string charSerializeFunc = 
+	@"
+		public byte[] Serialize(char data)
+		{
+			return BitConverter.GetBytes(data);
+		}
+	";
+	string charDeserializeFunc = 
+	@"
+		public void Deserialize(ArraySegment<byte> buff, out char data, out int size)
+		{
+			data = BitConverter.ToChar(buff.Array, buff.Offset);
+			size = sizeof(char);
+		}
 	";
 	// 0: 변수이름
 	string charSerialization = 
@@ -108,11 +145,53 @@
 		cursor += sizeof(char);
 	";
 	// 0: 변수이름
+	string charDeserialization = 
+	@"
+		{0} = BitConverter.ToChar(buff.Array, buff.Offset);
+		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(char), buff.Count - sizeof(char));
+	";
+
+	string longSerializeFunc = 
+	@"
+		public byte[] Serialize(long data)
+		{
+			return BitConverter.GetBytes(data);
+		}
+	";
+	string longDeserializeFunc = 
+	@"
+		public void Deserialize(ArraySegment<byte> buff, out long data)
+		{
+			data = BitConverter.ToInt64(buff.Array, buff.Offset);
+		}
+	";
+	// 0: 변수이름
 	string longSerialization = 
 	@"
 		byte[] memberBuff = BitConverter.GetBytes({0});
 		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(long));
 		cursor += sizeof(long);
+	";
+	// 0: 변수이름
+	string longDeserialization = 
+	@"
+		{0} = BitConverter.ToInt64(buff.Array, buff.Offset);
+		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(long), buff.Count - sizeof(long));
+	";
+
+	string ulongSerializeFunc = 
+	@"
+		public byte[] Serialize(ulong data)
+		{
+			return BitConverter.GetBytes(data);
+		}
+	";
+	string ulongDeserializeFunc = 
+	@"
+		public void Deserialize(ArraySegment<byte> buff, out ulong data)
+		{
+			data = BitConverter.ToUInt64(buff.Array, buff.Offset);
+		}
 	";
 	// 0: 변수이름
 	string ulongSerialization = 
@@ -122,11 +201,53 @@
 		cursor += sizeof(ulong);
 	";
 	// 0: 변수이름
+	string ulongDeserialization = 
+	@"
+		{0} = BitConverter.ToUInt64(buff.Array, buff.Offset);
+		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(ulong), buff.Count - sizeof(ulong));
+	";
+
+	string boolSerializeFunc = 
+	@"
+		public byte[] Serialize(bool data)
+		{
+			return BitConverter.GetBytes(data);
+		}
+	";
+	string boolDeserializeFunc = 
+	@"
+		public void Deserialize(ArraySegment<byte> buff, out bool data)
+		{
+			data = BitConverter.ToBoolean(buff.Array, buff.Offset);
+		}
+	";
+	// 0: 변수이름
 	string boolSerialization = 
 	@"
 		byte[] memberBuff = BitConverter.GetBytes({0});
 		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(bool));
 		cursor += sizeof(bool);
+	";
+	// 0: 변수이름
+	string boolDeserialization = 
+	@"
+		{0} = BitConverter.ToBolean(buff.Array, buff.Offset);
+		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(bool), buff.Count - sizeof(bool));
+	";
+
+	string doubleSerializeFunc = 
+	@"
+		public byte[] Serialize(double data)
+		{
+			return BitConverter.GetBytes(data);
+		}
+	";
+	string doubleDeserializeFunc = 
+	@"
+		public void Deserialize(ArraySegment<byte> buff, out double data)
+		{
+			data = BitConverter.ToDouble(buff.Array, buff.Offset);
+		}
 	";
 	// 0: 변수이름
 	string doubleSerialization = 
@@ -136,6 +257,27 @@
 		cursor += sizeof(double);
 	";
 	// 0: 변수이름
+	string doubleDeserialization = 
+	@"
+		{0} = BitConverter.ToDouble(buff.Array, buff.Offset);
+		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(double), buff.Count - sizeof(double));
+	";
+
+	string floatSerializeFunc = 
+	@"
+		public byte[] Serialize(float data)
+		{
+			return BitConverter.GetBytes(data);
+		}
+	";
+	string floatDeserializeFunc = 
+	@"
+		public void Deserialize(ArraySegment<byte> buff, out float data)
+		{
+			data = BitConverter.ToSingle(buff.Array, buff.Offset);
+		}
+	";
+	// 0: 변수이름
 	string floatSerialization = 
 	@"
 		byte[] memberBuff = BitConverter.GetBytes({0});
@@ -143,11 +285,84 @@
 		cursor += sizeof(float);
 	";
 	// 0: 변수이름
+	string floatDeserialization = 
+	@"
+		{0} = BitConverter.ToSingle(buff.Array, buff.Offset);
+		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(float), buff.Count - sizeof(float));
+	";
+
+	string stringSerializeFunc = 
+	@"
+		public byte[] Serialize(string data)
+		{
+			return Encoding.UTF8.GetBytes(data);
+		}
+	";
+	string stringDeserializeFunc = 
+	@"
+		public void Deserialize(ArraySegment<byte> buff, int size, out string data)
+		{
+			data = Encoding.UTF8.GetString(buff.Array, buff.Offset, size);
+		}
+	";
+	// 0: 변수이름
 	string stringSerialization = 
 	@"
 		byte[] memberBuff = Encoding.UTF8.GetBytes({0});
 		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, memberBuff.Length);
 		cursor += memberBuff.Length;
+	";
+	// 0: 변수이름
+	string stringDeserialization = 
+	@"
+		byte[] lengthBuff = AdamBitConverter.Deserialize(buff, out int length);
+		{0} = Encoding.UTF8.GetString(buff.Array, buff.Offset, length);
+		buff = new ArraySegment<byte>(buff.Array, buff.Offset + (sizeof(int) + Encoding.UTF8.GetBytesCount({0})), buff.Count - (sizeof(int) + Encoding.UTF8.GetBytesCount({0})));
+	";
+
+	// 0: 원소타입
+	string ListSerializeFunc = 
+	@"
+		public byte[] Serialize(List<{0}> data)
+		{{
+			int size = 0;
+			int count = 0;
+			List<byte[]> buffs = new List<byte[]>();
+			foreach({0} e in data)
+			{
+				byte[] buff = AdamBitConverter.Serialize(e);
+				buffs.Add(buff);
+				size += buff.Length;
+				count++;
+			}
+
+			byte[] lengthBuff = AdamBitConverter.Serialize(count);
+			Array.Copy(lengthBuff, 0, resultBuff, cursor, buff.Length);
+			int cursor += lengthBuff.Length;
+
+			byte[] resultBuff = new byte[size];
+			foreach(byte[] buff in buffs)
+			{
+				Array.Copy(buff, 0, resultBuff, cursor, buff.Length);
+				cursor += buff.Length;
+			}
+
+			return resultBuff;
+		}}
+	";
+	// 0: 원소타입
+	string ListDeserializeFunc = 
+	@"
+		public void Deserialize(ArraySegment<byte> buff, int size, out List<{0}> data)
+		{
+			AdamBitConverter.Deserialize(buff, out int length);
+			for(int i = 0; i < length; ++i)
+			{
+				AdamBitConverter.Deserialize(
+			}
+		
+			data = Encoding.UTF8.GetString(buff.Array, buff.Offset, size);
+		}
 	";
 	// 0: 변수이름
 	string ListSerialization = 
@@ -161,6 +376,13 @@
 			Array.Copy(eBuff, 0, buff.Array, buff.Offset + cursor, eSize);
 			cursor += eSize;
 		}}
+	";
+	// 0: 변수이름
+	string stringDeserialization = 
+	@"
+		byte[] lengthBuff = AdamBitConverter.Deserialize(buff, out int length);
+		{0} = Encoding.UTF8.GetString(buff.Array, buff.Offset, length);
+		buff = new ArraySegment<byte>(buff.Array, buff.Offset + (sizeof(int) + Encoding.UTF8.GetBytesCount({0})), buff.Count - (sizeof(int) + Encoding.UTF8.GetBytesCount({0})));
 	";
 
 	// 0: 변수이름
