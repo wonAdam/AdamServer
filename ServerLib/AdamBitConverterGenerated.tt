@@ -11,341 +11,226 @@
 <#
 	string intSerializeFunc = 
 	@"
-		public byte[] Serialize(int data)
+		public static byte[] Serialize(int data)
 		{
 			return BitConverter.GetBytes(data);
 		}
 	";
 	string intDeserializeFunc = 
 	@"
-		public void Deserialize(ArraySegment<byte> buff, out int data)
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out int data)
 		{
 			data = BitConverter.ToInt32(buff.Array, buff.Offset);
+			size = sizeof(int);
 		}
-	";
-	// 0: 변수이름
-	string intSerialization = 
-	@"
-		byte[] memberBuff = BitConverter.GetBytes({0});
-		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(int));
-		cursor += sizeof(int);
-	";
-	// 0: 변수이름
-	string intDeserialization = 
-	@"
-		{0} = BitConverter.ToInt32(buff.Array, buff.Offset);
-		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(int), buff.Count - sizeof(int));
 	";
 
 	string uintSerializeFunc = 
 	@"
-		public byte[] Serialize(uint data)
+		public static byte[] Serialize(uint data)
 		{
 			return BitConverter.GetBytes(data);
 		}
 	";
 	string uintDeserializeFunc = 
 	@"
-		public void Deserialize(ArraySegment<byte> buff, out uint data)
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out uint data)
 		{
 			data = BitConverter.ToUInt32(buff.Array, buff.Offset);
+			size = sizeof(uint);
 		}
-	";
-	// 0: 변수이름
-	string uintSerialization = 
-	@"
-		byte[] memberBuff = BitConverter.GetBytes({0});
-		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(uint));
-		cursor += sizeof(uint);
-	";
-	// 0: 변수이름
-	string uintDeserialization = 
-	@"
-		{0}= BitConverter.ToUInt32(buff.Array, buff.Offset);
-		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(uint), buff.Count - sizeof(uint));
 	";
 
 	string shortSerializeFunc = 
 	@"
-		public byte[] Serialize(short data)
+		public static byte[] Serialize(short data)
 		{
 			return BitConverter.GetBytes(data);
 		}
 	";
 	string shortDeserializeFunc = 
 	@"
-		public void Deserialize(ArraySegment<byte> buff, out short data)
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out short data)
 		{
 			data = BitConverter.ToInt16(buff.Array, buff.Offset);
+			size = sizeof(short);
 		}
-	";
-	// 0: 변수이름
-	string shortSerialization = 
-	@"
-		byte[] memberBuff = BitConverter.GetBytes({0});
-		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(short));
-		cursor += sizeof(short);
-	";
-	// 0: 변수이름
-	string shortDeserialization = 
-	@"
-		{0}= BitConverter.ToInt16(buff.Array, buff.Offset);
-		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(short), buff.Count - sizeof(short));
 	";
 
 	string ushortSerializeFunc = 
 	@"
-		public byte[] Serialize(ushort data)
+		public static byte[] Serialize(ushort data)
 		{
 			return BitConverter.GetBytes(data);
 		}
 	";
 	string ushortDeserializeFunc = 
 	@"
-		public void Deserialize(ArraySegment<byte> buff, out ushort data)
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out ushort data)
 		{
 			data = BitConverter.ToUInt16(buff.Array, buff.Offset);
+			size = sizeof(ushort);
 		}
-	";
-	// 0: 변수이름
-	string ushortSerialization = 
-	@"
-		byte[] memberBuff = AdamBitConverter.Serialize(buff);
-		byte[] memberBuff = BitConverter.GetBytes({0});
-		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(ushort);
-		cursor += sizeof(ushort);
-	";
-	// 0: 변수이름
-	string ushortDeserialization = 
-	@"
-		{0}= BitConverter.ToUInt16(buff.Array, buff.Offset);
-		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(ushort), buff.Count - sizeof(ushort));
 	";
 
 	string charSerializeFunc = 
 	@"
-		public byte[] Serialize(char data)
+		public static byte[] Serialize(char data)
 		{
 			return BitConverter.GetBytes(data);
 		}
 	";
 	string charDeserializeFunc = 
 	@"
-		public void Deserialize(ArraySegment<byte> buff, out char data, out int size)
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out char data)
 		{
 			data = BitConverter.ToChar(buff.Array, buff.Offset);
 			size = sizeof(char);
 		}
 	";
-	// 0: 변수이름
-	string charSerialization = 
-	@"
-		byte[] memberBuff = BitConverter.GetBytes({0});
-		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(char));
-		cursor += sizeof(char);
-	";
-	// 0: 변수이름
-	string charDeserialization = 
-	@"
-		{0} = BitConverter.ToChar(buff.Array, buff.Offset);
-		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(char), buff.Count - sizeof(char));
-	";
 
 	string longSerializeFunc = 
 	@"
-		public byte[] Serialize(long data)
+		public static byte[] Serialize(long data)
 		{
 			return BitConverter.GetBytes(data);
 		}
 	";
 	string longDeserializeFunc = 
 	@"
-		public void Deserialize(ArraySegment<byte> buff, out long data)
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out long data)
 		{
 			data = BitConverter.ToInt64(buff.Array, buff.Offset);
+			size = sizeof(long);
 		}
-	";
-	// 0: 변수이름
-	string longSerialization = 
-	@"
-		byte[] memberBuff = BitConverter.GetBytes({0});
-		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(long));
-		cursor += sizeof(long);
-	";
-	// 0: 변수이름
-	string longDeserialization = 
-	@"
-		{0} = BitConverter.ToInt64(buff.Array, buff.Offset);
-		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(long), buff.Count - sizeof(long));
 	";
 
 	string ulongSerializeFunc = 
 	@"
-		public byte[] Serialize(ulong data)
+		public static byte[] Serialize(ulong data)
 		{
 			return BitConverter.GetBytes(data);
 		}
 	";
 	string ulongDeserializeFunc = 
 	@"
-		public void Deserialize(ArraySegment<byte> buff, out ulong data)
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out ulong data)
 		{
 			data = BitConverter.ToUInt64(buff.Array, buff.Offset);
+			size = sizeof(ulong);
 		}
-	";
-	// 0: 변수이름
-	string ulongSerialization = 
-	@"
-		byte[] memberBuff = BitConverter.GetBytes({0});
-		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(ulong));
-		cursor += sizeof(ulong);
-	";
-	// 0: 변수이름
-	string ulongDeserialization = 
-	@"
-		{0} = BitConverter.ToUInt64(buff.Array, buff.Offset);
-		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(ulong), buff.Count - sizeof(ulong));
 	";
 
 	string boolSerializeFunc = 
 	@"
-		public byte[] Serialize(bool data)
+		public static byte[] Serialize(bool data)
 		{
 			return BitConverter.GetBytes(data);
 		}
 	";
 	string boolDeserializeFunc = 
 	@"
-		public void Deserialize(ArraySegment<byte> buff, out bool data)
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out bool data)
 		{
 			data = BitConverter.ToBoolean(buff.Array, buff.Offset);
+			size = sizeof(bool);
 		}
-	";
-	// 0: 변수이름
-	string boolSerialization = 
-	@"
-		byte[] memberBuff = BitConverter.GetBytes({0});
-		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(bool));
-		cursor += sizeof(bool);
-	";
-	// 0: 변수이름
-	string boolDeserialization = 
-	@"
-		{0} = BitConverter.ToBolean(buff.Array, buff.Offset);
-		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(bool), buff.Count - sizeof(bool));
 	";
 
 	string doubleSerializeFunc = 
 	@"
-		public byte[] Serialize(double data)
+		public static byte[] Serialize(double data)
 		{
 			return BitConverter.GetBytes(data);
 		}
 	";
 	string doubleDeserializeFunc = 
 	@"
-		public void Deserialize(ArraySegment<byte> buff, out double data)
+		public void Deserialize(ArraySegment<byte> buff, out int size, out double data)
 		{
 			data = BitConverter.ToDouble(buff.Array, buff.Offset);
+			size = sizeof(double);
 		}
-	";
-	// 0: 변수이름
-	string doubleSerialization = 
-	@"
-		byte[] memberBuff = BitConverter.GetBytes({0});
-		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(double));
-		cursor += sizeof(double);
-	";
-	// 0: 변수이름
-	string doubleDeserialization = 
-	@"
-		{0} = BitConverter.ToDouble(buff.Array, buff.Offset);
-		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(double), buff.Count - sizeof(double));
 	";
 
 	string floatSerializeFunc = 
 	@"
-		public byte[] Serialize(float data)
+		public static byte[] Serialize(float data)
 		{
 			return BitConverter.GetBytes(data);
 		}
 	";
 	string floatDeserializeFunc = 
 	@"
-		public void Deserialize(ArraySegment<byte> buff, out float data)
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out float data)
 		{
 			data = BitConverter.ToSingle(buff.Array, buff.Offset);
+			size = sizeof(float);
 		}
-	";
-	// 0: 변수이름
-	string floatSerialization = 
-	@"
-		byte[] memberBuff = BitConverter.GetBytes({0});
-		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, sizeof(float));
-		cursor += sizeof(float);
-	";
-	// 0: 변수이름
-	string floatDeserialization = 
-	@"
-		{0} = BitConverter.ToSingle(buff.Array, buff.Offset);
-		buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeof(float), buff.Count - sizeof(float));
 	";
 
 	string stringSerializeFunc = 
 	@"
-		public byte[] Serialize(string data)
+		public static byte[] Serialize(string data)
 		{
 			return Encoding.UTF8.GetBytes(data);
 		}
 	";
 	string stringDeserializeFunc = 
 	@"
-		public void Deserialize(ArraySegment<byte> buff, int size, out string data)
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out string data)
 		{
-			data = Encoding.UTF8.GetString(buff.Array, buff.Offset, size);
+			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			size = sizeOfLength;
+			data = Encoding.UTF8.GetString(buff.Array, buff.Offset + sizeof(int), length);
+			size += Encoding.UTF8.GetByteCount(data);
 		}
 	";
-	// 0: 변수이름
-	string stringSerialization = 
+
+	string DateTimeSerializeFunc = 
 	@"
-		byte[] memberBuff = Encoding.UTF8.GetBytes({0});
-		Array.Copy(memberBuff, 0, buff.Array, buff.Offset + cursor, memberBuff.Length);
-		cursor += memberBuff.Length;
+		public static byte[] Serialize(DateTime data)
+		{
+			return BitConverter.GetBytes(data.Ticks);
+		}
 	";
-	// 0: 변수이름
-	string stringDeserialization = 
+	string DateTimeDeserializeFunc = 
 	@"
-		byte[] lengthBuff = AdamBitConverter.Deserialize(buff, out int length);
-		{0} = Encoding.UTF8.GetString(buff.Array, buff.Offset, length);
-		buff = new ArraySegment<byte>(buff.Array, buff.Offset + (sizeof(int) + Encoding.UTF8.GetBytesCount({0})), buff.Count - (sizeof(int) + Encoding.UTF8.GetBytesCount({0})));
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out DateTime data)
+		{
+			long ticks = BitConverter.ToInt64(buff.Array, buff.Offset);
+			data = new DateTime(ticks);
+			size = sizeof(long);
+		}
 	";
 
 	// 0: 원소타입
 	string ListSerializeFunc = 
 	@"
-		public byte[] Serialize(List<{0}> data)
+		public static byte[] Serialize(List<{0}> data)
 		{{
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
-			foreach({0} e in data)
-			{
+			foreach(var e in data)
+			{{
 				byte[] buff = AdamBitConverter.Serialize(e);
 				buffs.Add(buff);
 				size += buff.Length;
 				count++;
-			}
+			}}
+
+			byte[] resultBuff = new byte[size];
 
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
 			Array.Copy(lengthBuff, 0, resultBuff, cursor, buff.Length);
-			int cursor += lengthBuff.Length;
+			int cursor = lengthBuff.Length;
 
-			byte[] resultBuff = new byte[size];
 			foreach(byte[] buff in buffs)
-			{
+			{{
 				Array.Copy(buff, 0, resultBuff, cursor, buff.Length);
 				cursor += buff.Length;
-			}
+			}}
 
 			return resultBuff;
 		}}
@@ -353,148 +238,182 @@
 	// 0: 원소타입
 	string ListDeserializeFunc = 
 	@"
-		public void Deserialize(ArraySegment<byte> buff, int size, out List<{0}> data)
-		{
-			AdamBitConverter.Deserialize(buff, out int length);
-			for(int i = 0; i < length; ++i)
-			{
-				AdamBitConverter.Deserialize(
-			}
-		
-			data = Encoding.UTF8.GetString(buff.Array, buff.Offset, size);
-		}
-	";
-	// 0: 변수이름
-	string ListSerialization = 
-	@"
-		byte[] lengthBuff = AdamBitConverter.Serialize({0}.Count);
-		Array.Copy(lenghtBuff, 0, buff.Array, buff.Offset + cursor, lengthBuff.Length);
-		cursor += lengthBuff.Length;
-		foreach(var e in {0})
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out List<{0}> data)
 		{{
-			byte[] eBuff = AdamBitConverter.Serialize(e, out int eSize);
-			Array.Copy(eBuff, 0, buff.Array, buff.Offset + cursor, eSize);
-			cursor += eSize;
+			data = new List<{0}>();
+
+			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
+			size = sizeOfLength;
+
+			for(int i = 0; i < length; ++i)
+			{{
+				AdamBitConverter.Deserialize(buff, out int eSize, out {0} element);
+				buff = new ArraySegment<byte>(buff.Array, buff.Offset + eSize, buff.Count - eSize);
+				size += eSize;
+				data.Add(element);
+			}}
 		}}
 	";
-	// 0: 변수이름
-	string stringDeserialization = 
+	
+	// 0: 원소타입
+	string DictionarySerializeFunc = 
 	@"
-		byte[] lengthBuff = AdamBitConverter.Deserialize(buff, out int length);
-		{0} = Encoding.UTF8.GetString(buff.Array, buff.Offset, length);
-		buff = new ArraySegment<byte>(buff.Array, buff.Offset + (sizeof(int) + Encoding.UTF8.GetBytesCount({0})), buff.Count - (sizeof(int) + Encoding.UTF8.GetBytesCount({0})));
+		public static byte[] Deserialize(Dictionary<{0}> data)
+		{{
+			int size = 0;
+			int count = 0;
+			List<byte[]> buffs = new List<byte[]>();
+			foreach(var pair in data)
+			{{
+				byte[] keyBuff = AdamBitConverter.Serialize(pair.Key);
+				byte[] valBuff = AdamBitConverter.Serialize(pair.Value);
+				buffs.Add(keyBuff);
+				buffs.Add(valBuff);
+				size += keyBuff.Length;
+				size += valBuff.Length;
+				count++;
+			}}
+
+			byte[] resultBuff = new byte[size];
+
+			byte[] lengthBuff = AdamBitConverter.Serialize(count);
+			Array.Copy(lengthBuff, 0, resultBuff, cursor, buff.Length);
+			int cursor = lengthBuff.Length;
+
+			foreach(byte[] buff in buffs)
+			{{
+				Array.Copy(buff, 0, resultBuff, cursor, buff.Length);
+				cursor += buff.Length;
+			}}
+
+			return resultBuff;
+		}}
+	";
+	// 0: 원소타입
+	string DictionaryDeserializeFunc = 
+	@"
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<{0}> data)
+		{{
+			data = new Dictionary<{0}>();
+
+			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
+			size = sizeOfLength;
+
+			for(int i = 0; i < length; ++i)
+			{{
+				AdamBitConverter.Deserialize(buff, out int keySize, out {0} key);
+				buff = new ArrySegment<byte>(buff.Array, buff.Offset + keySize, buff.Count - keySize);
+				AdamBitConverter.Deserialize(buff, out int valSize, out {0} value);
+				buff = new ArrySegment<byte>(buff.Array, buff.Offset + valSize, buff.Count - valSize);
+				size += (keySize + valSize);
+				data.Add(key, value);
+			}}
+		}}
 	";
 
-	// 0: 변수이름
-	string DictionarySerialization = 
+	// 0: 클래스 이름
+	// 1: 멤버별 Serializations
+	// 2: 멤버들 Copy
+	string classSerializeFunc = 
 	@"
-		byte[] lengthBuff = AdamBitConverter.Serialize({0}.Count, out int lenSize);
-		Array.Copy(lenghtBuff, 0, buff.Array, buff.Offset + cursor, lenSize);
-		cursor += lenSize;
-		foreach(var pair in {0})
+		public static byte[] Serialize({0} data)
 		{{
-			var key = e.Key;
-			var value = e.Value;
-			byte[] keyBuff = AdamBitConverter.Serialize(key, out int keySize);
-			byte[] valueBuff = AdamBitConverter.Serialize(value, out int valueSize);
-			Array.Copy(keyBuff, 0, buff.Array, buff.Offset + cursor, keySize);
-			Array.Copy(valueBuff, 0, buff.Array, buff.Offset + cursor, valueSize);
-			cursor += keySize + valueSize;
+			int size = 0;
+			List<byte[]> buffs = new List<byte[]>();
+
+			// Serializations
+			{1}
+
+			byte[] buff = new byte[size];
+
+			// Copy
+			int cursor = 0;
+			{2}
+
+			return buff;
 		}}
-		
+	
 	";
+	// 0: 멤버변수 이름
+	string classMemberSerialize = 
+	@"
+			{{
+				byte[] memberBuff = AdamBitConverter.Serialize(data.{0});
+				size += memberBuff.Length;
+				buffs.Add(memberBuff);
+			}}
+	";
+	// 0: 멤버의 인덱스
+	string classMemberCopy = 
+	@"
+			{{
+				Array.Copy(buffs[{0}], 0, buff, cursor, buffs[{0}].Length);
+				cursor += buffs[{0}].Length;
+			}}
+	";
+	// 0: 클래스 이름
+	// 1: 멤버별 Deserializations
+	string classDeserializeFunc = 
+	@"
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out {0} data)
+		{{
+			data = new {0}();
+			size = 0;
+
+			// Deserializations
+			{1}
+		}}
+	
+	";
+	// 0: 멤버변수 이름
+	string classMemberDeserialize = 
+	@"
+			{{
+				byte[] memberBuff = AdamBitConverter.Serialize(data.{0});
+				size += memberBuff.Length;
+			}}
+	";
+
 #>
 
 <#  
 	Dictionary<string, string> typeToSerialization = new Dictionary<string, string>()
 	{
-		{ "int", intSerialization },
-		{ "uint", uintSerialization },
-		{ "short", shortSerialization },
-		{ "ushort", ushortSerialization },
-		{ "char", charSerialization },
-		{ "long", longSerialization },
-		{ "ulong", ulongSerialization },
-		{ "float", floatSerialization },
-		{ "double", doubleSerialization },
-		{ "bool", boolSerialization },
-		{ "string", stringSerialization },
-		{ "List", ListSerialization },
-		{ "Dictionary", DictionarySerialization },
+		{ "int", intSerializeFunc },
+		{ "uint", uintSerializeFunc },
+		{ "short", shortSerializeFunc },
+		{ "ushort", ushortSerializeFunc },
+		{ "char", charSerializeFunc },
+		{ "long", longSerializeFunc },
+		{ "ulong", ulongSerializeFunc },
+		{ "float", floatSerializeFunc },
+		{ "double", doubleSerializeFunc },
+		{ "bool", boolSerializeFunc },
+		{ "string", stringSerializeFunc },
+		{ "DateTime", DateTimeSerializeFunc },
+		{ "List", ListSerializeFunc },
+		{ "Dictionary", DictionarySerializeFunc },
 	};
 
-	Dictionary<string, int> typeToTypeSize = new Dictionary<string,int>()
+	Dictionary<string, string> typeToDeserialization = new Dictionary<string, string>()
 	{
-		{ "int", sizeof(int) },
-		{ "uint", sizeof(uint) },
-		{ "short", sizeof(short) },
-		{ "ushort", sizeof(ushort) },
-		{ "char", sizeof(char) },
-		{ "long", sizeof(long) },
-		{ "ulong", sizeof(ulong) },
-		{ "float", sizeof(float) },
-		{ "double", sizeof(double) },
-		{ "bool", sizeof(bool) },
+		{ "int", intDeserializeFunc },
+		{ "uint", uintDeserializeFunc },
+		{ "short", shortDeserializeFunc },
+		{ "ushort", ushortDeserializeFunc },
+		{ "char", charDeserializeFunc },
+		{ "long", longDeserializeFunc },
+		{ "ulong", ulongDeserializeFunc },
+		{ "float", floatDeserializeFunc },
+		{ "double", doubleDeserializeFunc },
+		{ "bool", boolDeserializeFunc },
+		{ "string", stringDeserializeFunc },
+		{ "DateTime", DateTimeDeserializeFunc },
+		{ "List", ListDeserializeFunc },
+		{ "Dictionary", DictionaryDeserializeFunc },
 	};
-#>
-
-<#  
-	// 0: 타입이름
-	// 1: 시리얼라이즈 몸체
-	string SerializeFunctionFormat = 
-	@"
-		public static byte[] Serialize({0} data)
-		{{
-			int cursor = 0;
-			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[data.PacketSize]);
-
-			{1}
-
-			return buff.Array;
-		}}
-	";
-
-	// 0: 변수이름
-	string SerializeUnit = 
-	@"
-			{{
-				byte[] memberBuff = Serialize(data.{0});
-				Array.Copy(memberBuff, 0, buff.Array, buff.Count + cursor, memberBuff.Length);
-				cursor += memberBuff.Length;
-			}}
-	";
-
-	// 0: 타입이름
-	// 1: 디시리얼라이즈 몸체
-	string DeserializeFunctionFormat = 
-	@"
-		public static void Deserialize(ArraySegment<byte> buff, out {0} data)
-		{{
-			data = new {0}();
-
-			{1}
-		}}
-	";
-
-	// 0: 변수이름
-	// 1: 디시리얼라이즈 바이트 수
-	string DeserializeUnit = 
-	@"
-			{{
-				Deserialize(buff, out data.{0});
-				buff = new ArraySegment(buff.Array, buff.Offset + {1}, buff.Count - {1});
-			}}
-	";
-
-	// 0: 변수이름
-	string DeserializeVariableUnit = 
-	@"
-			{{
-				Deserialize(buff, out int length);
-				Deserialize(buff, length, out data.{0});
-				buff = new ArraySegment(buff.Array, buff.Offset + (length + sizeof(int)), buff.Count - (length + sizeof(int)));
-			}}
-	";
 
 #>
 
@@ -522,47 +441,91 @@
 
 	StringBuilder result = new StringBuilder();
 
-	// 기본 타입들의 Serializaion & Deserialization
-	
+	// 기본 타입들의 Serialization
+	StringBuilder serializeFuncs = new StringBuilder();
+	foreach(var pair in typeToSerialization)
+	{
+	    string type = pair.Key;
+        string serializeFunc = pair.Value; 
 
+		if(type == "List" || type == "Dictionary")
+		{
+			foreach(var pair2 in typeToSerialization)
+			{
+				if(type == "List" || type == "Dictionary")
+					continue;
 
+				string elementType = pair2.Key;
+				string containerSerializeFunc = String.Format(serializeFunc, elementType);
+				serializeFuncs.Append(containerSerializeFunc);
+			}
+		}
+		else
+		{
+			serializeFuncs.Append(serializeFunc);
+		}
+	}
+
+	// 기본 타입들의 Deserialization
+	StringBuilder deserializeFuncs = new StringBuilder();
+	foreach(var pair in typeToDeserialization)
+	{
+	    string type = pair.Key;
+        string deserializeFunc = pair.Value; 
+
+		if(type == "List" || type == "Dictionary")
+		{
+			foreach(var pair2 in typeToDeserialization)
+			{
+				if(type == "List" || type == "Dictionary")
+					continue;
+
+				string elementType = pair2.Key;
+				string containerDeserializeFunc = String.Format(deserializeFunc, elementType);
+				deserializeFuncs.Append(containerDeserializeFunc);
+			}
+		}
+		else
+		{
+			deserializeFuncs.Append(deserializeFunc);
+		}
+	}
 
 	// 클래스들의 Serializaion & Deserialization
 	int packetId = 0;
 	XmlNode PacketNode = doc.ChildNodes[0]; // Packets
+	StringBuilder classSerializeFuncs = new StringBuilder();
+	StringBuilder classDeserializeFuncs = new StringBuilder();
 	foreach(XmlNode ClassNode in  PacketNode.ChildNodes) // Class
 	{
 		XmlNode ClassNameNode = ClassNode.SelectSingleNode("Name");
 		string className = ClassNameNode.InnerText;
 		XmlNode VariablesNode = ClassNode.SelectSingleNode("Variables");
 
-		StringBuilder ssb = new StringBuilder();
-		StringBuilder dsb = new StringBuilder();
+		StringBuilder classMemberSerializations = new StringBuilder();
+		StringBuilder classMemberCopies = new StringBuilder();
+		StringBuilder classMemberDeserializations = new StringBuilder();
+		int index = 0;
 		foreach(XmlNode VarNode in VariablesNode.ChildNodes)
 		{
 			string type = VarNode.Name;
 			string name = VarNode.InnerText;
 
-			ssb.Append(String.Format(SerializeUnit, name));
-
-			if(typeToTypeSize.Keys.Contains(type))
-			{
-				dsb.Append(String.Format(DeserializeUnit, name, typeToTypeSize[type])); 
-			}
-			else
-			{
-				dsb.Append(String.Format(DeserializeVariableUnit, name)); 
-			}
-
+			classMemberSerializations.Append(String.Format(classMemberSerialize, name));
+			classMemberCopies.Append(String.Format(classMemberCopy, index++));
+			classMemberDeserializations.Append(String.Format(classMemberDeserialize, name));
 		}
-		string serializeFunc = String.Format(SerializeFunctionFormat, ClassNameNode.InnerText, ssb.ToString());
-		string deserializeFunc = String.Format(DeserializeFunctionFormat, ClassNameNode.InnerText, dsb.ToString());
 
-		result.Append(serializeFunc);
-		result.Append(deserializeFunc);
+		classSerializeFuncs.Append(String.Format(classSerializeFunc, className, classMemberSerializations.ToString(), classMemberCopies.ToString()));
+		classDeserializeFuncs.Append(String.Format(classDeserializeFunc, className, classMemberDeserializations.ToString()));
 		
 		
 	}
+
+	result.Append(serializeFuncs.ToString());
+	result.Append(classSerializeFuncs.ToString());
+	result.Append(deserializeFuncs.ToString());
+	result.Append(classDeserializeFuncs.ToString());
 #>
 
 /**************************************
