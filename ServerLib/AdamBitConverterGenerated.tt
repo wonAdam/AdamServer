@@ -1,4 +1,4 @@
-﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="System.Xml.dll" #>
 <#@ import namespace="System.Linq" #>
@@ -9,6 +9,7 @@
 <#@ output extension=".cs" #>
 
 <#
+
 	string intSerializeFunc = 
 	@"
 		public static byte[] Serialize(int data)
@@ -376,9 +377,74 @@
 			}}
 	";
 
-#>
+	// 0: PacketId에 따른 case문들
+	string packetSerializeFunc = 
+	@"
+		public static byte[] Serialize(PacketBase packet)
+		{{
+			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[packet.PacketSize + PacketHeader.Size]);
+			PacketHeader header = new PacketHeader(packet);
+			byte[] headerBuff = AdamBitConverter.Serialize(header);
 
-<#  
+			Array.Copy(headerBuff, 0, buff.Array, 0, headerBuff.Length);
+			buff = new ArraySegment<byte>(buff.Array, buff.Offset + headerBuff.Length, buff.Count - headerBuff.Length);
+
+			switch(packet.PacketId)
+			{{
+				{0}
+
+				default:
+				{{
+					return null;
+				}}
+			}}
+		}}
+	";
+
+	// 0: 패킷 클래스이름
+	string classSerialize = 
+	@"
+				case {0}.Id:
+				{{
+					return AdamBitConverter.Serialize(({0})packet);
+				}}
+	";
+
+	// 0: PacketId에 따른 case문들
+	string packetDeserializeFunc = 
+	@"
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out PacketBase packet)
+		{{
+			AdamBitConverter.Deserialize(buff, out int headerSize, out PacketHeader header);
+			size = headerSize;
+			packet = null;
+
+			switch(header.PacketId)
+			{{
+				{0}
+
+				default:
+				{{
+					size = 0;
+					break;
+				}}
+			}}
+		}}
+	";
+
+	// 0: 패킷 클래스이름
+	string classDeserialize = 
+	@"
+				case {0}.Id:
+				{{
+					{0} packetObject = null;
+					AdamBitConverter.Deserialize(buff, out int packetSize, out packetObject);
+					packet = packetObject;
+					size += packetSize;
+					break;
+				}}
+	";
+
 	Dictionary<string, string> typeToSerialization = new Dictionary<string, string>()
 	{
 		{ "int", intSerializeFunc },
@@ -415,23 +481,6 @@
 		{ "Dictionary", DictionaryDeserializeFunc },
 	};
 
-#>
-
-<#
-	string AppendTab(string str, int tabCount)
-	{
-		string result = String.Copy(str);
-		result.Replace("\t", "");
-		string tabs = "";
-		for(int i = 0 ; i < tabCount; ++i) tabs += "/t";
-		result.Replace("\n", "\n" + tabs);
-
-		return result;
-	}
-#>
-
-
-<#  
 	string xmlFileName = "PacketRaw.xml";
 	string dir = Path.GetDirectoryName(this.Host.TemplateFile);
 	string xmlPath = Path.Combine(dir, xmlFileName);
@@ -492,8 +541,9 @@
 	}
 
 	// 클래스들의 Serializaion & Deserialization
-	int packetId = 0;
 	XmlNode PacketNode = doc.ChildNodes[0]; // Packets
+	StringBuilder packetSerializeSB = new StringBuilder();
+	StringBuilder packetDeserializeSB = new StringBuilder();
 	StringBuilder classSerializeFuncs = new StringBuilder();
 	StringBuilder classDeserializeFuncs = new StringBuilder();
 	foreach(XmlNode ClassNode in  PacketNode.ChildNodes) // Class
@@ -501,6 +551,9 @@
 		XmlNode ClassNameNode = ClassNode.SelectSingleNode("Name");
 		string className = ClassNameNode.InnerText;
 		XmlNode VariablesNode = ClassNode.SelectSingleNode("Variables");
+
+		packetSerializeSB.Append(String.Format(classSerialize, className));
+		packetDeserializeSB.Append(String.Format(classDeserialize, className));
 
 		StringBuilder classMemberSerializations = new StringBuilder();
 		StringBuilder classMemberCopies = new StringBuilder();
@@ -522,6 +575,8 @@
 		
 	}
 
+	result.Append(String.Format(packetSerializeFunc, packetSerializeSB.ToString()));
+	result.Append(String.Format(packetDeserializeFunc, packetDeserializeSB.ToString()));
 	result.Append(serializeFuncs.ToString());
 	result.Append(classSerializeFuncs.ToString());
 	result.Append(deserializeFuncs.ToString());
@@ -546,6 +601,25 @@ namespace ServerLib.Packet
 {
 	internal class AdamBitConverter
 	{
+		public static byte[] Serialize(PacketHeader header)
+		{
+			byte[] buff = new byte[PacketHeader.Size];
+
+			byte[] packetSizeBuff = BitConverter.GetBytes(header.PacketSize);
+			Array.Copy(packetSizeBuff, 0, buff, 0, sizeof(ushort));
+			byte[] packetIdBuff = BitConverter.GetBytes(header.PacketId);
+			Array.Copy(packetIdBuff, 0, buff, sizeof(ushort), sizeof(ushort));
+
+			return buff;
+		}
+
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out PacketHeader header)
+		{
+			header = new PacketHeader();
+			size = PacketHeader.Size;
+			header.PacketSize = BitConverter.ToUInt16(buff.Array, buff.Offset);
+			header.PacketId = BitConverter.ToUInt16(buff.Array, buff.Offset + sizeof(ushort));
+		}
 		
 		<#= result.ToString() #>
 

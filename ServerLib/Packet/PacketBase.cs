@@ -20,8 +20,8 @@ namespace ServerLib.Packet
             get { return sizeof(ushort) * 2; }
         }
 
-        public ushort PacketSize { get; private set; }
-        public ushort PacketId { get; private set; }
+        public ushort PacketSize { get; set; }
+        public ushort PacketId { get; set; }
 
         public PacketHeader()
         {

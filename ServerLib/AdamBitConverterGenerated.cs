@@ -1,9 +1,5 @@
 ﻿
 
-
-
-
-
 /**************************************
 
 	이 파일은 자동 생성되는 파일입니다.
@@ -22,8 +18,121 @@ namespace ServerLib.Packet
 {
 	internal class AdamBitConverter
 	{
+		public static byte[] Serialize(PacketHeader header)
+		{
+			byte[] buff = new byte[PacketHeader.Size];
+
+			byte[] packetSizeBuff = BitConverter.GetBytes(header.PacketSize);
+			Array.Copy(packetSizeBuff, 0, buff, 0, sizeof(ushort));
+			byte[] packetIdBuff = BitConverter.GetBytes(header.PacketId);
+			Array.Copy(packetIdBuff, 0, buff, sizeof(ushort), sizeof(ushort));
+
+			return buff;
+		}
+
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out PacketHeader header)
+		{
+			header = new PacketHeader();
+			size = PacketHeader.Size;
+			header.PacketSize = BitConverter.ToUInt16(buff.Array, buff.Offset);
+			header.PacketId = BitConverter.ToUInt16(buff.Array, buff.Offset + sizeof(ushort));
+		}
 		
 		
+		public static byte[] Serialize(PacketBase packet)
+		{
+			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[packet.PacketSize + PacketHeader.Size]);
+			PacketHeader header = new PacketHeader(packet);
+			byte[] headerBuff = AdamBitConverter.Serialize(header);
+
+			Array.Copy(headerBuff, 0, buff.Array, 0, headerBuff.Length);
+			buff = new ArraySegment<byte>(buff.Array, buff.Offset + headerBuff.Length, buff.Count - headerBuff.Length);
+
+			switch(packet.PacketId)
+			{
+				
+				case Ping_RQ.Id:
+				{
+					return AdamBitConverter.Serialize((Ping_RQ)packet);
+				}
+	
+				case Ping_RS.Id:
+				{
+					return AdamBitConverter.Serialize((Ping_RS)packet);
+				}
+	
+				case ChatMsg_RQ.Id:
+				{
+					return AdamBitConverter.Serialize((ChatMsg_RQ)packet);
+				}
+	
+				case ChatMsg_RS.Id:
+				{
+					return AdamBitConverter.Serialize((ChatMsg_RS)packet);
+				}
+	
+
+				default:
+				{
+					return null;
+				}
+			}
+		}
+	
+		public static void Deserialize(ArraySegment<byte> buff, out int size, out PacketBase packet)
+		{
+			AdamBitConverter.Deserialize(buff, out int headerSize, out PacketHeader header);
+			size = headerSize;
+			packet = null;
+
+			switch(header.PacketId)
+			{
+				
+				case Ping_RQ.Id:
+				{
+					Ping_RQ packetObject = null;
+					AdamBitConverter.Deserialize(buff, out int packetSize, out packetObject);
+					packet = packetObject;
+					size += packetSize;
+					break;
+				}
+	
+				case Ping_RS.Id:
+				{
+					Ping_RS packetObject = null;
+					AdamBitConverter.Deserialize(buff, out int packetSize, out packetObject);
+					packet = packetObject;
+					size += packetSize;
+					break;
+				}
+	
+				case ChatMsg_RQ.Id:
+				{
+					ChatMsg_RQ packetObject = null;
+					AdamBitConverter.Deserialize(buff, out int packetSize, out packetObject);
+					packet = packetObject;
+					size += packetSize;
+					break;
+				}
+	
+				case ChatMsg_RS.Id:
+				{
+					ChatMsg_RS packetObject = null;
+					AdamBitConverter.Deserialize(buff, out int packetSize, out packetObject);
+					packet = packetObject;
+					size += packetSize;
+					break;
+				}
+	
+
+				default:
+				{
+					size = 0;
+					break;
+				}
+			}
+		}
+	
 		public static byte[] Serialize(int data)
 		{
 			return BitConverter.GetBytes(data);

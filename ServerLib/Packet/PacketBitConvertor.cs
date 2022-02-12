@@ -6,87 +6,87 @@ using System.Threading.Tasks;
 
 namespace ServerLib.Packet
 {
-    internal class PacketBitConvertor
-    {
-        public static EError Serialize(PacketBase packet, out int serializeSize, out ArraySegment<byte> serializeResult)
-        {
-            serializeSize = 0;
-            serializeResult = new ArraySegment<byte>();
+    //internal class PacketBitConvertor
+    //{
+    //    public static EError Serialize(PacketBase packet, out int serializeSize, out ArraySegment<byte> serializeResult)
+    //    {
+    //        serializeSize = 0;
+    //        serializeResult = new ArraySegment<byte>();
 
-            try
-            {
-                serializeResult = new ArraySegment<byte>(new byte[packet.PacketSize + PacketHeader.Size]);
-                serializeSize = packet.PacketSize + PacketHeader.Size;
+    //        try
+    //        {
+    //            serializeResult = new ArraySegment<byte>(new byte[packet.PacketSize + PacketHeader.Size]);
+    //            serializeSize = packet.PacketSize + PacketHeader.Size;
 
-                //////////////////////////////////////
-                // PacketHeader
-                PacketHeader packetHeader = new PacketHeader(packet);
+    //            //////////////////////////////////////
+    //            // PacketHeader
+    //            PacketHeader packetHeader = new PacketHeader(packet);
 
-                EError headerError = packetHeader.Serialize(out ArraySegment<byte> headerBuff);
-                if (headerError != EError.None)
-                    return headerError;
+    //            EError headerError = packetHeader.Serialize(out ArraySegment<byte> headerBuff);
+    //            if (headerError != EError.None)
+    //                return headerError;
 
-                Array.Copy(headerBuff.Array, 0, serializeResult.Array, 0, headerBuff.Count); // header copy
+    //            Array.Copy(headerBuff.Array, 0, serializeResult.Array, 0, headerBuff.Count); // header copy
 
-                //////////////////////////////////////
-                // PacketContent
-                EError contentError = packet.Serialize(out ArraySegment<byte> contentBuff);
-                if (contentError != EError.None)
-                    return contentError;
+    //            //////////////////////////////////////
+    //            // PacketContent
+    //            EError contentError = packet.Serialize(out ArraySegment<byte> contentBuff);
+    //            if (contentError != EError.None)
+    //                return contentError;
 
-                if(contentBuff.Array != null) // size가 0이면 null일 수 있다.
-                    Array.Copy(contentBuff.Array, 0, serializeResult.Array, headerBuff.Count, contentBuff.Count); // content copy
+    //            if(contentBuff.Array != null) // size가 0이면 null일 수 있다.
+    //                Array.Copy(contentBuff.Array, 0, serializeResult.Array, headerBuff.Count, contentBuff.Count); // content copy
 
-                return EError.None;
-            }
-            catch (Exception e)
-            {
-                Logger.Log(LogLevel.Error, $"{e.Message}");
-                return EError.Exception;
-            }
-        }
+    //            return EError.None;
+    //        }
+    //        catch (Exception e)
+    //        {
+    //            Logger.Log(LogLevel.Error, $"{e.Message}");
+    //            return EError.Exception;
+    //        }
+    //    }
 
-        public static EError Deserialize(ArraySegment<byte> buff, out int deserializeSize, out PacketBase? packet)
-        {
-            deserializeSize = 0;
-            packet = null;
+    //    public static EError Deserialize(ArraySegment<byte> buff, out int deserializeSize, out PacketBase? packet)
+    //    {
+    //        deserializeSize = 0;
+    //        packet = null;
 
-            try
-            {
-                //////////////////////////////////////
-                // PacketHeader
-                if (buff.Count < PacketHeader.Size)
-                    return EError.PacketFragmentation;
+    //        try
+    //        {
+    //            //////////////////////////////////////
+    //            // PacketHeader
+    //            if (buff.Count < PacketHeader.Size)
+    //                return EError.PacketFragmentation;
 
-                PacketHeader packetHeader = new PacketHeader();
-                EError headerError = packetHeader.Deserialize(buff);
-                if (headerError != EError.None)
-                    return headerError;
+    //            PacketHeader packetHeader = new PacketHeader();
+    //            EError headerError = packetHeader.Deserialize(buff);
+    //            if (headerError != EError.None)
+    //                return headerError;
 
-                deserializeSize += PacketHeader.Size;
-                buff = new ArraySegment<byte>(buff.Array, buff.Offset + PacketHeader.Size, buff.Count - PacketHeader.Size);
+    //            deserializeSize += PacketHeader.Size;
+    //            buff = new ArraySegment<byte>(buff.Array, buff.Offset + PacketHeader.Size, buff.Count - PacketHeader.Size);
 
-                //////////////////////////////////////
-                // PacketContent
-                if (buff.Count < packetHeader.PacketSize)
-                    return EError.PacketFragmentation;
+    //            //////////////////////////////////////
+    //            // PacketContent
+    //            if (buff.Count < packetHeader.PacketSize)
+    //                return EError.PacketFragmentation;
 
-                packet = PacketFactory.CreatePacketById(packetHeader.PacketId);
-                if(packet == null)
-                    throw new Exception("Packet CreatePacketById Failed");
+    //            packet = PacketFactory.CreatePacketById(packetHeader.PacketId);
+    //            if(packet == null)
+    //                throw new Exception("Packet CreatePacketById Failed");
 
-                EError contentError = packet.Deserialize(buff);
-                if (contentError != EError.None)
-                    return contentError;
+    //            EError contentError = packet.Deserialize(buff);
+    //            if (contentError != EError.None)
+    //                return contentError;
 
-                deserializeSize += packet.PacketSize;
-                return EError.None;
-            }
-            catch (Exception e)
-            {
-                Logger.Log(LogLevel.Error, $"{e.Message}");
-                return EError.Exception;
-            }
-        }
-    }
+    //            deserializeSize += packet.PacketSize;
+    //            return EError.None;
+    //        }
+    //        catch (Exception e)
+    //        {
+    //            Logger.Log(LogLevel.Error, $"{e.Message}");
+    //            return EError.Exception;
+    //        }
+    //    }
+    //}
 }

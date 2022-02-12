@@ -1,11 +1,12 @@
-﻿using ServerLib.Packet;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+
+using ServerLib.Packet;
 
 namespace ServerLib
 {
@@ -53,24 +54,21 @@ namespace ServerLib
             {
                 _isSending = true;
                 int packetSizeSum = 0;
-                List<ArraySegment<byte>> buffs = new List<ArraySegment<byte>>();
+                List<byte[]> buffs = new List<byte[]>();
                 while (_sendQueue.Count > 0)
                 {
                     PacketBase packet = _sendQueue.Dequeue();
-                    EError error = PacketBitConvertor.Serialize(packet, out int serializeSize, out ArraySegment<byte> serializeResult);
-                    if (error == EError.None)
-                    {
-                        buffs.Add(serializeResult);
-                        packetSizeSum += serializeSize;
-                    }
+                    byte[] packetBuff = AdamBitConverter.Serialize(packet);
+                    buffs.Add(packetBuff);
+                    packetSizeSum += packetBuff.Length;
                 }
 
                 ArraySegment<byte> sendBuffer = SendBufferHelper.Open(packetSizeSum);
                 int cursor = 0;
-                foreach (ArraySegment<byte> buff in buffs)
+                foreach (byte[] buff in buffs)
                 {
-                    Array.Copy(buff.Array, 0, sendBuffer.Array, sendBuffer.Offset + cursor, buff.Count);
-                    cursor += buff.Count;
+                    Array.Copy(buff, 0, sendBuffer.Array, sendBuffer.Offset + cursor, buff.Length);
+                    cursor += buff.Length;
                 }
                 SendBufferHelper.Close(packetSizeSum);
 
@@ -151,18 +149,12 @@ namespace ServerLib
                 while (true)
                 {
                     ArraySegment<byte> readSegment = _recvBuffer.ReadSegment;
-                    EError error = PacketBitConvertor.Deserialize(readSegment, out int deserializeSize, out PacketBase? packet);
-                    if (error == EError.None && packet != null)
-                    {
-                        if(!_recvBuffer.OnRead(deserializeSize))
-                            throw new Exception("Recv Buffer OnRead Failed");
+                    AdamBitConverter.Deserialize(readSegment, out int deserializeSize, out PacketBase packet);
 
-                        OnRecv(packet);
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    if (!_recvBuffer.OnRead(deserializeSize))
+                        throw new Exception("Recv Buffer OnRead Failed");
+
+                    OnRecv(packet);
                 }
 
                 BeginRecv();

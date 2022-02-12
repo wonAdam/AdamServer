@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -17,17 +17,6 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>PacketGenerated.tt</DependentUpon>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="AdamBitConverterGenerated.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AdamBitConverterGenerated.cs</LastGenOutput>
-    </None>
-    <None Update="PacketGenerated.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>PacketGenerated.cs</LastGenOutput>
     </None>
   </ItemGroup>
 
@@ -51,6 +40,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>PacketTemplate.tt</DependentUpon>
     </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="AdamBitConverterGenerated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AdamBitConverterGenerated.cs</LastGenOutput>
+    </None>
+    <None Update="PacketGenerated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PacketGenerated.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>
