@@ -9,7 +9,6 @@
 <#@ output extension=".cs" #>
 
 <#
-
 	string intSerializeFunc = 
 	@"
 		public static byte[] Serialize(int data)
@@ -19,10 +18,18 @@
 	";
 	string intDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out int data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out int data)
 		{
+			if(buff.Count < sizeof(int))
+			{
+				size = 0;
+				data = 0;
+				return EDeserializeResult.PacketFragmentation;
+			}
+
 			data = BitConverter.ToInt32(buff.Array, buff.Offset);
 			size = sizeof(int);
+			return EDeserializeResult.Success;
 		}
 	";
 
@@ -35,10 +42,18 @@
 	";
 	string uintDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out uint data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out uint data)
 		{
+			if(buff.Count < sizeof(uint))
+			{
+				size = 0;
+				data = 0;
+				return EDeserializeResult.PacketFragmentation;
+			}
+
 			data = BitConverter.ToUInt32(buff.Array, buff.Offset);
 			size = sizeof(uint);
+			return EDeserializeResult.Success;
 		}
 	";
 
@@ -51,10 +66,18 @@
 	";
 	string shortDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out short data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out short data)
 		{
+			if(buff.Count < sizeof(short))
+			{
+				size = 0;
+				data = 0;
+				return EDeserializeResult.PacketFragmentation;
+			}
+
 			data = BitConverter.ToInt16(buff.Array, buff.Offset);
 			size = sizeof(short);
+			return EDeserializeResult.Success;
 		}
 	";
 
@@ -67,10 +90,18 @@
 	";
 	string ushortDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out ushort data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ushort data)
 		{
+			if(buff.Count < sizeof(ushort))
+			{
+				size = 0;
+				data = 0;
+				return EDeserializeResult.PacketFragmentation;
+			}
+
 			data = BitConverter.ToUInt16(buff.Array, buff.Offset);
 			size = sizeof(ushort);
+			return EDeserializeResult.Success;
 		}
 	";
 
@@ -83,10 +114,18 @@
 	";
 	string charDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out char data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out char data)
 		{
+			if(buff.Count < sizeof(char))
+			{
+				size = 0;
+				data = 'a';
+				return EDeserializeResult.PacketFragmentation;
+			}
+
 			data = BitConverter.ToChar(buff.Array, buff.Offset);
 			size = sizeof(char);
+			return EDeserializeResult.Success;
 		}
 	";
 
@@ -99,10 +138,18 @@
 	";
 	string longDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out long data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out long data)
 		{
+			if(buff.Count < sizeof(long))
+			{
+				size = 0;
+				data = 0;
+				return EDeserializeResult.PacketFragmentation;
+			}
+
 			data = BitConverter.ToInt64(buff.Array, buff.Offset);
 			size = sizeof(long);
+			return EDeserializeResult.Success;
 		}
 	";
 
@@ -115,10 +162,18 @@
 	";
 	string ulongDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out ulong data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ulong data)
 		{
+			if(buff.Count < sizeof(ulong))
+			{
+				size = 0;
+				data = 0;
+				return EDeserializeResult.PacketFragmentation;
+			}
+
 			data = BitConverter.ToUInt64(buff.Array, buff.Offset);
 			size = sizeof(ulong);
+			return EDeserializeResult.Success;
 		}
 	";
 
@@ -131,10 +186,18 @@
 	";
 	string boolDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out bool data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out bool data)
 		{
+			if(buff.Count < sizeof(bool))
+			{
+				size = 0;
+				data = false;
+				return EDeserializeResult.PacketFragmentation;
+			}
+
 			data = BitConverter.ToBoolean(buff.Array, buff.Offset);
 			size = sizeof(bool);
+			return EDeserializeResult.Success;
 		}
 	";
 
@@ -147,10 +210,18 @@
 	";
 	string doubleDeserializeFunc = 
 	@"
-		public void Deserialize(ArraySegment<byte> buff, out int size, out double data)
+		public EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out double data)
 		{
+			if(buff.Count < sizeof(double))
+			{
+				size = 0;
+				data = 0.0;
+				return EDeserializeResult.PacketFragmentation;
+			}
+
 			data = BitConverter.ToDouble(buff.Array, buff.Offset);
 			size = sizeof(double);
+			return EDeserializeResult.Success;
 		}
 	";
 
@@ -163,10 +234,18 @@
 	";
 	string floatDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out float data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out float data)
 		{
+			if(buff.Count < sizeof(float))
+			{
+				size = 0;
+				data = 0.0f;
+				return EDeserializeResult.PacketFragmentation;
+			}
+
 			data = BitConverter.ToSingle(buff.Array, buff.Offset);
 			size = sizeof(float);
+			return EDeserializeResult.Success;
 		}
 	";
 
@@ -174,17 +253,34 @@
 	@"
 		public static byte[] Serialize(string data)
 		{
-			return Encoding.UTF8.GetBytes(data);
+			byte[] buff = new byte[sizeof(int) + Encoding.UTF8.GetByteCount(data)];
+			byte[] lengthBuff = BitConverter.GetBytes(Encoding.UTF8.GetByteCount(data));
+			byte[] stringBuff = Encoding.UTF8.GetBytes(data);
+
+			Array.Copy(lengthBuff, 0, buff, 0, lengthBuff.Length);
+			Array.Copy(stringBuff, 0, buff, lengthBuff.Length, stringBuff.Length);
+			return buff;
 		}
 	";
 	string stringDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out string data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out string data)
 		{
+			size = 0;
+			data = String.Empty;
+
+			if(buff.Count < sizeof(int))
+				return EDeserializeResult.PacketFragmentation;
+
 			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
 			size = sizeOfLength;
+
+			if(buff.Count < sizeof(int) + length)
+				return EDeserializeResult.PacketFragmentation;
+
 			data = Encoding.UTF8.GetString(buff.Array, buff.Offset + sizeof(int), length);
 			size += Encoding.UTF8.GetByteCount(data);
+			return EDeserializeResult.Success;
 		}
 	";
 
@@ -197,11 +293,19 @@
 	";
 	string DateTimeDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out DateTime data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out DateTime data)
 		{
+			if(buff.Count < sizeof(long))
+			{
+				size = 0;
+				data = new DateTime();
+				return EDeserializeResult.PacketFragmentation;
+			}
+
 			long ticks = BitConverter.ToInt64(buff.Array, buff.Offset);
 			data = new DateTime(ticks);
 			size = sizeof(long);
+			return EDeserializeResult.Success;
 		}
 	";
 
@@ -239,9 +343,14 @@
 	// 0: 원소타입
 	string ListDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out List<{0}> data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<{0}> data)
 		{{
+			size = 0;
 			data = new List<{0}>();
+
+			if(buff.Count < sizeof(int))
+				return EDeserializeResult.PacketFragmentation;
+
 
 			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
@@ -249,18 +358,24 @@
 
 			for(int i = 0; i < length; ++i)
 			{{
-				AdamBitConverter.Deserialize(buff, out int eSize, out {0} element);
+				EDeserializeResult elementError = AdamBitConverter.Deserialize(buff, out int eSize, out {0} element);
+
+				if(elementError == EDeserializeResult.PacketFragmentation)
+					return memberError;
+
 				buff = new ArraySegment<byte>(buff.Array, buff.Offset + eSize, buff.Count - eSize);
 				size += eSize;
 				data.Add(element);
 			}}
+
+			return EDeserializeResult.Success;
 		}}
 	";
 	
 	// 0: 원소타입
 	string DictionarySerializeFunc = 
 	@"
-		public static byte[] Deserialize(Dictionary<{0}> data)
+		public static byte[] Serialize(Dictionary<{0}> data)
 		{{
 			int size = 0;
 			int count = 0;
@@ -294,9 +409,13 @@
 	// 0: 원소타입
 	string DictionaryDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<{0}> data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<{0}> data)
 		{{
+			size = 0;
 			data = new Dictionary<{0}>();
+
+			if(buff.Count < sizeof(int))
+				return EDeserializeResult.PacketFragmentation;
 
 			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
@@ -304,13 +423,21 @@
 
 			for(int i = 0; i < length; ++i)
 			{{
-				AdamBitConverter.Deserialize(buff, out int keySize, out {0} key);
+				EDeserializeResult keyError = AdamBitConverter.Deserialize(buff, out int keySize, out {0} key);
+				if(keyError == EDeserializeResult.PacketFragmentation)
+					return keyError;
+
 				buff = new ArrySegment<byte>(buff.Array, buff.Offset + keySize, buff.Count - keySize);
-				AdamBitConverter.Deserialize(buff, out int valSize, out {0} value);
+				EDeserializeResult valError = AdamBitConverter.Deserialize(buff, out int valSize, out {0} value);
+				if(valError == EDeserializeResult.PacketFragmentation)
+					return valError;
+
 				buff = new ArrySegment<byte>(buff.Array, buff.Offset + valSize, buff.Count - valSize);
 				size += (keySize + valSize);
 				data.Add(key, value);
 			}}
+
+			return EDeserializeResult.Success;
 		}}
 	";
 
@@ -321,16 +448,21 @@
 	@"
 		public static byte[] Serialize({0} data)
 		{{
-			int size = 0;
+			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
-
+			
 			// Serializations
+			PacketHeader header = new PacketHeader(data);
+			byte[] headerBuff = AdamBitConverter.Serialize(header);
+
 			{1}
 
 			byte[] buff = new byte[size];
 
 			// Copy
-			int cursor = 0;
+			Array.Copy(headerBuff, 0, buff, 0, headerBuff.Length);
+	
+			int cursor = PacketHeader.Size;
 			{2}
 
 			return buff;
@@ -358,13 +490,15 @@
 	// 1: 멤버별 Deserializations
 	string classDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out {0} data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out {0} data)
 		{{
 			data = new {0}();
 			size = 0;
 
 			// Deserializations
 			{1}
+
+			return EDeserializeResult.Success;
 		}}
 	
 	";
@@ -372,8 +506,12 @@
 	string classMemberDeserialize = 
 	@"
 			{{
-				byte[] memberBuff = AdamBitConverter.Serialize(data.{0});
-				size += memberBuff.Length;
+				ArraySegment<byte> memberBuff = new ArraySegment<byte>(buff.Array, buff.Offset + size, buff.Count - size);
+				EDeserializeResult memberError = AdamBitConverter.Deserialize(memberBuff, out int memberSize, out data.{0});
+				if(memberError != EDeserializeResult.Success)
+					return memberError;
+
+				size += memberSize;
 			}}
 	";
 
@@ -383,11 +521,6 @@
 		public static byte[] Serialize(PacketBase packet)
 		{{
 			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[packet.PacketSize + PacketHeader.Size]);
-			PacketHeader header = new PacketHeader(packet);
-			byte[] headerBuff = AdamBitConverter.Serialize(header);
-
-			Array.Copy(headerBuff, 0, buff.Array, 0, headerBuff.Length);
-			buff = new ArraySegment<byte>(buff.Array, buff.Offset + headerBuff.Length, buff.Count - headerBuff.Length);
 
 			switch(packet.PacketId)
 			{{
@@ -406,18 +539,22 @@
 	@"
 				case {0}.Id:
 				{{
-					return AdamBitConverter.Serialize(({0})packet);
+					byte[] packetBuff = AdamBitConverter.Serialize(({0})packet);
+					Array.Copy(packetBuff, 0, buff.Array, 0, packetBuff.Length);
+					return buff.Array;
 				}}
 	";
 
 	// 0: PacketId에 따른 case문들
 	string packetDeserializeFunc = 
 	@"
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out PacketBase packet)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out PacketBase packet)
 		{{
 			AdamBitConverter.Deserialize(buff, out int headerSize, out PacketHeader header);
 			size = headerSize;
 			packet = null;
+
+			buff = new ArraySegment<byte>(buff.Array, buff.Offset + headerSize, buff.Count - headerSize);
 
 			switch(header.PacketId)
 			{{
@@ -426,7 +563,7 @@
 				default:
 				{{
 					size = 0;
-					break;
+					return EDeserializeResult.Error;
 				}}
 			}}
 		}}
@@ -437,11 +574,12 @@
 	@"
 				case {0}.Id:
 				{{
-					{0} packetObject = null;
-					AdamBitConverter.Deserialize(buff, out int packetSize, out packetObject);
+					EDeserializeResult result = AdamBitConverter.Deserialize(buff, out int packetSize, out {0} packetObject);
+					if(result != EDeserializeResult.Success)
+						return result;
 					packet = packetObject;
 					size += packetSize;
-					break;
+					return EDeserializeResult.Success;
 				}}
 	";
 
@@ -599,8 +737,16 @@ using System.Threading.Tasks;
 
 namespace ServerLib.Packet
 {
+	enum EDeserializeResult
+	{
+		Success,
+		PacketFragmentation,
+		Error,
+	}
+
 	internal class AdamBitConverter
 	{
+
 		public static byte[] Serialize(PacketHeader header)
 		{
 			byte[] buff = new byte[PacketHeader.Size];

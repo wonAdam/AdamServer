@@ -55,16 +55,16 @@
 	string DateTimeSize = @"sizeof(long)";
 
 	// 0: 변수이름
-	string StringSize = @"Encoding.UTF8.GetByteCount({0})";
+	string StringSize = @"sizeof(int) + Encoding.UTF8.GetByteCount({0})";
 
 	// 0: 변수이름
 	// 1: 원소사이즈
-	string ListSize = @"{0}.Count * {1}";
+	string ListSize = @"sizeof(int) + ({0}.Count * {1})";
 
 	// 0: 변수이름
 	// 1: 키사이즈
 	// 1: 값사이즈
-	string DictionarySize = @"{0}.Count * ({1} + {2})";
+	string DictionarySize = @"sizeof(int) + ({0}.Count * ({1} + {2}))";
 
 	Dictionary<string, string> TypeToSize = new Dictionary<string, string>()
 	{

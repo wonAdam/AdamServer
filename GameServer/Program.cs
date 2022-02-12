@@ -27,12 +27,20 @@ namespace GameServer
 
         protected override void OnRecv(PacketBase packet)
         {
-            Logger.Log(LogLevel.Temp, $"[Recv] {packet.GetType().Name}");
-            
+            if(packet as ChatMsg_RQ != null)
+            {
+                ChatMsg_RQ ChatMsg = (ChatMsg_RQ)packet;
+                Logger.Log(LogLevel.Temp, $"[Recv] {ChatMsg.msgText} / {ChatMsg.time}");
+            }
+            else
+            {
+                Logger.Log(LogLevel.Temp, $"[Recv] {packet.GetType().Name}");
+            }
+
             ChatMsg_RS packetToSend = new ChatMsg_RS();
-            packetToSend.Msg = "Hello From Server!!";
-            packetToSend.MsgNo = msgNo++;
-            packetToSend.Time = DateTime.UtcNow;
+            packetToSend.msgText = "Hello From Server!!";
+            packetToSend.time = DateTime.UtcNow;
+
             Send(packetToSend);
         }
 

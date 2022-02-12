@@ -19,6 +19,7 @@ namespace ServerLib
         object _sendLock = new object();
         Queue<PacketBase> _sendQueue = new Queue<PacketBase>();
         bool _isSending = false;
+        int _disconnected = 0;
 
         protected abstract void OnRecv(PacketBase packet);
         protected abstract void OnSend(int sendSize);
@@ -33,6 +34,10 @@ namespace ServerLib
 
         public void Disconnect()
         {
+            // 이미 disconnect됐음
+            if (Interlocked.Exchange(ref _disconnected, 1) == 1)
+                return;
+
             _sock.Shutdown(SocketShutdown.Both);
             _sock.Close();
         }
@@ -140,21 +145,40 @@ namespace ServerLib
             {
                 int receivedSize = _sock.EndReceive(ar);
 
-                if(receivedSize < 0)
+                if (receivedSize == 0)
+                {
+                    Disconnect();
+                    return;
+                }
+
+                if (receivedSize < 0)
                     throw new Exception("Recved Size is Zero");
 
                 if(!_recvBuffer.OnWrite(receivedSize))
                     throw new Exception("Recv Buffer OnWrite Failed");
 
-                while (true)
+                while (receivedSize > 0)
                 {
                     ArraySegment<byte> readSegment = _recvBuffer.ReadSegment;
-                    AdamBitConverter.Deserialize(readSegment, out int deserializeSize, out PacketBase packet);
+                    EDeserializeResult result = AdamBitConverter.Deserialize(readSegment, out int deserializeSize, out PacketBase packet);
+
+                    if (result != EDeserializeResult.Success)
+                    {
+                        OnRecv(packet);
+                        return;
+                    }
 
                     if (!_recvBuffer.OnRead(deserializeSize))
                         throw new Exception("Recv Buffer OnRead Failed");
 
                     OnRecv(packet);
+
+                    receivedSize -= deserializeSize;
+
+                    if (receivedSize < 0)
+                    {
+                        Logger.Log(LogLevel.Error, "Deserialize Error : receivedSize < 0");
+                    }
                 }
 
                 BeginRecv();
@@ -162,6 +186,7 @@ namespace ServerLib
             catch (SocketException se)
             {
                 Logger.Log(LogLevel.Error, $"{se.Message}");
+                Disconnect();
             }
             catch (Exception e)
             {

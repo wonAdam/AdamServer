@@ -29,11 +29,10 @@ namespace ClientBot
             while(true)
             {
                 ChatMsg_RQ packetToSend = new ChatMsg_RQ();
-                packetToSend.Msg = "Hello From Client!!";
-                packetToSend.MsgNo = msgNo++;
-                packetToSend.Time = DateTime.UtcNow;
+                packetToSend.msgText = "Hello From Client!!";
+                packetToSend.time = DateTime.UtcNow;
 
-                Send(new Ping_RQ());
+                Send(packetToSend);
                 Thread.Sleep(1500);
             }
         }
@@ -45,7 +44,15 @@ namespace ClientBot
 
         protected override void OnRecv(PacketBase packet)
         {
-            Logger.Log(LogLevel.Temp, $"[Recv] {packet.GetType().Name}");
+            if (packet as ChatMsg_RS != null)
+            {
+                ChatMsg_RS ChatMsg = (ChatMsg_RS)packet;
+                Logger.Log(LogLevel.Temp, $"[Recv] {ChatMsg.msgText} / {ChatMsg.time}");
+            }
+            else
+            {
+                Logger.Log(LogLevel.Temp, $"[Recv] {packet.GetType().Name}");
+            }
         }
 
         protected override void OnSend(int sendSize)

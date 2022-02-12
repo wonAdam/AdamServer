@@ -45,7 +45,7 @@ namespace ServerLib.Packet
     {
         public override ushort PacketId => Id;
 
-        public override ushort PacketSize => (ushort)(Encoding.UTF8.GetByteCount(msgText) + sizeof(long));
+        public override ushort PacketSize => (ushort)(sizeof(int) + Encoding.UTF8.GetByteCount(msgText) + sizeof(long));
         public const ushort Id = 2;
 
 		
@@ -59,7 +59,7 @@ namespace ServerLib.Packet
     {
         public override ushort PacketId => Id;
 
-        public override ushort PacketSize => (ushort)(Encoding.UTF8.GetByteCount(msgText) + sizeof(long));
+        public override ushort PacketSize => (ushort)(sizeof(int) + Encoding.UTF8.GetByteCount(msgText) + sizeof(long));
         public const ushort Id = 3;
 
 		
