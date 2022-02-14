@@ -28,5 +28,23 @@
       <DateTime>time</DateTime>
     </Variables>
   </Class>
+
+  <Class>
+    <Name>ListTest_RQ</Name>
+    <Variables>
+      <List element="string">sentences</List>
+      <DateTime>time</DateTime>
+      <string>nickname</string>
+    </Variables>
+  </Class>
+
+  <Class>
+    <Name>ListTest_RS</Name>
+    <Variables>
+      <List element="int">numOfCharacters</List>
+      <DateTime>time</DateTime>
+      <string>nickname</string>
+    </Variables>
+  </Class>
   
 </Packets>

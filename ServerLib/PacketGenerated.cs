@@ -69,4 +69,36 @@ namespace ServerLib.Packet
 	
     }
 	
+    public class ListTest_RQ : PacketBase
+    {
+        public override ushort PacketId => Id;
+
+        public override ushort PacketSize => (ushort)(sizeof(int) + (sentences.Count * (sizeof(int) + Encoding.UTF8.GetByteCount({0}))) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
+        public const ushort Id = 4;
+
+		
+		public List<string> sentences;
+	
+		public DateTime time;
+	
+		public string nickname;
+	
+    }
+	
+    public class ListTest_RS : PacketBase
+    {
+        public override ushort PacketId => Id;
+
+        public override ushort PacketSize => (ushort)(sizeof(int) + (numOfCharacters.Count * (sizeof(int))) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
+        public const ushort Id = 5;
+
+		
+		public List<int> numOfCharacters;
+	
+		public DateTime time;
+	
+		public string nickname;
+	
+    }
+	
 }

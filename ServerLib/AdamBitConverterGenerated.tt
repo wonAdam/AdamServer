@@ -406,13 +406,14 @@
 			return resultBuff;
 		}}
 	";
-	// 0: 원소타입
+	// 0: 키 타입
+	// 1: 값 타입
 	string DictionaryDeserializeFunc = 
 	@"
-		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<{0}> data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<{0}, {1}> data)
 		{{
 			size = 0;
-			data = new Dictionary<{0}>();
+			data = new Dictionary<{0}, {1}>();
 
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
@@ -428,11 +429,13 @@
 					return keyError;
 
 				buff = new ArrySegment<byte>(buff.Array, buff.Offset + keySize, buff.Count - keySize);
+
 				EDeserializeResult valError = AdamBitConverter.Deserialize(buff, out int valSize, out {0} value);
 				if(valError == EDeserializeResult.PacketFragmentation)
 					return valError;
 
 				buff = new ArrySegment<byte>(buff.Array, buff.Offset + valSize, buff.Count - valSize);
+
 				size += (keySize + valSize);
 				data.Add(key, value);
 			}}
@@ -583,6 +586,119 @@
 				}}
 	";
 
+	string intSizeOf = 
+	@"
+		public static int SizeOf(int data) => sizeof(int);
+	";
+	
+	string uintSizeOf = 
+	@"
+		public static int SizeOf(uint data) => sizeof(uint);
+	";
+	
+	string shortSizeOf = 
+	@"
+		public static int SizeOf(short data) => sizeof(short);
+	";
+	
+	string ushortSizeOf = 
+	@"
+		public static int SizeOf(ushort data) => sizeof(ushort);
+	";
+	
+	string charSizeOf = 
+	@"
+		public static int SizeOf(char data) => sizeof(char);
+	";
+	
+	string longSizeOf = 
+	@"
+		public static int SizeOf(long data) => sizeof(long);
+	";
+	
+	string ulongSizeOf = 
+	@"
+		public static int SizeOf(ulong data) => sizeof(ulong);
+	";
+	
+	string floatSizeOf = 
+	@"
+		public static int SizeOf(float data) => sizeof(float);
+	";
+
+	string doubleSizeOf = 
+	@"
+		public static int SizeOf(double data) => sizeof(double);
+	";
+
+	string boolSizeOf = 
+	@"
+		public static int SizeOf(bool data) => sizeof(bool);
+	";
+
+
+	string stringSizeOf = 
+	@"
+		public static int SizeOf(string data) => sizeof(int) + Encoding.UTF8.GetByteCount(data);
+	";
+
+	string DateTimeSizeOf = 
+	@"
+		public static int SizeOf(DateTime data) => sizeof(long);
+	";
+
+	// 0: 원소 타입
+	string ListSizeOf = 
+	@"
+		public static int SizeOf(List<{0}> data)
+		{{
+			int size = sizeof(int);
+			foreach({0} e in data)
+			{{
+				size += SizeOf(e);
+			}}
+			return size;
+		}}
+	";
+
+	// 0: 키 타입
+	// 0: 값 타입
+	string DictionarySizeOf = 
+	@"
+		public static int SizeOf(Dictionary<{0}, {1}> data) 
+		{{
+			int size = sizeof(int);
+			foreach(var pair in data)
+			{{
+				{0} key = pair.Key;
+				{1} value = pair.Value;
+				size += SizeOf(key);
+				size += SizeOf(value);
+			}}
+			return size;
+		}}
+	";
+
+	// 0: 클래스 이름
+	// 1: 멤버변수별 SizeOf
+	string classSizeOf = 
+	@"
+		public static int SizeOf({0} packet)
+		{{
+			int size = 0;
+
+			{1}
+
+			return size;
+		}}
+	";
+
+	// 0: 멤버변수 이름
+	string classSizeOfUnit = 
+	@"
+			size += AdamBitConverter.SizeOf(packet.{0});
+	";
+
 	Dictionary<string, string> typeToSerialization = new Dictionary<string, string>()
 	{
 		{ "int", intSerializeFunc },
@@ -619,6 +735,25 @@
 		{ "Dictionary", DictionaryDeserializeFunc },
 	};
 
+	Dictionary<string, string> typeToSizeOf = new Dictionary<string, string>()
+	{
+		{ "int", intSizeOf },
+		{ "uint", uintSizeOf },
+		{ "short", shortSizeOf },
+		{ "ushort", ushortSizeOf },
+		{ "char", charSizeOf },
+		{ "long", longSizeOf },
+		{ "ulong", ulongSizeOf },
+		{ "float", floatSizeOf },
+		{ "double", doubleSizeOf },
+		{ "bool", boolSizeOf },
+		{ "string", stringSizeOf },
+		{ "DateTime", DateTimeSizeOf },
+		{ "List", ListSizeOf },
+		{ "Dictionary", DictionarySizeOf },
+	};
+
+
 	string xmlFileName = "PacketRaw.xml";
 	string dir = Path.GetDirectoryName(this.Host.TemplateFile);
 	string xmlPath = Path.Combine(dir, xmlFileName);
@@ -628,6 +763,51 @@
 
 	StringBuilder result = new StringBuilder();
 
+	// 기본 타입들의 SizeOf
+	StringBuilder sizeOfFuncs = new StringBuilder();
+	foreach(var pair in typeToSizeOf)
+	{
+	    string type = pair.Key;
+        string sizeOfFunc = pair.Value; 
+
+		if(type == "List")
+		{
+			foreach(var pair2 in typeToSizeOf)
+			{
+				if(type == "List" || type == "Dictionary")
+					continue;
+
+				string elementType = pair2.Key;
+				sizeOfFuncs.Append(String.Format(sizeOfFunc, elementType));
+			}
+		}
+		else if(type == "Dictionary")
+		{
+			foreach(var pair2 in typeToSizeOf)
+			{
+				if(type == "List" || type == "Dictionary")
+					continue;
+
+				string keyType = pair2.Key;
+				foreach(var pair3 in typeToSizeOf)
+				{
+					if(type == "List" || type == "Dictionary")
+						continue;
+
+					string valType = pair3.Key;
+					sizeOfFuncs.Append(String.Format(sizeOfFunc, keyType, valType));
+				}
+			}
+		}
+		else
+		{
+			sizeOfFuncs.Append(sizeOfFunc);
+		}
+	}
+
+
+
+
 	// 기본 타입들의 Serialization
 	StringBuilder serializeFuncs = new StringBuilder();
 	foreach(var pair in typeToSerialization)
@@ -635,7 +815,7 @@
 	    string type = pair.Key;
         string serializeFunc = pair.Value; 
 
-		if(type == "List" || type == "Dictionary")
+		if(type == "List")
 		{
 			foreach(var pair2 in typeToSerialization)
 			{
@@ -643,8 +823,25 @@
 					continue;
 
 				string elementType = pair2.Key;
-				string containerSerializeFunc = String.Format(serializeFunc, elementType);
-				serializeFuncs.Append(containerSerializeFunc);
+				serializeFuncs.Append(String.Format(serializeFunc, elementType));
+			}
+		}
+		else if(type == "Dictionary")
+		{
+			foreach(var pair2 in typeToSerialization)
+			{
+				if(type == "List" || type == "Dictionary")
+					continue;
+
+				string keyType = pair2.Key;
+				foreach(var pair3 in typeToSerialization)
+				{
+					if(type == "List" || type == "Dictionary")
+						continue;
+
+					string valType = pair3.Key;
+					serializeFuncs.Append(String.Format(serializeFunc, keyType, valType));
+				}
 			}
 		}
 		else
@@ -660,7 +857,7 @@
 	    string type = pair.Key;
         string deserializeFunc = pair.Value; 
 
-		if(type == "List" || type == "Dictionary")
+		if(type == "List")
 		{
 			foreach(var pair2 in typeToDeserialization)
 			{
@@ -672,6 +869,25 @@
 				deserializeFuncs.Append(containerDeserializeFunc);
 			}
 		}
+		else if(type == "Dictionary")
+		{
+			foreach(var pair2 in typeToDeserialization)
+			{
+				if(type == "List" || type == "Dictionary")
+					continue;
+
+				string keyType = pair2.Key;
+				foreach(var pair3 in typeToDeserialization)
+				{
+					if(type == "List" || type == "Dictionary")
+						continue;
+
+					string valType = pair3.Key;
+					string containerDeserializeFunc = String.Format(deserializeFunc, keyType, valType);
+					deserializeFuncs.Append(containerDeserializeFunc);
+				}
+			}
+		}
 		else
 		{
 			deserializeFuncs.Append(deserializeFunc);
@@ -679,7 +895,9 @@
 	}
 
 	// 클래스들의 Serializaion & Deserialization
+	// 클래스 타입들의 SizeOf
 	XmlNode PacketNode = doc.ChildNodes[0]; // Packets
+	StringBuilder packetSizeOfSB = new StringBuilder();
 	StringBuilder packetSerializeSB = new StringBuilder();
 	StringBuilder packetDeserializeSB = new StringBuilder();
 	StringBuilder classSerializeFuncs = new StringBuilder();
@@ -693,6 +911,7 @@
 		packetSerializeSB.Append(String.Format(classSerialize, className));
 		packetDeserializeSB.Append(String.Format(classDeserialize, className));
 
+		StringBuilder classMemberSizeOf = new StringBuilder();
 		StringBuilder classMemberSerializations = new StringBuilder();
 		StringBuilder classMemberCopies = new StringBuilder();
 		StringBuilder classMemberDeserializations = new StringBuilder();
@@ -702,17 +921,21 @@
 			string type = VarNode.Name;
 			string name = VarNode.InnerText;
 
+			classMemberSizeOf.Append(String.Format(classSizeOfUnit, name));
 			classMemberSerializations.Append(String.Format(classMemberSerialize, name));
 			classMemberCopies.Append(String.Format(classMemberCopy, index++));
 			classMemberDeserializations.Append(String.Format(classMemberDeserialize, name));
 		}
 
+		packetSizeOfSB.Append(String.Format(classSizeOf, className, classMemberSizeOf.ToString()));
 		classSerializeFuncs.Append(String.Format(classSerializeFunc, className, classMemberSerializations.ToString(), classMemberCopies.ToString()));
 		classDeserializeFuncs.Append(String.Format(classDeserializeFunc, className, classMemberDeserializations.ToString()));
 		
 		
 	}
 
+	result.Append(sizeOfFuncs.ToString());
+	result.Append(packetSizeOfSB.ToString());
 	result.Append(String.Format(packetSerializeFunc, packetSerializeSB.ToString()));
 	result.Append(String.Format(packetDeserializeFunc, packetDeserializeSB.ToString()));
 	result.Append(serializeFuncs.ToString());

@@ -59,12 +59,12 @@
 
 	// 0: 변수이름
 	// 1: 원소사이즈
-	string ListSize = @"sizeof(int) + ({0}.Count * {1})";
+	string ListSize = @"sizeof(int) + ({0}.Count * ({1}))";
 
 	// 0: 변수이름
 	// 1: 키사이즈
 	// 1: 값사이즈
-	string DictionarySize = @"sizeof(int) + ({0}.Count * ({1} + {2}))";
+	string DictionarySize = @"sizeof(int) + ({0}.Count * (({1}) + ({2})))";
 
 	Dictionary<string, string> TypeToSize = new Dictionary<string, string>()
 	{
@@ -109,26 +109,49 @@
 			string type = VarNode.Name;
 			string name = VarNode.InnerText;
 
-			members.Append(String.Format(MemberFormat, type, name));
-
+			// Member Variable Declaration
 			switch(type)
 			{
 				case "List":
 				{
 					string element = VarNode.Attributes["element"].Value;
-					sizes.Add(String.Format(TypeToSize[type], element));
+					members.Append(String.Format(MemberFormat, $"List<{element}>", name));
 					break;
 				}
 				case "Dictionary":
 				{
 					string key = VarNode.Attributes["key"].Value;
 					string value = VarNode.Attributes["value"].Value;
-					sizes.Add(String.Format(TypeToSize[type], key, value));
+					members.Append(String.Format(MemberFormat,  $"Dictionary<{key}, {value}>", name));
+					break;
+				}
+				default:
+				{
+					members.Append(String.Format(MemberFormat, type, name));
+					break;
+				}
+
+			}
+
+			// Size
+			switch(type)
+			{
+				case "List":
+				{
+					string element = VarNode.Attributes["element"].Value;
+					sizes.Add(String.Format(ListSize, name, TypeToSize[element]));
+					break;
+				}
+				case "Dictionary":
+				{
+					string key = VarNode.Attributes["key"].Value;
+					string value = VarNode.Attributes["value"].Value;
+					sizes.Add(String.Format(DictionarySize, name, TypeToSize[key], TypeToSize[value]));
 					break;
 				}
 				case "string":
 				{
-					sizes.Add(String.Format(TypeToSize[type], name));
+					sizes.Add(String.Format(StringSize, name));
 					break;
 				}
 				default:
@@ -143,7 +166,7 @@
 		// 1: 패킷 사이즈 
 		// 2: 패킷 아이디
 		// 3: 멤버 변수
-		string sizeStr = "(ushort)" + "(" + String.Join(" + ", sizes) + ")";
+		string sizeStr = $"(ushort)({String.Join(" + ", sizes)})";
 
 		string packetClass = String.Format(PacketClassFormat, className, sizeStr, packetId++, members.ToString());
 		result.Append(packetClass);

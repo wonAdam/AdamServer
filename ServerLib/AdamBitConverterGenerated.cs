@@ -47,6 +47,108 @@ namespace ServerLib.Packet
 		}
 		
 		
+		public static int SizeOf(int data) => sizeof(int);
+	
+		public static int SizeOf(uint data) => sizeof(uint);
+	
+		public static int SizeOf(short data) => sizeof(short);
+	
+		public static int SizeOf(ushort data) => sizeof(ushort);
+	
+		public static int SizeOf(char data) => sizeof(char);
+	
+		public static int SizeOf(long data) => sizeof(long);
+	
+		public static int SizeOf(ulong data) => sizeof(ulong);
+	
+		public static int SizeOf(float data) => sizeof(float);
+	
+		public static int SizeOf(double data) => sizeof(double);
+	
+		public static int SizeOf(bool data) => sizeof(bool);
+	
+		public static int SizeOf(string data) => sizeof(int) + Encoding.UTF8.GetByteCount(data);
+	
+		public static int SizeOf(DateTime data) => sizeof(long);
+	
+		public static int SizeOf(Ping_RQ packet)
+		{
+			int size = 0;
+
+			
+			size += AdamBitConverter.SizeOf(packet.time);
+	
+
+			return size;
+		}
+	
+		public static int SizeOf(Ping_RS packet)
+		{
+			int size = 0;
+
+			
+			size += AdamBitConverter.SizeOf(packet.time);
+	
+
+			return size;
+		}
+	
+		public static int SizeOf(ChatMsg_RQ packet)
+		{
+			int size = 0;
+
+			
+			size += AdamBitConverter.SizeOf(packet.msgText);
+	
+			size += AdamBitConverter.SizeOf(packet.time);
+	
+
+			return size;
+		}
+	
+		public static int SizeOf(ChatMsg_RS packet)
+		{
+			int size = 0;
+
+			
+			size += AdamBitConverter.SizeOf(packet.msgText);
+	
+			size += AdamBitConverter.SizeOf(packet.time);
+	
+
+			return size;
+		}
+	
+		public static int SizeOf(ListTest_RQ packet)
+		{
+			int size = 0;
+
+			
+			size += AdamBitConverter.SizeOf(packet.sentences);
+	
+			size += AdamBitConverter.SizeOf(packet.time);
+	
+			size += AdamBitConverter.SizeOf(packet.nickname);
+	
+
+			return size;
+		}
+	
+		public static int SizeOf(ListTest_RS packet)
+		{
+			int size = 0;
+
+			
+			size += AdamBitConverter.SizeOf(packet.numOfCharacters);
+	
+			size += AdamBitConverter.SizeOf(packet.time);
+	
+			size += AdamBitConverter.SizeOf(packet.nickname);
+	
+
+			return size;
+		}
+	
 		public static byte[] Serialize(PacketBase packet)
 		{
 			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[packet.PacketSize + PacketHeader.Size]);
@@ -78,6 +180,20 @@ namespace ServerLib.Packet
 				case ChatMsg_RS.Id:
 				{
 					byte[] packetBuff = AdamBitConverter.Serialize((ChatMsg_RS)packet);
+					Array.Copy(packetBuff, 0, buff.Array, 0, packetBuff.Length);
+					return buff.Array;
+				}
+	
+				case ListTest_RQ.Id:
+				{
+					byte[] packetBuff = AdamBitConverter.Serialize((ListTest_RQ)packet);
+					Array.Copy(packetBuff, 0, buff.Array, 0, packetBuff.Length);
+					return buff.Array;
+				}
+	
+				case ListTest_RS.Id:
+				{
+					byte[] packetBuff = AdamBitConverter.Serialize((ListTest_RS)packet);
 					Array.Copy(packetBuff, 0, buff.Array, 0, packetBuff.Length);
 					return buff.Array;
 				}
@@ -134,6 +250,26 @@ namespace ServerLib.Packet
 				case ChatMsg_RS.Id:
 				{
 					EDeserializeResult result = AdamBitConverter.Deserialize(buff, out int packetSize, out ChatMsg_RS packetObject);
+					if(result != EDeserializeResult.Success)
+						return result;
+					packet = packetObject;
+					size += packetSize;
+					return EDeserializeResult.Success;
+				}
+	
+				case ListTest_RQ.Id:
+				{
+					EDeserializeResult result = AdamBitConverter.Deserialize(buff, out int packetSize, out ListTest_RQ packetObject);
+					if(result != EDeserializeResult.Success)
+						return result;
+					packet = packetObject;
+					size += packetSize;
+					return EDeserializeResult.Success;
+				}
+	
+				case ListTest_RS.Id:
+				{
+					EDeserializeResult result = AdamBitConverter.Deserialize(buff, out int packetSize, out ListTest_RS packetObject);
 					if(result != EDeserializeResult.Success)
 						return result;
 					packet = packetObject;
@@ -367,6 +503,118 @@ namespace ServerLib.Packet
 			{
 				Array.Copy(buffs[1], 0, buff, cursor, buffs[1].Length);
 				cursor += buffs[1].Length;
+			}
+	
+
+			return buff;
+		}
+	
+	
+		public static byte[] Serialize(ListTest_RQ data)
+		{
+			int size = PacketHeader.Size;
+			List<byte[]> buffs = new List<byte[]>();
+			
+			// Serializations
+			PacketHeader header = new PacketHeader(data);
+			byte[] headerBuff = AdamBitConverter.Serialize(header);
+
+			
+			{
+				byte[] memberBuff = AdamBitConverter.Serialize(data.sentences);
+				size += memberBuff.Length;
+				buffs.Add(memberBuff);
+			}
+	
+			{
+				byte[] memberBuff = AdamBitConverter.Serialize(data.time);
+				size += memberBuff.Length;
+				buffs.Add(memberBuff);
+			}
+	
+			{
+				byte[] memberBuff = AdamBitConverter.Serialize(data.nickname);
+				size += memberBuff.Length;
+				buffs.Add(memberBuff);
+			}
+	
+
+			byte[] buff = new byte[size];
+
+			// Copy
+			Array.Copy(headerBuff, 0, buff, 0, headerBuff.Length);
+	
+			int cursor = PacketHeader.Size;
+			
+			{
+				Array.Copy(buffs[0], 0, buff, cursor, buffs[0].Length);
+				cursor += buffs[0].Length;
+			}
+	
+			{
+				Array.Copy(buffs[1], 0, buff, cursor, buffs[1].Length);
+				cursor += buffs[1].Length;
+			}
+	
+			{
+				Array.Copy(buffs[2], 0, buff, cursor, buffs[2].Length);
+				cursor += buffs[2].Length;
+			}
+	
+
+			return buff;
+		}
+	
+	
+		public static byte[] Serialize(ListTest_RS data)
+		{
+			int size = PacketHeader.Size;
+			List<byte[]> buffs = new List<byte[]>();
+			
+			// Serializations
+			PacketHeader header = new PacketHeader(data);
+			byte[] headerBuff = AdamBitConverter.Serialize(header);
+
+			
+			{
+				byte[] memberBuff = AdamBitConverter.Serialize(data.numOfCharacters);
+				size += memberBuff.Length;
+				buffs.Add(memberBuff);
+			}
+	
+			{
+				byte[] memberBuff = AdamBitConverter.Serialize(data.time);
+				size += memberBuff.Length;
+				buffs.Add(memberBuff);
+			}
+	
+			{
+				byte[] memberBuff = AdamBitConverter.Serialize(data.nickname);
+				size += memberBuff.Length;
+				buffs.Add(memberBuff);
+			}
+	
+
+			byte[] buff = new byte[size];
+
+			// Copy
+			Array.Copy(headerBuff, 0, buff, 0, headerBuff.Length);
+	
+			int cursor = PacketHeader.Size;
+			
+			{
+				Array.Copy(buffs[0], 0, buff, cursor, buffs[0].Length);
+				cursor += buffs[0].Length;
+			}
+	
+			{
+				Array.Copy(buffs[1], 0, buff, cursor, buffs[1].Length);
+				cursor += buffs[1].Length;
+			}
+	
+			{
+				Array.Copy(buffs[2], 0, buff, cursor, buffs[2].Length);
+				cursor += buffs[2].Length;
 			}
 	
 
@@ -639,6 +887,84 @@ namespace ServerLib.Packet
 			{
 				ArraySegment<byte> memberBuff = new ArraySegment<byte>(buff.Array, buff.Offset + size, buff.Count - size);
 				EDeserializeResult memberError = AdamBitConverter.Deserialize(memberBuff, out int memberSize, out data.time);
+				if(memberError != EDeserializeResult.Success)
+					return memberError;
+
+				size += memberSize;
+			}
+	
+
+			return EDeserializeResult.Success;
+		}
+	
+	
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ListTest_RQ data)
+		{
+			data = new ListTest_RQ();
+			size = 0;
+
+			// Deserializations
+			
+			{
+				ArraySegment<byte> memberBuff = new ArraySegment<byte>(buff.Array, buff.Offset + size, buff.Count - size);
+				EDeserializeResult memberError = AdamBitConverter.Deserialize(memberBuff, out int memberSize, out data.sentences);
+				if(memberError != EDeserializeResult.Success)
+					return memberError;
+
+				size += memberSize;
+			}
+	
+			{
+				ArraySegment<byte> memberBuff = new ArraySegment<byte>(buff.Array, buff.Offset + size, buff.Count - size);
+				EDeserializeResult memberError = AdamBitConverter.Deserialize(memberBuff, out int memberSize, out data.time);
+				if(memberError != EDeserializeResult.Success)
+					return memberError;
+
+				size += memberSize;
+			}
+	
+			{
+				ArraySegment<byte> memberBuff = new ArraySegment<byte>(buff.Array, buff.Offset + size, buff.Count - size);
+				EDeserializeResult memberError = AdamBitConverter.Deserialize(memberBuff, out int memberSize, out data.nickname);
+				if(memberError != EDeserializeResult.Success)
+					return memberError;
+
+				size += memberSize;
+			}
+	
+
+			return EDeserializeResult.Success;
+		}
+	
+	
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ListTest_RS data)
+		{
+			data = new ListTest_RS();
+			size = 0;
+
+			// Deserializations
+			
+			{
+				ArraySegment<byte> memberBuff = new ArraySegment<byte>(buff.Array, buff.Offset + size, buff.Count - size);
+				EDeserializeResult memberError = AdamBitConverter.Deserialize(memberBuff, out int memberSize, out data.numOfCharacters);
+				if(memberError != EDeserializeResult.Success)
+					return memberError;
+
+				size += memberSize;
+			}
+	
+			{
+				ArraySegment<byte> memberBuff = new ArraySegment<byte>(buff.Array, buff.Offset + size, buff.Count - size);
+				EDeserializeResult memberError = AdamBitConverter.Deserialize(memberBuff, out int memberSize, out data.time);
+				if(memberError != EDeserializeResult.Success)
+					return memberError;
+
+				size += memberSize;
+			}
+	
+			{
+				ArraySegment<byte> memberBuff = new ArraySegment<byte>(buff.Array, buff.Offset + size, buff.Count - size);
+				EDeserializeResult memberError = AdamBitConverter.Deserialize(memberBuff, out int memberSize, out data.nickname);
 				if(memberError != EDeserializeResult.Success)
 					return memberError;
 
