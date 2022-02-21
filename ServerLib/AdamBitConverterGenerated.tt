@@ -210,7 +210,7 @@
 	";
 	string doubleDeserializeFunc = 
 	@"
-		public EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out double data)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out double data)
 		{
 			if(buff.Count < sizeof(double))
 			{
@@ -327,9 +327,10 @@
 
 			byte[] resultBuff = new byte[size];
 
+			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
-			Array.Copy(lengthBuff, 0, resultBuff, cursor, buff.Length);
-			int cursor = lengthBuff.Length;
+			Array.Copy(lengthBuff, 0, resultBuff, cursor, buffs.Count);
+			cursor += lengthBuff.Length;
 
 			foreach(byte[] buff in buffs)
 			{{
@@ -361,7 +362,7 @@
 				EDeserializeResult elementError = AdamBitConverter.Deserialize(buff, out int eSize, out {0} element);
 
 				if(elementError == EDeserializeResult.PacketFragmentation)
-					return memberError;
+					return elementError;
 
 				buff = new ArraySegment<byte>(buff.Array, buff.Offset + eSize, buff.Count - eSize);
 				size += eSize;
@@ -372,10 +373,11 @@
 		}}
 	";
 	
-	// 0: 원소타입
+	// 0: 키타입
+	// 1: 값타입
 	string DictionarySerializeFunc = 
 	@"
-		public static byte[] Serialize(Dictionary<{0}> data)
+		public static byte[] Serialize(Dictionary<{0}, {1}> data)
 		{{
 			int size = 0;
 			int count = 0;
@@ -393,9 +395,10 @@
 
 			byte[] resultBuff = new byte[size];
 
+			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
-			Array.Copy(lengthBuff, 0, resultBuff, cursor, buff.Length);
-			int cursor = lengthBuff.Length;
+			Array.Copy(lengthBuff, 0, resultBuff, cursor, buffs.Count);
+			cursor += lengthBuff.Length;
 
 			foreach(byte[] buff in buffs)
 			{{
@@ -428,13 +431,13 @@
 				if(keyError == EDeserializeResult.PacketFragmentation)
 					return keyError;
 
-				buff = new ArrySegment<byte>(buff.Array, buff.Offset + keySize, buff.Count - keySize);
+				buff = new ArraySegment<byte>(buff.Array, buff.Offset + keySize, buff.Count - keySize);
 
-				EDeserializeResult valError = AdamBitConverter.Deserialize(buff, out int valSize, out {0} value);
+				EDeserializeResult valError = AdamBitConverter.Deserialize(buff, out int valSize, out {1} value);
 				if(valError == EDeserializeResult.PacketFragmentation)
 					return valError;
 
-				buff = new ArrySegment<byte>(buff.Array, buff.Offset + valSize, buff.Count - valSize);
+				buff = new ArraySegment<byte>(buff.Array, buff.Offset + valSize, buff.Count - valSize);
 
 				size += (keySize + valSize);
 				data.Add(key, value);
@@ -774,7 +777,8 @@
 		{
 			foreach(var pair2 in typeToSizeOf)
 			{
-				if(type == "List" || type == "Dictionary")
+				string type2 = pair2.Key;
+				if(type2 == "List" || type2 == "Dictionary")
 					continue;
 
 				string elementType = pair2.Key;
@@ -785,13 +789,15 @@
 		{
 			foreach(var pair2 in typeToSizeOf)
 			{
-				if(type == "List" || type == "Dictionary")
+				string type2 = pair2.Key;
+				if(type2 == "List" || type2 == "Dictionary")
 					continue;
 
 				string keyType = pair2.Key;
 				foreach(var pair3 in typeToSizeOf)
 				{
-					if(type == "List" || type == "Dictionary")
+					string type3 = pair3.Key;
+					if(type3 == "List" || type3 == "Dictionary")
 						continue;
 
 					string valType = pair3.Key;
@@ -819,7 +825,8 @@
 		{
 			foreach(var pair2 in typeToSerialization)
 			{
-				if(type == "List" || type == "Dictionary")
+				string type2 = pair2.Key;
+				if(type2 == "List" || type2 == "Dictionary")
 					continue;
 
 				string elementType = pair2.Key;
@@ -830,16 +837,16 @@
 		{
 			foreach(var pair2 in typeToSerialization)
 			{
-				if(type == "List" || type == "Dictionary")
+				string keyType = pair2.Key;
+				if(keyType == "List" || keyType == "Dictionary")
 					continue;
 
-				string keyType = pair2.Key;
 				foreach(var pair3 in typeToSerialization)
 				{
-					if(type == "List" || type == "Dictionary")
+					string valType = pair3.Key;
+					if(valType == "List" || valType == "Dictionary")
 						continue;
 
-					string valType = pair3.Key;
 					serializeFuncs.Append(String.Format(serializeFunc, keyType, valType));
 				}
 			}
@@ -861,10 +868,10 @@
 		{
 			foreach(var pair2 in typeToDeserialization)
 			{
-				if(type == "List" || type == "Dictionary")
+				string elementType = pair2.Key;
+				if(elementType == "List" || elementType == "Dictionary")
 					continue;
 
-				string elementType = pair2.Key;
 				string containerDeserializeFunc = String.Format(deserializeFunc, elementType);
 				deserializeFuncs.Append(containerDeserializeFunc);
 			}
@@ -873,16 +880,16 @@
 		{
 			foreach(var pair2 in typeToDeserialization)
 			{
-				if(type == "List" || type == "Dictionary")
+				string keyType = pair2.Key;
+				if(keyType == "List" || keyType == "Dictionary")
 					continue;
 
-				string keyType = pair2.Key;
 				foreach(var pair3 in typeToDeserialization)
 				{
-					if(type == "List" || type == "Dictionary")
+					string valType = pair3.Key;
+					if(valType == "List" || valType == "Dictionary")
 						continue;
 
-					string valType = pair3.Key;
 					string containerDeserializeFunc = String.Format(deserializeFunc, keyType, valType);
 					deserializeFuncs.Append(containerDeserializeFunc);
 				}

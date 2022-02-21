@@ -73,7 +73,7 @@ namespace ServerLib.Packet
     {
         public override ushort PacketId => Id;
 
-        public override ushort PacketSize => (ushort)(sizeof(int) + (sentences.Count * (sizeof(int) + Encoding.UTF8.GetByteCount({0}))) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
+        public override ushort PacketSize => (ushort)(sizeof(int) + (sentences.Aggregate(0, (int accum, string curr) => { return accum + AdamBitConverter.SizeOf(curr); })) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
         public const ushort Id = 4;
 
 		
@@ -89,7 +89,7 @@ namespace ServerLib.Packet
     {
         public override ushort PacketId => Id;
 
-        public override ushort PacketSize => (ushort)(sizeof(int) + (numOfCharacters.Count * (sizeof(int))) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
+        public override ushort PacketSize => (ushort)(sizeof(int) + (numOfCharacters.Aggregate(0, (int accum, int curr) => { return accum + AdamBitConverter.SizeOf(curr); })) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
         public const ushort Id = 5;
 
 		

@@ -25,9 +25,13 @@ namespace ServerLib.Packet
 
         public PacketHeader()
         {
+
+            Dictionary<string, int> sentences = new Dictionary<string, int>(){ { "", 0 } };
+            int size = sentences.Aggregate(0, (int accum, KeyValuePair<string, int> curr) => { return accum + Encoding.UTF8.GetByteCount(curr); });
+
         }
 
-        public PacketHeader(PacketBase packet)
+    public PacketHeader(PacketBase packet)
         {
             PacketSize = packet.PacketSize;
             PacketId = packet.PacketId;

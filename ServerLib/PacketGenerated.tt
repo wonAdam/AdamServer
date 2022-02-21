@@ -40,16 +40,35 @@
 		public {0} {1};
 	";
 
-	string intSize =  @"sizeof(int)";
-	string uintSize = @"sizeof(uint)";
-	string shortSize = @"sizeof(short)";
-	string ushortSize = @"sizeof(ushort)";
-	string charSize = @"sizeof(char)";
-	string longSize = @"sizeof(long)";
-	string ulongSize = @"sizeof(ulong)";
-	string boolSize = @"sizeof(bool)";
-	string doubleSize = @"sizeof(double)";
-	string floatSize = @"sizeof(float)";
+	// 0: 변수이름
+	string intSize =  @"SizeOf({0})";
+
+	// 0: 변수이름
+	string uintSize = @"SizeOf({0})";
+
+	// 0: 변수이름
+	string shortSize = @"SizeOf({0})";
+
+	// 0: 변수이름
+	string ushortSize = @"SizeOf({0})";
+
+	// 0: 변수이름
+	string charSize = @"SizeOf({0})";
+
+	// 0: 변수이름
+	string longSize = @"SizeOf({0})";
+
+	// 0: 변수이름
+	string ulongSize = @"SizeOf({0})";
+
+	// 0: 변수이름
+	string boolSize = @"SizeOf({0})";
+
+	// 0: 변수이름
+	string doubleSize = @"SizeOf({0})";
+
+	// 0: 변수이름
+	string floatSize = @"SizeOf({0})";
 
 	// 0: 변수이름
 	string DateTimeSize = @"sizeof(long)";
@@ -58,13 +77,13 @@
 	string StringSize = @"sizeof(int) + Encoding.UTF8.GetByteCount({0})";
 
 	// 0: 변수이름
-	// 1: 원소사이즈
-	string ListSize = @"sizeof(int) + ({0}.Count * ({1}))";
+	// 1: 원소타입
+	string ListSize = @"sizeof(int) + ({0}.Aggregate(0, (int accum, {1} curr) => {{ return accum + AdamBitConverter.SizeOf(curr); }}))";
 
 	// 0: 변수이름
-	// 1: 키사이즈
-	// 1: 값사이즈
-	string DictionarySize = @"sizeof(int) + ({0}.Count * (({1}) + ({2})))";
+	// 1: 키타입
+	// 2: 값타입
+	string DictionarySize = @"sizeof(int) + ({0}.Aggregate(0, (int accum, KeyValuePair<{1}, {2}> curr) => {{ return accum + (AdamBitConverter.SizeOf(curr.Key) + AdamBitConverter.SizeOf(curr.Value)); }}))";
 
 	Dictionary<string, string> TypeToSize = new Dictionary<string, string>()
 	{
@@ -139,14 +158,14 @@
 				case "List":
 				{
 					string element = VarNode.Attributes["element"].Value;
-					sizes.Add(String.Format(ListSize, name, TypeToSize[element]));
+					sizes.Add(String.Format(ListSize, name, element));
 					break;
 				}
 				case "Dictionary":
 				{
 					string key = VarNode.Attributes["key"].Value;
 					string value = VarNode.Attributes["value"].Value;
-					sizes.Add(String.Format(DictionarySize, name, TypeToSize[key], TypeToSize[value]));
+					sizes.Add(String.Format(DictionarySize, name, key, value));
 					break;
 				}
 				case "string":
@@ -156,7 +175,7 @@
 				}
 				default:
 				{
-					sizes.Add(TypeToSize[type]);
+					sizes.Add(String.Format(TypeToSize[type], name));
 					break;
 				}
 			}
