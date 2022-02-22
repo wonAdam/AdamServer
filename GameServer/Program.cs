@@ -27,21 +27,40 @@ namespace GameServer
 
         protected override void OnRecv(PacketBase packet)
         {
-            if(packet as ChatMsg_RQ != null)
+            if(packet is ChatMsg_RQ)
             {
                 ChatMsg_RQ ChatMsg = (ChatMsg_RQ)packet;
-                Logger.Log(LogLevel.Temp, $"[Recv] {ChatMsg.msgText} / {ChatMsg.time}");
+                Logger.Log(LogLevel.Temp, $"[Recv::ChatMsg_RQ] {ChatMsg.msgText} / {ChatMsg.time}");
+
+                ChatMsg_RS packetToSend = new ChatMsg_RS();
+                packetToSend.msgText = "Hello From Server!!";
+                packetToSend.time = DateTime.UtcNow;
+
+                Send(packetToSend);
+            }
+            else if(packet is ListTest_RQ)
+            {
+                ListTest_RQ ListTest = (ListTest_RQ)packet;
+                ListTest_RS packetToSend = new ListTest_RS();
+                packetToSend.numOfCharacters = new List<int>();
+                foreach (var sentence in ListTest.sentences)
+                {
+                    Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] sentences: {sentence}");
+                    packetToSend.numOfCharacters.Add(sentence.Length);
+                }
+                Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] nickname: {ListTest.nickname}");
+                Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] time: {ListTest.time}");
+
+                packetToSend.nickname = ListTest.nickname;
+                packetToSend.time = ListTest.time;
+
+                Send(ListTest);
             }
             else
             {
                 Logger.Log(LogLevel.Temp, $"[Recv] {packet.GetType().Name}");
             }
 
-            ChatMsg_RS packetToSend = new ChatMsg_RS();
-            packetToSend.msgText = "Hello From Server!!";
-            packetToSend.time = DateTime.UtcNow;
-
-            Send(packetToSend);
         }
 
         protected override void OnSend(int sendSize)

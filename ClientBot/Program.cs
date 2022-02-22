@@ -28,9 +28,16 @@ namespace ClientBot
 
             while(true)
             {
-                ChatMsg_RQ packetToSend = new ChatMsg_RQ();
-                packetToSend.msgText = "Hello From Client!!";
-                packetToSend.time = DateTime.UtcNow;
+                //ChatMsg_RQ packetToSend = new ChatMsg_RQ();
+                //packetToSend.msgText = "Hello From Client!!";
+                //packetToSend.time = DateTime.UtcNow;
+
+                ListTest_RQ packetToSend = new ListTest_RQ();
+                packetToSend.sentences = new List<string>();
+                packetToSend.sentences.Add("Whassup!!");
+                packetToSend.sentences.Add("Server!!");
+                packetToSend.nickname = "wondong";
+                packetToSend.time = DateTime.Now; 
 
                 Send(packetToSend);
                 Thread.Sleep(1500);
