@@ -8,12 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="AdamBitConverterGenerated.cs">
+    <None Include="Packet\AdamBitConverterGenerated.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AdamBitConverterGenerated.tt</DependentUpon>
     </None>
-    <None Include="PacketGenerated.cs">
+    <None Include="Packet\PacketGenerated.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>PacketGenerated.tt</DependentUpon>
@@ -25,12 +25,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="AdamBitConverterGenerated.cs">
+    <Compile Update="Packet\AdamBitConverterGenerated.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>AdamBitConverterGenerated.tt</DependentUpon>
     </Compile>
-    <Compile Update="PacketGenerated.cs">
+    <Compile Update="Packet\PacketGenerated.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>PacketGenerated.tt</DependentUpon>
@@ -43,11 +43,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="AdamBitConverterGenerated.tt">
+    <None Update="Packet\AdamBitConverterGenerated.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>AdamBitConverterGenerated.cs</LastGenOutput>
     </None>
-    <None Update="PacketGenerated.tt">
+    <None Update="Packet\PacketGenerated.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PacketGenerated.cs</LastGenOutput>
     </None>

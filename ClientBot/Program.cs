@@ -39,10 +39,22 @@ namespace ClientBot
                 //packetToSend.nickname = "wondong";
                 //packetToSend.time = DateTime.Now;
 
-                DictionaryTest_RQ packetToSend = new DictionaryTest_RQ();
-                packetToSend.numOfCharacters = new Dictionary<int, string>();
-                packetToSend.numOfCharacters.Add(0, "Whassup!!");
-                packetToSend.numOfCharacters.Add(1, "Server!!");
+                //DictionaryTest_RQ packetToSend = new DictionaryTest_RQ();
+                //packetToSend.numOfCharacters = new Dictionary<int, string>();
+                //packetToSend.numOfCharacters.Add(0, "Whassup!!");
+                //packetToSend.numOfCharacters.Add(1, "Server!!");
+                //packetToSend.nickname = "wondong";
+                //packetToSend.time = DateTime.Now;
+
+                ClassListTest_RQ packetToSend = new ClassListTest_RQ();
+                packetToSend.chatList = new List<ChatMsg_RQ>();
+                ChatMsg_RQ chat1 = new ChatMsg_RQ();
+                chat1.msgText = "Whassup!! ClassListTest!!";
+                ChatMsg_RQ chat2 = new ChatMsg_RQ();
+                chat2.msgText = "Server!! ClassListTest!!";
+                packetToSend.chatList.Add(chat1);
+                packetToSend.chatList.Add(chat2);
+
                 packetToSend.nickname = "wondong";
                 packetToSend.time = DateTime.Now;
 
@@ -82,6 +94,16 @@ namespace ClientBot
                 }
                 Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] nickname: {DictTest.nickname}");
                 Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] time: {DictTest.time}");
+            }
+            else if (packet is ClassListTest_RS)
+            {
+                ClassListTest_RS ChatListTest = (ClassListTest_RS)packet;
+                foreach (var chat in ChatListTest.chatList)
+                {
+                    Logger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] chat.msgText : {chat.msgText}");
+                }
+                Logger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] ChatListTest.nickname: {ChatListTest.nickname}");
+                Logger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] ChatListTest.time: {ChatListTest.time}");
             }
             else
             {

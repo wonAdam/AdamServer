@@ -664,7 +664,7 @@
 	";
 
 	// 0: 키 타입
-	// 0: 값 타입
+	// 1: 값 타입
 	string DictionarySizeOf = 
 	@"
 		public static int SizeOf(Dictionary<{0}, {1}> data) 
@@ -938,6 +938,35 @@
 		classDeserializeFuncs.Append(String.Format(classDeserializeFunc, className, classMemberDeserializations.ToString()));
 		
 		
+	}
+
+	// List<클래스> , Dictionary<int, 클래스>, Dictionary<long, 클래스>들의
+	// Serialize, Deserialize
+	foreach(XmlNode ClassNode in  PacketNode.ChildNodes) // Class
+	{
+		XmlNode ClassNameNode = ClassNode.SelectSingleNode("Name");
+		string className = ClassNameNode.InnerText;
+		
+		serializeFuncs.Append(String.Format(ListSerializeFunc, className));
+		deserializeFuncs.Append(String.Format(ListDeserializeFunc, className));
+
+		serializeFuncs.Append(String.Format(DictionarySerializeFunc, "int", className));
+		serializeFuncs.Append(String.Format(DictionarySerializeFunc, "long", className));
+		deserializeFuncs.Append(String.Format(DictionaryDeserializeFunc, "int", className));
+		deserializeFuncs.Append(String.Format(DictionaryDeserializeFunc, "long", className));
+	}
+
+	// List<클래스> , Dictionary<int, 클래스>, Dictionary<long, 클래스>들의
+	// SizeOf
+	foreach(XmlNode ClassNode in  PacketNode.ChildNodes) // Class
+	{
+		XmlNode ClassNameNode = ClassNode.SelectSingleNode("Name");
+		string className = ClassNameNode.InnerText;
+		
+		sizeOfFuncs.Append(String.Format(ListSizeOf, className));
+
+		sizeOfFuncs.Append(String.Format(DictionarySizeOf, "int", className));
+		sizeOfFuncs.Append(String.Format(DictionarySizeOf, "long", className));
 	}
 
 	result.Append(sizeOfFuncs.ToString());

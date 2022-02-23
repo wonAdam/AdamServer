@@ -74,6 +74,25 @@ namespace GameServer
 
                 Send(packetToSend);
             }
+            else if (packet is ClassListTest_RQ)
+            {
+                ClassListTest_RQ ChatListTest = (ClassListTest_RQ)packet;
+                ClassListTest_RS packetToSend = new ClassListTest_RS();
+                packetToSend.chatList = new List<ChatMsg_RS>();
+                foreach (var chat in ChatListTest.chatList)
+                {
+                    Logger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] chat.msgText : {chat.msgText}");
+                    ChatMsg_RS ChatToSend = new ChatMsg_RS();
+                    ChatToSend.msgText = chat.msgText;
+                    ChatToSend.time = chat.time;
+                    packetToSend.chatList.Add(ChatToSend);
+                }
+                Logger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] ChatListTest.time: {ChatListTest.time}");
+                packetToSend.nickname = ChatListTest.nickname;
+                packetToSend.time = ChatListTest.time;
+
+                Send(packetToSend);
+            }
             else
             {
                 Logger.Log(LogLevel.Temp, $"[Recv] {packet.GetType().Name}");

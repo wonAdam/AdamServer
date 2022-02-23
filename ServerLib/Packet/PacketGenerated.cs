@@ -133,4 +133,36 @@ namespace ServerLib.Packet
 	
     }
 	
+    public class ClassListTest_RQ : PacketBase
+    {
+        public override ushort PacketId => Id;
+
+        public override ushort PacketSize => (ushort)(sizeof(int) + (chatList.Aggregate(0, (int accum, ChatMsg_RQ curr) => { return accum + AdamBitConverter.SizeOf(curr); })) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
+        public const ushort Id = 8;
+
+		
+		public List<ChatMsg_RQ> chatList;
+	
+		public DateTime time;
+	
+		public string nickname;
+	
+    }
+	
+    public class ClassListTest_RS : PacketBase
+    {
+        public override ushort PacketId => Id;
+
+        public override ushort PacketSize => (ushort)(sizeof(int) + (chatList.Aggregate(0, (int accum, ChatMsg_RS curr) => { return accum + AdamBitConverter.SizeOf(curr); })) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
+        public const ushort Id = 9;
+
+		
+		public List<ChatMsg_RS> chatList;
+	
+		public DateTime time;
+	
+		public string nickname;
+	
+    }
+	
 }
