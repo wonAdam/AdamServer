@@ -32,10 +32,17 @@ namespace ClientBot
                 //packetToSend.msgText = "Hello From Client!!";
                 //packetToSend.time = DateTime.UtcNow;
 
-                ListTest_RQ packetToSend = new ListTest_RQ();
-                packetToSend.sentences = new List<string>();
-                packetToSend.sentences.Add("Whassup!!");
-                packetToSend.sentences.Add("Server!!");
+                //ListTest_RQ packetToSend = new ListTest_RQ();
+                //packetToSend.sentences = new List<string>();
+                //packetToSend.sentences.Add("Whassup!!");
+                //packetToSend.sentences.Add("Server!!");
+                //packetToSend.nickname = "wondong";
+                //packetToSend.time = DateTime.Now;
+
+                DictionaryTest_RQ packetToSend = new DictionaryTest_RQ();
+                packetToSend.numOfCharacters = new Dictionary<int, string>();
+                packetToSend.numOfCharacters.Add(0, "Whassup!!");
+                packetToSend.numOfCharacters.Add(1, "Server!!");
                 packetToSend.nickname = "wondong";
                 packetToSend.time = DateTime.Now;
 
