@@ -392,7 +392,7 @@
 				count++;
 			}}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);

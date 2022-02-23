@@ -37,7 +37,7 @@ namespace ClientBot
                 packetToSend.sentences.Add("Whassup!!");
                 packetToSend.sentences.Add("Server!!");
                 packetToSend.nickname = "wondong";
-                packetToSend.time = DateTime.Now; 
+                packetToSend.time = DateTime.Now;
 
                 Send(packetToSend);
                 Thread.Sleep(1500);
@@ -51,10 +51,30 @@ namespace ClientBot
 
         protected override void OnRecv(PacketBase packet)
         {
-            if (packet as ChatMsg_RS != null)
+            if (packet is ChatMsg_RS)
             {
                 ChatMsg_RS ChatMsg = (ChatMsg_RS)packet;
                 Logger.Log(LogLevel.Temp, $"[Recv] {ChatMsg.msgText} / {ChatMsg.time}");
+            }
+            else if (packet is ListTest_RQ)
+            {
+                ListTest_RQ ListTest = (ListTest_RQ)packet;
+                foreach (var sentence in ListTest.sentences)
+                {
+                    Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] sentences: {sentence}");
+                }
+                Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] nickname: {ListTest.nickname}");
+                Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] time: {ListTest.time}");
+            }
+            else if (packet is DictionaryTest_RS)
+            {
+                DictionaryTest_RS DictTest = (DictionaryTest_RS)packet;
+                foreach (var pair in DictTest.numOfCharacters)
+                {
+                    Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] key: {pair.Key} / value: {pair.Value}");
+                }
+                Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] nickname: {DictTest.nickname}");
+                Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] time: {DictTest.time}");
             }
             else
             {

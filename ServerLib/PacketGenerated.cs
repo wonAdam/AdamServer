@@ -101,4 +101,36 @@ namespace ServerLib.Packet
 	
     }
 	
+    public class DictionaryTest_RQ : PacketBase
+    {
+        public override ushort PacketId => Id;
+
+        public override ushort PacketSize => (ushort)(sizeof(int) + (numOfCharacters.Aggregate(0, (int accum, KeyValuePair<int, string> curr) => { return accum + (AdamBitConverter.SizeOf(curr.Key) + AdamBitConverter.SizeOf(curr.Value)); })) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
+        public const ushort Id = 6;
+
+		
+		public Dictionary<int, string> numOfCharacters;
+	
+		public DateTime time;
+	
+		public string nickname;
+	
+    }
+	
+    public class DictionaryTest_RS : PacketBase
+    {
+        public override ushort PacketId => Id;
+
+        public override ushort PacketSize => (ushort)(sizeof(int) + (numOfCharacters.Aggregate(0, (int accum, KeyValuePair<string, int> curr) => { return accum + (AdamBitConverter.SizeOf(curr.Key) + AdamBitConverter.SizeOf(curr.Value)); })) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
+        public const ushort Id = 7;
+
+		
+		public Dictionary<string, int> numOfCharacters;
+	
+		public DateTime time;
+	
+		public string nickname;
+	
+    }
+	
 }

@@ -2141,6 +2141,36 @@ namespace ServerLib.Packet
 			return size;
 		}
 	
+		public static int SizeOf(DictionaryTest_RQ packet)
+		{
+			int size = 0;
+
+			
+			size += AdamBitConverter.SizeOf(packet.numOfCharacters);
+	
+			size += AdamBitConverter.SizeOf(packet.time);
+	
+			size += AdamBitConverter.SizeOf(packet.nickname);
+	
+
+			return size;
+		}
+	
+		public static int SizeOf(DictionaryTest_RS packet)
+		{
+			int size = 0;
+
+			
+			size += AdamBitConverter.SizeOf(packet.numOfCharacters);
+	
+			size += AdamBitConverter.SizeOf(packet.time);
+	
+			size += AdamBitConverter.SizeOf(packet.nickname);
+	
+
+			return size;
+		}
+	
 		public static byte[] Serialize(PacketBase packet)
 		{
 			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[packet.PacketSize + PacketHeader.Size]);
@@ -2186,6 +2216,20 @@ namespace ServerLib.Packet
 				case ListTest_RS.Id:
 				{
 					byte[] packetBuff = AdamBitConverter.Serialize((ListTest_RS)packet);
+					Array.Copy(packetBuff, 0, buff.Array, 0, packetBuff.Length);
+					return buff.Array;
+				}
+	
+				case DictionaryTest_RQ.Id:
+				{
+					byte[] packetBuff = AdamBitConverter.Serialize((DictionaryTest_RQ)packet);
+					Array.Copy(packetBuff, 0, buff.Array, 0, packetBuff.Length);
+					return buff.Array;
+				}
+	
+				case DictionaryTest_RS.Id:
+				{
+					byte[] packetBuff = AdamBitConverter.Serialize((DictionaryTest_RS)packet);
 					Array.Copy(packetBuff, 0, buff.Array, 0, packetBuff.Length);
 					return buff.Array;
 				}
@@ -2262,6 +2306,26 @@ namespace ServerLib.Packet
 				case ListTest_RS.Id:
 				{
 					EDeserializeResult result = AdamBitConverter.Deserialize(buff, out int packetSize, out ListTest_RS packetObject);
+					if(result != EDeserializeResult.Success)
+						return result;
+					packet = packetObject;
+					size += packetSize;
+					return EDeserializeResult.Success;
+				}
+	
+				case DictionaryTest_RQ.Id:
+				{
+					EDeserializeResult result = AdamBitConverter.Deserialize(buff, out int packetSize, out DictionaryTest_RQ packetObject);
+					if(result != EDeserializeResult.Success)
+						return result;
+					packet = packetObject;
+					size += packetSize;
+					return EDeserializeResult.Success;
+				}
+	
+				case DictionaryTest_RS.Id:
+				{
+					EDeserializeResult result = AdamBitConverter.Deserialize(buff, out int packetSize, out DictionaryTest_RS packetObject);
 					if(result != EDeserializeResult.Success)
 						return result;
 					packet = packetObject;
@@ -2708,7 +2772,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -2740,7 +2804,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -2772,7 +2836,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -2804,7 +2868,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -2836,7 +2900,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -2868,7 +2932,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -2900,7 +2964,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -2932,7 +2996,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -2964,7 +3028,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -2996,7 +3060,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3028,7 +3092,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3060,7 +3124,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3092,7 +3156,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3124,7 +3188,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3156,7 +3220,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3188,7 +3252,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3220,7 +3284,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3252,7 +3316,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3284,7 +3348,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3316,7 +3380,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3348,7 +3412,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3380,7 +3444,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3412,7 +3476,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3444,7 +3508,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3476,7 +3540,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3508,7 +3572,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3540,7 +3604,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3572,7 +3636,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3604,7 +3668,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3636,7 +3700,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3668,7 +3732,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3700,7 +3764,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3732,7 +3796,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3764,7 +3828,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3796,7 +3860,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3828,7 +3892,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3860,7 +3924,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3892,7 +3956,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3924,7 +3988,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3956,7 +4020,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -3988,7 +4052,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4020,7 +4084,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4052,7 +4116,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4084,7 +4148,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4116,7 +4180,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4148,7 +4212,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4180,7 +4244,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4212,7 +4276,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4244,7 +4308,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4276,7 +4340,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4308,7 +4372,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4340,7 +4404,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4372,7 +4436,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4404,7 +4468,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4436,7 +4500,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4468,7 +4532,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4500,7 +4564,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4532,7 +4596,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4564,7 +4628,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4596,7 +4660,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4628,7 +4692,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4660,7 +4724,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4692,7 +4756,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4724,7 +4788,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4756,7 +4820,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4788,7 +4852,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4820,7 +4884,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4852,7 +4916,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4884,7 +4948,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4916,7 +4980,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4948,7 +5012,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -4980,7 +5044,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5012,7 +5076,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5044,7 +5108,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5076,7 +5140,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5108,7 +5172,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5140,7 +5204,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5172,7 +5236,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5204,7 +5268,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5236,7 +5300,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5268,7 +5332,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5300,7 +5364,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5332,7 +5396,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5364,7 +5428,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5396,7 +5460,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5428,7 +5492,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5460,7 +5524,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5492,7 +5556,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5524,7 +5588,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5556,7 +5620,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5588,7 +5652,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5620,7 +5684,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5652,7 +5716,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5684,7 +5748,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5716,7 +5780,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5748,7 +5812,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5780,7 +5844,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5812,7 +5876,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5844,7 +5908,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5876,7 +5940,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5908,7 +5972,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5940,7 +6004,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -5972,7 +6036,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6004,7 +6068,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6036,7 +6100,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6068,7 +6132,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6100,7 +6164,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6132,7 +6196,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6164,7 +6228,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6196,7 +6260,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6228,7 +6292,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6260,7 +6324,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6292,7 +6356,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6324,7 +6388,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6356,7 +6420,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6388,7 +6452,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6420,7 +6484,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6452,7 +6516,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6484,7 +6548,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6516,7 +6580,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6548,7 +6612,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6580,7 +6644,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6612,7 +6676,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6644,7 +6708,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6676,7 +6740,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6708,7 +6772,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6740,7 +6804,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6772,7 +6836,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6804,7 +6868,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6836,7 +6900,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6868,7 +6932,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6900,7 +6964,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6932,7 +6996,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6964,7 +7028,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -6996,7 +7060,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -7028,7 +7092,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -7060,7 +7124,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -7092,7 +7156,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -7124,7 +7188,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -7156,7 +7220,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -7188,7 +7252,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -7220,7 +7284,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -7252,7 +7316,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -7284,7 +7348,7 @@ namespace ServerLib.Packet
 				count++;
 			}
 
-			byte[] resultBuff = new byte[size];
+			byte[] resultBuff = new byte[size + sizeof(int)];
 
 			int cursor = 0;
 			byte[] lengthBuff = AdamBitConverter.Serialize(count);
@@ -7515,6 +7579,118 @@ namespace ServerLib.Packet
 	
 	
 		public static byte[] Serialize(ListTest_RS data)
+		{
+			int size = PacketHeader.Size;
+			List<byte[]> buffs = new List<byte[]>();
+			
+			// Serializations
+			PacketHeader header = new PacketHeader(data);
+			byte[] headerBuff = AdamBitConverter.Serialize(header);
+
+			
+			{
+				byte[] memberBuff = AdamBitConverter.Serialize(data.numOfCharacters);
+				size += memberBuff.Length;
+				buffs.Add(memberBuff);
+			}
+	
+			{
+				byte[] memberBuff = AdamBitConverter.Serialize(data.time);
+				size += memberBuff.Length;
+				buffs.Add(memberBuff);
+			}
+	
+			{
+				byte[] memberBuff = AdamBitConverter.Serialize(data.nickname);
+				size += memberBuff.Length;
+				buffs.Add(memberBuff);
+			}
+	
+
+			byte[] buff = new byte[size];
+
+			// Copy
+			Array.Copy(headerBuff, 0, buff, 0, headerBuff.Length);
+	
+			int cursor = PacketHeader.Size;
+			
+			{
+				Array.Copy(buffs[0], 0, buff, cursor, buffs[0].Length);
+				cursor += buffs[0].Length;
+			}
+	
+			{
+				Array.Copy(buffs[1], 0, buff, cursor, buffs[1].Length);
+				cursor += buffs[1].Length;
+			}
+	
+			{
+				Array.Copy(buffs[2], 0, buff, cursor, buffs[2].Length);
+				cursor += buffs[2].Length;
+			}
+	
+
+			return buff;
+		}
+	
+	
+		public static byte[] Serialize(DictionaryTest_RQ data)
+		{
+			int size = PacketHeader.Size;
+			List<byte[]> buffs = new List<byte[]>();
+			
+			// Serializations
+			PacketHeader header = new PacketHeader(data);
+			byte[] headerBuff = AdamBitConverter.Serialize(header);
+
+			
+			{
+				byte[] memberBuff = AdamBitConverter.Serialize(data.numOfCharacters);
+				size += memberBuff.Length;
+				buffs.Add(memberBuff);
+			}
+	
+			{
+				byte[] memberBuff = AdamBitConverter.Serialize(data.time);
+				size += memberBuff.Length;
+				buffs.Add(memberBuff);
+			}
+	
+			{
+				byte[] memberBuff = AdamBitConverter.Serialize(data.nickname);
+				size += memberBuff.Length;
+				buffs.Add(memberBuff);
+			}
+	
+
+			byte[] buff = new byte[size];
+
+			// Copy
+			Array.Copy(headerBuff, 0, buff, 0, headerBuff.Length);
+	
+			int cursor = PacketHeader.Size;
+			
+			{
+				Array.Copy(buffs[0], 0, buff, cursor, buffs[0].Length);
+				cursor += buffs[0].Length;
+			}
+	
+			{
+				Array.Copy(buffs[1], 0, buff, cursor, buffs[1].Length);
+				cursor += buffs[1].Length;
+			}
+	
+			{
+				Array.Copy(buffs[2], 0, buff, cursor, buffs[2].Length);
+				cursor += buffs[2].Length;
+			}
+	
+
+			return buff;
+		}
+	
+	
+		public static byte[] Serialize(DictionaryTest_RS data)
 		{
 			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
@@ -12964,6 +13140,84 @@ namespace ServerLib.Packet
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ListTest_RS data)
 		{
 			data = new ListTest_RS();
+			size = 0;
+
+			// Deserializations
+			
+			{
+				ArraySegment<byte> memberBuff = new ArraySegment<byte>(buff.Array, buff.Offset + size, buff.Count - size);
+				EDeserializeResult memberError = AdamBitConverter.Deserialize(memberBuff, out int memberSize, out data.numOfCharacters);
+				if(memberError != EDeserializeResult.Success)
+					return memberError;
+
+				size += memberSize;
+			}
+	
+			{
+				ArraySegment<byte> memberBuff = new ArraySegment<byte>(buff.Array, buff.Offset + size, buff.Count - size);
+				EDeserializeResult memberError = AdamBitConverter.Deserialize(memberBuff, out int memberSize, out data.time);
+				if(memberError != EDeserializeResult.Success)
+					return memberError;
+
+				size += memberSize;
+			}
+	
+			{
+				ArraySegment<byte> memberBuff = new ArraySegment<byte>(buff.Array, buff.Offset + size, buff.Count - size);
+				EDeserializeResult memberError = AdamBitConverter.Deserialize(memberBuff, out int memberSize, out data.nickname);
+				if(memberError != EDeserializeResult.Success)
+					return memberError;
+
+				size += memberSize;
+			}
+	
+
+			return EDeserializeResult.Success;
+		}
+	
+	
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out DictionaryTest_RQ data)
+		{
+			data = new DictionaryTest_RQ();
+			size = 0;
+
+			// Deserializations
+			
+			{
+				ArraySegment<byte> memberBuff = new ArraySegment<byte>(buff.Array, buff.Offset + size, buff.Count - size);
+				EDeserializeResult memberError = AdamBitConverter.Deserialize(memberBuff, out int memberSize, out data.numOfCharacters);
+				if(memberError != EDeserializeResult.Success)
+					return memberError;
+
+				size += memberSize;
+			}
+	
+			{
+				ArraySegment<byte> memberBuff = new ArraySegment<byte>(buff.Array, buff.Offset + size, buff.Count - size);
+				EDeserializeResult memberError = AdamBitConverter.Deserialize(memberBuff, out int memberSize, out data.time);
+				if(memberError != EDeserializeResult.Success)
+					return memberError;
+
+				size += memberSize;
+			}
+	
+			{
+				ArraySegment<byte> memberBuff = new ArraySegment<byte>(buff.Array, buff.Offset + size, buff.Count - size);
+				EDeserializeResult memberError = AdamBitConverter.Deserialize(memberBuff, out int memberSize, out data.nickname);
+				if(memberError != EDeserializeResult.Success)
+					return memberError;
+
+				size += memberSize;
+			}
+	
+
+			return EDeserializeResult.Success;
+		}
+	
+	
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out DictionaryTest_RS data)
+		{
+			data = new DictionaryTest_RS();
 			size = 0;
 
 			// Deserializations

@@ -46,5 +46,23 @@
       <string>nickname</string>
     </Variables>
   </Class>
+
+  <Class>
+    <Name>DictionaryTest_RQ</Name>
+    <Variables>
+      <Dictionary key ="int" value="string">numOfCharacters</Dictionary>
+      <DateTime>time</DateTime>
+      <string>nickname</string>
+    </Variables>
+  </Class>
+
+  <Class>
+    <Name>DictionaryTest_RS</Name>
+    <Variables>
+      <Dictionary key ="string" value="int">numOfCharacters</Dictionary>
+      <DateTime>time</DateTime>
+      <string>nickname</string>
+    </Variables>
+  </Class>
   
 </Packets>

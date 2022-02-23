@@ -56,6 +56,24 @@ namespace GameServer
 
                 Send(ListTest);
             }
+            else if (packet is DictionaryTest_RQ)
+            {
+                DictionaryTest_RQ DictTest = (DictionaryTest_RQ)packet;
+                DictionaryTest_RS packetToSend = new DictionaryTest_RS();
+                packetToSend.numOfCharacters = new Dictionary<string, int>();
+                foreach (var pair in DictTest.numOfCharacters)
+                {
+                    Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] key: {pair.Key} / value: {pair.Value}");
+                    packetToSend.numOfCharacters.Add(pair.Value, pair.Key);
+                }
+                Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] nickname: {DictTest.nickname}");
+                Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] time: {DictTest.time}");
+
+                packetToSend.nickname = DictTest.nickname;
+                packetToSend.time = DictTest.time;
+
+                Send(packetToSend);
+            }
             else
             {
                 Logger.Log(LogLevel.Temp, $"[Recv] {packet.GetType().Name}");
