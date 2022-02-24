@@ -19,9 +19,11 @@ namespace ServerLib.Packet
 	
     public class Ping_RQ : PacketBase
     {
+		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
-        public override ushort PacketSize => (ushort)(sizeof(long));
+		// 헤더를 제외한 사이즈
+        public override ushort PacketSize => (ushort)(AdamBitConverter.SizeOf(time));
         public const ushort Id = 0;
 
 		
@@ -31,9 +33,11 @@ namespace ServerLib.Packet
 	
     public class Ping_RS : PacketBase
     {
+		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
-        public override ushort PacketSize => (ushort)(sizeof(long));
+		// 헤더를 제외한 사이즈
+        public override ushort PacketSize => (ushort)(AdamBitConverter.SizeOf(time));
         public const ushort Id = 1;
 
 		
@@ -43,9 +47,11 @@ namespace ServerLib.Packet
 	
     public class ChatMsg_RQ : PacketBase
     {
+		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
-        public override ushort PacketSize => (ushort)(sizeof(int) + Encoding.UTF8.GetByteCount(msgText) + sizeof(long));
+		// 헤더를 제외한 사이즈
+        public override ushort PacketSize => (ushort)(AdamBitConverter.SizeOf(msgText) + AdamBitConverter.SizeOf(time));
         public const ushort Id = 2;
 
 		
@@ -57,9 +63,11 @@ namespace ServerLib.Packet
 	
     public class ChatMsg_RS : PacketBase
     {
+		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
-        public override ushort PacketSize => (ushort)(sizeof(int) + Encoding.UTF8.GetByteCount(msgText) + sizeof(long));
+		// 헤더를 제외한 사이즈
+        public override ushort PacketSize => (ushort)(AdamBitConverter.SizeOf(msgText) + AdamBitConverter.SizeOf(time));
         public const ushort Id = 3;
 
 		
@@ -71,9 +79,11 @@ namespace ServerLib.Packet
 	
     public class ListTest_RQ : PacketBase
     {
+		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
-        public override ushort PacketSize => (ushort)(sizeof(int) + (sentences.Aggregate(0, (int accum, string curr) => { return accum + AdamBitConverter.SizeOf(curr); })) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
+		// 헤더를 제외한 사이즈
+        public override ushort PacketSize => (ushort)(AdamBitConverter.SizeOf(sentences) + AdamBitConverter.SizeOf(time) + AdamBitConverter.SizeOf(nickname));
         public const ushort Id = 4;
 
 		
@@ -87,9 +97,11 @@ namespace ServerLib.Packet
 	
     public class ListTest_RS : PacketBase
     {
+		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
-        public override ushort PacketSize => (ushort)(sizeof(int) + (numOfCharacters.Aggregate(0, (int accum, int curr) => { return accum + AdamBitConverter.SizeOf(curr); })) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
+		// 헤더를 제외한 사이즈
+        public override ushort PacketSize => (ushort)(AdamBitConverter.SizeOf(numOfCharacters) + AdamBitConverter.SizeOf(time) + AdamBitConverter.SizeOf(nickname));
         public const ushort Id = 5;
 
 		
@@ -103,9 +115,11 @@ namespace ServerLib.Packet
 	
     public class DictionaryTest_RQ : PacketBase
     {
+		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
-        public override ushort PacketSize => (ushort)(sizeof(int) + (numOfCharacters.Aggregate(0, (int accum, KeyValuePair<int, string> curr) => { return accum + (AdamBitConverter.SizeOf(curr.Key) + AdamBitConverter.SizeOf(curr.Value)); })) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
+		// 헤더를 제외한 사이즈
+        public override ushort PacketSize => (ushort)(AdamBitConverter.SizeOf(numOfCharacters) + AdamBitConverter.SizeOf(time) + AdamBitConverter.SizeOf(nickname));
         public const ushort Id = 6;
 
 		
@@ -119,9 +133,11 @@ namespace ServerLib.Packet
 	
     public class DictionaryTest_RS : PacketBase
     {
+		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
-        public override ushort PacketSize => (ushort)(sizeof(int) + (numOfCharacters.Aggregate(0, (int accum, KeyValuePair<string, int> curr) => { return accum + (AdamBitConverter.SizeOf(curr.Key) + AdamBitConverter.SizeOf(curr.Value)); })) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
+		// 헤더를 제외한 사이즈
+        public override ushort PacketSize => (ushort)(AdamBitConverter.SizeOf(numOfCharacters) + AdamBitConverter.SizeOf(time) + AdamBitConverter.SizeOf(nickname));
         public const ushort Id = 7;
 
 		
@@ -135,9 +151,11 @@ namespace ServerLib.Packet
 	
     public class ClassListTest_RQ : PacketBase
     {
+		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
-        public override ushort PacketSize => (ushort)(sizeof(int) + (chatList.Aggregate(0, (int accum, ChatMsg_RQ curr) => { return accum + AdamBitConverter.SizeOf(curr); })) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
+		// 헤더를 제외한 사이즈
+        public override ushort PacketSize => (ushort)(AdamBitConverter.SizeOf(chatList) + AdamBitConverter.SizeOf(time) + AdamBitConverter.SizeOf(nickname));
         public const ushort Id = 8;
 
 		
@@ -151,9 +169,11 @@ namespace ServerLib.Packet
 	
     public class ClassListTest_RS : PacketBase
     {
+		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
-        public override ushort PacketSize => (ushort)(sizeof(int) + (chatList.Aggregate(0, (int accum, ChatMsg_RS curr) => { return accum + AdamBitConverter.SizeOf(curr); })) + sizeof(long) + sizeof(int) + Encoding.UTF8.GetByteCount(nickname));
+		// 헤더를 제외한 사이즈
+        public override ushort PacketSize => (ushort)(AdamBitConverter.SizeOf(chatList) + AdamBitConverter.SizeOf(time) + AdamBitConverter.SizeOf(nickname));
         public const ushort Id = 9;
 
 		

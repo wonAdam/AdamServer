@@ -38,13 +38,24 @@ namespace ServerLib.Packet
 			return buff;
 		}
 
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out PacketHeader header)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out PacketHeader header)
 		{
+			if(buff.Count < PacketHeader.Size)
+			{
+				size = 0;
+				header = new PacketHeader();
+				return EDeserializeResult.PacketFragmentation;
+			}
+
 			header = new PacketHeader();
 			size = PacketHeader.Size;
 			header.PacketSize = BitConverter.ToUInt16(buff.Array, buff.Offset);
 			header.PacketId = BitConverter.ToUInt16(buff.Array, buff.Offset + sizeof(ushort));
+
+			return EDeserializeResult.Success;
 		}
+
+		public static int SizeOf(PacketHeader header) => PacketHeader.Size;
 		
 		
 		public static int SizeOf(int data) => sizeof(int);
@@ -2427,6 +2438,8 @@ namespace ServerLib.Packet
 		{
 			int size = 0;
 
+			size += PacketHeader.Size;
+
 			
 			size += AdamBitConverter.SizeOf(packet.time);
 	
@@ -2438,6 +2451,8 @@ namespace ServerLib.Packet
 		{
 			int size = 0;
 
+			size += PacketHeader.Size;
+
 			
 			size += AdamBitConverter.SizeOf(packet.time);
 	
@@ -2448,6 +2463,8 @@ namespace ServerLib.Packet
 		public static int SizeOf(ChatMsg_RQ packet)
 		{
 			int size = 0;
+
+			size += PacketHeader.Size;
 
 			
 			size += AdamBitConverter.SizeOf(packet.msgText);
@@ -2462,6 +2479,8 @@ namespace ServerLib.Packet
 		{
 			int size = 0;
 
+			size += PacketHeader.Size;
+
 			
 			size += AdamBitConverter.SizeOf(packet.msgText);
 	
@@ -2474,6 +2493,8 @@ namespace ServerLib.Packet
 		public static int SizeOf(ListTest_RQ packet)
 		{
 			int size = 0;
+
+			size += PacketHeader.Size;
 
 			
 			size += AdamBitConverter.SizeOf(packet.sentences);
@@ -2490,6 +2511,8 @@ namespace ServerLib.Packet
 		{
 			int size = 0;
 
+			size += PacketHeader.Size;
+
 			
 			size += AdamBitConverter.SizeOf(packet.numOfCharacters);
 	
@@ -2504,6 +2527,8 @@ namespace ServerLib.Packet
 		public static int SizeOf(DictionaryTest_RQ packet)
 		{
 			int size = 0;
+
+			size += PacketHeader.Size;
 
 			
 			size += AdamBitConverter.SizeOf(packet.numOfCharacters);
@@ -2520,6 +2545,8 @@ namespace ServerLib.Packet
 		{
 			int size = 0;
 
+			size += PacketHeader.Size;
+
 			
 			size += AdamBitConverter.SizeOf(packet.numOfCharacters);
 	
@@ -2535,6 +2562,8 @@ namespace ServerLib.Packet
 		{
 			int size = 0;
 
+			size += PacketHeader.Size;
+
 			
 			size += AdamBitConverter.SizeOf(packet.chatList);
 	
@@ -2549,6 +2578,8 @@ namespace ServerLib.Packet
 		public static int SizeOf(ClassListTest_RS packet)
 		{
 			int size = 0;
+
+			size += PacketHeader.Size;
 
 			
 			size += AdamBitConverter.SizeOf(packet.chatList);
@@ -15397,6 +15428,13 @@ namespace ServerLib.Packet
 			data = new Ping_RQ();
 			size = 0;
 
+			PacketHeader header = new PacketHeader();
+			EDeserializeResult headerError = AdamBitConverter.Deserialize(buff, out int headerSize, out header);
+			if(headerError != EDeserializeResult.Success)
+					return headerError;
+
+			size += headerSize;
+
 			// Deserializations
 			
 			{
@@ -15418,6 +15456,13 @@ namespace ServerLib.Packet
 			data = new Ping_RS();
 			size = 0;
 
+			PacketHeader header = new PacketHeader();
+			EDeserializeResult headerError = AdamBitConverter.Deserialize(buff, out int headerSize, out header);
+			if(headerError != EDeserializeResult.Success)
+					return headerError;
+
+			size += headerSize;
+
 			// Deserializations
 			
 			{
@@ -15438,6 +15483,13 @@ namespace ServerLib.Packet
 		{
 			data = new ChatMsg_RQ();
 			size = 0;
+
+			PacketHeader header = new PacketHeader();
+			EDeserializeResult headerError = AdamBitConverter.Deserialize(buff, out int headerSize, out header);
+			if(headerError != EDeserializeResult.Success)
+					return headerError;
+
+			size += headerSize;
 
 			// Deserializations
 			
@@ -15469,6 +15521,13 @@ namespace ServerLib.Packet
 			data = new ChatMsg_RS();
 			size = 0;
 
+			PacketHeader header = new PacketHeader();
+			EDeserializeResult headerError = AdamBitConverter.Deserialize(buff, out int headerSize, out header);
+			if(headerError != EDeserializeResult.Success)
+					return headerError;
+
+			size += headerSize;
+
 			// Deserializations
 			
 			{
@@ -15498,6 +15557,13 @@ namespace ServerLib.Packet
 		{
 			data = new ListTest_RQ();
 			size = 0;
+
+			PacketHeader header = new PacketHeader();
+			EDeserializeResult headerError = AdamBitConverter.Deserialize(buff, out int headerSize, out header);
+			if(headerError != EDeserializeResult.Success)
+					return headerError;
+
+			size += headerSize;
 
 			// Deserializations
 			
@@ -15538,6 +15604,13 @@ namespace ServerLib.Packet
 			data = new ListTest_RS();
 			size = 0;
 
+			PacketHeader header = new PacketHeader();
+			EDeserializeResult headerError = AdamBitConverter.Deserialize(buff, out int headerSize, out header);
+			if(headerError != EDeserializeResult.Success)
+					return headerError;
+
+			size += headerSize;
+
 			// Deserializations
 			
 			{
@@ -15576,6 +15649,13 @@ namespace ServerLib.Packet
 		{
 			data = new DictionaryTest_RQ();
 			size = 0;
+
+			PacketHeader header = new PacketHeader();
+			EDeserializeResult headerError = AdamBitConverter.Deserialize(buff, out int headerSize, out header);
+			if(headerError != EDeserializeResult.Success)
+					return headerError;
+
+			size += headerSize;
 
 			// Deserializations
 			
@@ -15616,6 +15696,13 @@ namespace ServerLib.Packet
 			data = new DictionaryTest_RS();
 			size = 0;
 
+			PacketHeader header = new PacketHeader();
+			EDeserializeResult headerError = AdamBitConverter.Deserialize(buff, out int headerSize, out header);
+			if(headerError != EDeserializeResult.Success)
+					return headerError;
+
+			size += headerSize;
+
 			// Deserializations
 			
 			{
@@ -15655,6 +15742,13 @@ namespace ServerLib.Packet
 			data = new ClassListTest_RQ();
 			size = 0;
 
+			PacketHeader header = new PacketHeader();
+			EDeserializeResult headerError = AdamBitConverter.Deserialize(buff, out int headerSize, out header);
+			if(headerError != EDeserializeResult.Success)
+					return headerError;
+
+			size += headerSize;
+
 			// Deserializations
 			
 			{
@@ -15693,6 +15787,13 @@ namespace ServerLib.Packet
 		{
 			data = new ClassListTest_RS();
 			size = 0;
+
+			PacketHeader header = new PacketHeader();
+			EDeserializeResult headerError = AdamBitConverter.Deserialize(buff, out int headerSize, out header);
+			if(headerError != EDeserializeResult.Success)
+					return headerError;
+
+			size += headerSize;
 
 			// Deserializations
 			

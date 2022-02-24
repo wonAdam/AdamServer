@@ -500,6 +500,13 @@
 			data = new {0}();
 			size = 0;
 
+			PacketHeader header = new PacketHeader();
+			EDeserializeResult headerError = AdamBitConverter.Deserialize(buff, out int headerSize, out header);
+			if(headerError != EDeserializeResult.Success)
+					return headerError;
+
+			size += headerSize;
+
 			// Deserializations
 			{1}
 
@@ -688,6 +695,8 @@
 		public static int SizeOf({0} packet)
 		{{
 			int size = 0;
+
+			size += PacketHeader.Size;
 
 			{1}
 
@@ -1017,13 +1026,24 @@ namespace ServerLib.Packet
 			return buff;
 		}
 
-		public static void Deserialize(ArraySegment<byte> buff, out int size, out PacketHeader header)
+		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out PacketHeader header)
 		{
+			if(buff.Count < PacketHeader.Size)
+			{
+				size = 0;
+				header = new PacketHeader();
+				return EDeserializeResult.PacketFragmentation;
+			}
+
 			header = new PacketHeader();
 			size = PacketHeader.Size;
 			header.PacketSize = BitConverter.ToUInt16(buff.Array, buff.Offset);
 			header.PacketId = BitConverter.ToUInt16(buff.Array, buff.Offset + sizeof(ushort));
+
+			return EDeserializeResult.Success;
 		}
+
+		public static int SizeOf(PacketHeader header) => PacketHeader.Size;
 		
 		<#= result.ToString() #>
 

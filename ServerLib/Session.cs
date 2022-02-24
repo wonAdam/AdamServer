@@ -164,7 +164,7 @@ namespace ServerLib
 
                     if (result != EDeserializeResult.Success)
                     {
-                        OnRecv(packet);
+                        BeginRecv();
                         return;
                     }
 
