@@ -28,6 +28,13 @@ namespace ServerLib.Packet
 
 		public static byte[] Serialize(PacketHeader header)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+				
 			byte[] buff = new byte[PacketHeader.Size];
 
 			byte[] packetSizeBuff = BitConverter.GetBytes(header.PacketSize);
@@ -40,6 +47,13 @@ namespace ServerLib.Packet
 
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out PacketHeader header)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < PacketHeader.Size)
 			{
 				size = 0;
@@ -84,6 +98,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(int e in data)
 			{
@@ -94,6 +115,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(uint e in data)
 			{
@@ -104,6 +132,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(short e in data)
 			{
@@ -114,6 +149,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(ushort e in data)
 			{
@@ -124,6 +166,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(char e in data)
 			{
@@ -134,6 +183,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(long e in data)
 			{
@@ -144,6 +200,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(ulong e in data)
 			{
@@ -154,6 +217,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(float e in data)
 			{
@@ -164,6 +234,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(double e in data)
 			{
@@ -174,6 +251,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(bool e in data)
 			{
@@ -184,6 +268,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(string e in data)
 			{
@@ -194,6 +285,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(DateTime e in data)
 			{
@@ -204,6 +302,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, int> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -217,6 +322,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, uint> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -230,6 +342,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, short> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -243,6 +362,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, ushort> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -256,6 +382,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, char> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -269,6 +402,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, long> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -282,6 +422,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, ulong> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -295,6 +442,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, float> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -308,6 +462,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, double> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -321,6 +482,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, bool> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -334,6 +502,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, string> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -347,6 +522,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, DateTime> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -360,6 +542,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<uint, int> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -373,6 +562,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<uint, uint> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -386,6 +582,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<uint, short> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -399,6 +602,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<uint, ushort> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -412,6 +622,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<uint, char> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -425,6 +642,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<uint, long> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -438,6 +662,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<uint, ulong> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -451,6 +682,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<uint, float> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -464,6 +702,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<uint, double> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -477,6 +722,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<uint, bool> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -490,6 +742,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<uint, string> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -503,6 +762,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<uint, DateTime> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -516,6 +782,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<short, int> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -529,6 +802,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<short, uint> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -542,6 +822,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<short, short> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -555,6 +842,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<short, ushort> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -568,6 +862,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<short, char> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -581,6 +882,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<short, long> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -594,6 +902,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<short, ulong> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -607,6 +922,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<short, float> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -620,6 +942,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<short, double> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -633,6 +962,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<short, bool> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -646,6 +982,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<short, string> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -659,6 +1002,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<short, DateTime> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -672,6 +1022,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ushort, int> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -685,6 +1042,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ushort, uint> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -698,6 +1062,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ushort, short> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -711,6 +1082,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ushort, ushort> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -724,6 +1102,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ushort, char> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -737,6 +1122,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ushort, long> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -750,6 +1142,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ushort, ulong> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -763,6 +1162,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ushort, float> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -776,6 +1182,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ushort, double> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -789,6 +1202,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ushort, bool> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -802,6 +1222,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ushort, string> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -815,6 +1242,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ushort, DateTime> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -828,6 +1262,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<char, int> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -841,6 +1282,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<char, uint> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -854,6 +1302,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<char, short> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -867,6 +1322,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<char, ushort> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -880,6 +1342,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<char, char> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -893,6 +1362,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<char, long> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -906,6 +1382,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<char, ulong> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -919,6 +1402,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<char, float> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -932,6 +1422,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<char, double> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -945,6 +1442,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<char, bool> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -958,6 +1462,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<char, string> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -971,6 +1482,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<char, DateTime> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -984,6 +1502,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, int> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -997,6 +1522,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, uint> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1010,6 +1542,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, short> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1023,6 +1562,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, ushort> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1036,6 +1582,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, char> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1049,6 +1602,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, long> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1062,6 +1622,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, ulong> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1075,6 +1642,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, float> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1088,6 +1662,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, double> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1101,6 +1682,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, bool> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1114,6 +1702,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, string> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1127,6 +1722,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, DateTime> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1140,6 +1742,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ulong, int> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1153,6 +1762,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ulong, uint> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1166,6 +1782,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ulong, short> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1179,6 +1802,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ulong, ushort> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1192,6 +1822,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ulong, char> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1205,6 +1842,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ulong, long> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1218,6 +1862,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ulong, ulong> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1231,6 +1882,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ulong, float> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1244,6 +1902,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ulong, double> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1257,6 +1922,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ulong, bool> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1270,6 +1942,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ulong, string> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1283,6 +1962,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<ulong, DateTime> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1296,6 +1982,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<float, int> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1309,6 +2002,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<float, uint> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1322,6 +2022,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<float, short> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1335,6 +2042,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<float, ushort> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1348,6 +2062,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<float, char> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1361,6 +2082,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<float, long> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1374,6 +2102,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<float, ulong> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1387,6 +2122,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<float, float> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1400,6 +2142,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<float, double> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1413,6 +2162,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<float, bool> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1426,6 +2182,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<float, string> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1439,6 +2202,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<float, DateTime> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1452,6 +2222,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<double, int> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1465,6 +2242,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<double, uint> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1478,6 +2262,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<double, short> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1491,6 +2282,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<double, ushort> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1504,6 +2302,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<double, char> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1517,6 +2322,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<double, long> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1530,6 +2342,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<double, ulong> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1543,6 +2362,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<double, float> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1556,6 +2382,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<double, double> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1569,6 +2402,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<double, bool> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1582,6 +2422,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<double, string> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1595,6 +2442,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<double, DateTime> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1608,6 +2462,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<bool, int> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1621,6 +2482,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<bool, uint> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1634,6 +2502,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<bool, short> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1647,6 +2522,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<bool, ushort> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1660,6 +2542,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<bool, char> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1673,6 +2562,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<bool, long> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1686,6 +2582,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<bool, ulong> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1699,6 +2602,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<bool, float> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1712,6 +2622,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<bool, double> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1725,6 +2642,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<bool, bool> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1738,6 +2662,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<bool, string> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1751,6 +2682,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<bool, DateTime> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1764,6 +2702,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<string, int> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1777,6 +2722,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<string, uint> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1790,6 +2742,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<string, short> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1803,6 +2762,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<string, ushort> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1816,6 +2782,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<string, char> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1829,6 +2802,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<string, long> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1842,6 +2822,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<string, ulong> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1855,6 +2842,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<string, float> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1868,6 +2862,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<string, double> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1881,6 +2882,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<string, bool> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1894,6 +2902,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<string, string> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1907,6 +2922,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<string, DateTime> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1920,6 +2942,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<DateTime, int> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1933,6 +2962,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<DateTime, uint> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1946,6 +2982,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<DateTime, short> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1959,6 +3002,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<DateTime, ushort> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1972,6 +3022,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<DateTime, char> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1985,6 +3042,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<DateTime, long> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -1998,6 +3062,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<DateTime, ulong> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2011,6 +3082,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<DateTime, float> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2024,6 +3102,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<DateTime, double> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2037,6 +3122,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<DateTime, bool> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2050,6 +3142,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<DateTime, string> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2063,6 +3162,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<DateTime, DateTime> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2076,6 +3182,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<Ping_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(Ping_RQ e in data)
 			{
@@ -2086,6 +3199,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, Ping_RQ> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2099,6 +3219,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, Ping_RQ> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2112,6 +3239,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<Ping_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(Ping_RS e in data)
 			{
@@ -2122,6 +3256,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, Ping_RS> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2135,6 +3276,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, Ping_RS> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2148,6 +3296,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<ChatMsg_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(ChatMsg_RQ e in data)
 			{
@@ -2158,6 +3313,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, ChatMsg_RQ> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2171,6 +3333,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, ChatMsg_RQ> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2184,6 +3353,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<ChatMsg_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(ChatMsg_RS e in data)
 			{
@@ -2194,6 +3370,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, ChatMsg_RS> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2207,6 +3390,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, ChatMsg_RS> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2220,6 +3410,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<ListTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(ListTest_RQ e in data)
 			{
@@ -2230,6 +3427,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, ListTest_RQ> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2243,6 +3447,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, ListTest_RQ> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2256,6 +3467,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<ListTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(ListTest_RS e in data)
 			{
@@ -2266,6 +3484,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, ListTest_RS> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2279,6 +3504,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, ListTest_RS> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2292,6 +3524,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<DictionaryTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(DictionaryTest_RQ e in data)
 			{
@@ -2302,6 +3541,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, DictionaryTest_RQ> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2315,6 +3561,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, DictionaryTest_RQ> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2328,6 +3581,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<DictionaryTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(DictionaryTest_RS e in data)
 			{
@@ -2338,6 +3598,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, DictionaryTest_RS> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2351,6 +3618,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, DictionaryTest_RS> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2364,6 +3638,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<ClassListTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(ClassListTest_RQ e in data)
 			{
@@ -2374,6 +3655,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, ClassListTest_RQ> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2387,6 +3675,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, ClassListTest_RQ> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2400,6 +3695,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<ClassListTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(ClassListTest_RS e in data)
 			{
@@ -2410,6 +3712,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, ClassListTest_RS> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2423,6 +3732,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, ClassListTest_RS> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2436,6 +3752,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<ClassDictionaryTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(ClassDictionaryTest_RQ e in data)
 			{
@@ -2446,6 +3769,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, ClassDictionaryTest_RQ> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2459,6 +3789,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, ClassDictionaryTest_RQ> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2472,6 +3809,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(List<ClassDictionaryTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(ClassDictionaryTest_RS e in data)
 			{
@@ -2482,6 +3826,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<int, ClassDictionaryTest_RS> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2495,6 +3846,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Dictionary<long, ClassDictionaryTest_RS> data) 
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{
@@ -2508,6 +3866,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Ping_RQ packet)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 
 			size += PacketHeader.Size;
@@ -2521,6 +3886,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(Ping_RS packet)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 
 			size += PacketHeader.Size;
@@ -2534,6 +3906,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(ChatMsg_RQ packet)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 
 			size += PacketHeader.Size;
@@ -2549,6 +3928,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(ChatMsg_RS packet)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 
 			size += PacketHeader.Size;
@@ -2564,6 +3950,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(ListTest_RQ packet)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 
 			size += PacketHeader.Size;
@@ -2581,6 +3974,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(ListTest_RS packet)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 
 			size += PacketHeader.Size;
@@ -2598,6 +3998,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(DictionaryTest_RQ packet)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 
 			size += PacketHeader.Size;
@@ -2615,6 +4022,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(DictionaryTest_RS packet)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 
 			size += PacketHeader.Size;
@@ -2632,6 +4046,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(ClassListTest_RQ packet)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 
 			size += PacketHeader.Size;
@@ -2649,6 +4070,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(ClassListTest_RS packet)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 
 			size += PacketHeader.Size;
@@ -2666,6 +4094,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(ClassDictionaryTest_RQ packet)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 
 			size += PacketHeader.Size;
@@ -2683,6 +4118,13 @@ namespace ServerLib.Packet
 	
 		public static int SizeOf(ClassDictionaryTest_RS packet)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 
 			size += PacketHeader.Size;
@@ -2700,6 +4142,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(PacketBase packet)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[packet.PacketSize + PacketHeader.Size]);
 
 			switch(packet.PacketId)
@@ -2799,6 +4248,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out PacketBase packet)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			packet = null;
 			EDeserializeResult headerError = AdamBitConverter.Deserialize(buff, out int headerSize, out PacketHeader header);
@@ -2939,56 +4395,133 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(int data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	
 		public static byte[] Serialize(uint data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	
 		public static byte[] Serialize(short data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	
 		public static byte[] Serialize(ushort data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	
 		public static byte[] Serialize(char data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	
 		public static byte[] Serialize(long data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	
 		public static byte[] Serialize(ulong data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	
 		public static byte[] Serialize(float data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	
 		public static byte[] Serialize(double data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	
 		public static byte[] Serialize(bool data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	
 		public static byte[] Serialize(string data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			byte[] buff = new byte[sizeof(int) + Encoding.UTF8.GetByteCount(data)];
 			byte[] lengthBuff = BitConverter.GetBytes(Encoding.UTF8.GetByteCount(data));
 			byte[] stringBuff = Encoding.UTF8.GetBytes(data);
@@ -3000,11 +4533,25 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(DateTime data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data.Ticks);
 		}
 	
 		public static byte[] Serialize(List<int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3034,6 +4581,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3063,6 +4617,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3092,6 +4653,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3121,6 +4689,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3150,6 +4725,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3179,6 +4761,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3208,6 +4797,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3237,6 +4833,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3266,6 +4869,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3295,6 +4905,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3324,6 +4941,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3353,6 +4977,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3385,6 +5016,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3417,6 +5055,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3449,6 +5094,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3481,6 +5133,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3513,6 +5172,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3545,6 +5211,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3577,6 +5250,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3609,6 +5289,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3641,6 +5328,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3673,6 +5367,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3705,6 +5406,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3737,6 +5445,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<uint, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3769,6 +5484,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<uint, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3801,6 +5523,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<uint, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3833,6 +5562,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<uint, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3865,6 +5601,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<uint, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3897,6 +5640,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<uint, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3929,6 +5679,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<uint, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3961,6 +5718,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<uint, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -3993,6 +5757,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<uint, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4025,6 +5796,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<uint, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4057,6 +5835,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<uint, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4089,6 +5874,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<uint, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4121,6 +5913,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<short, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4153,6 +5952,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<short, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4185,6 +5991,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<short, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4217,6 +6030,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<short, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4249,6 +6069,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<short, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4281,6 +6108,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<short, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4313,6 +6147,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<short, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4345,6 +6186,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<short, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4377,6 +6225,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<short, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4409,6 +6264,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<short, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4441,6 +6303,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<short, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4473,6 +6342,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<short, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4505,6 +6381,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ushort, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4537,6 +6420,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ushort, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4569,6 +6459,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ushort, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4601,6 +6498,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ushort, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4633,6 +6537,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ushort, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4665,6 +6576,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ushort, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4697,6 +6615,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ushort, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4729,6 +6654,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ushort, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4761,6 +6693,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ushort, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4793,6 +6732,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ushort, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4825,6 +6771,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ushort, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4857,6 +6810,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ushort, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4889,6 +6849,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<char, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4921,6 +6888,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<char, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4953,6 +6927,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<char, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -4985,6 +6966,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<char, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5017,6 +7005,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<char, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5049,6 +7044,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<char, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5081,6 +7083,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<char, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5113,6 +7122,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<char, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5145,6 +7161,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<char, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5177,6 +7200,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<char, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5209,6 +7239,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<char, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5241,6 +7278,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<char, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5273,6 +7317,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5305,6 +7356,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5337,6 +7395,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5369,6 +7434,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5401,6 +7473,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5433,6 +7512,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5465,6 +7551,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5497,6 +7590,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5529,6 +7629,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5561,6 +7668,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5593,6 +7707,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5625,6 +7746,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5657,6 +7785,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ulong, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5689,6 +7824,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ulong, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5721,6 +7863,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ulong, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5753,6 +7902,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ulong, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5785,6 +7941,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ulong, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5817,6 +7980,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ulong, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5849,6 +8019,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ulong, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5881,6 +8058,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ulong, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5913,6 +8097,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ulong, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5945,6 +8136,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ulong, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -5977,6 +8175,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ulong, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6009,6 +8214,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<ulong, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6041,6 +8253,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<float, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6073,6 +8292,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<float, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6105,6 +8331,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<float, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6137,6 +8370,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<float, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6169,6 +8409,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<float, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6201,6 +8448,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<float, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6233,6 +8487,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<float, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6265,6 +8526,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<float, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6297,6 +8565,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<float, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6329,6 +8604,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<float, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6361,6 +8643,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<float, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6393,6 +8682,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<float, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6425,6 +8721,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<double, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6457,6 +8760,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<double, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6489,6 +8799,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<double, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6521,6 +8838,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<double, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6553,6 +8877,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<double, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6585,6 +8916,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<double, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6617,6 +8955,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<double, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6649,6 +8994,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<double, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6681,6 +9033,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<double, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6713,6 +9072,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<double, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6745,6 +9111,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<double, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6777,6 +9150,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<double, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6809,6 +9189,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<bool, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6841,6 +9228,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<bool, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6873,6 +9267,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<bool, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6905,6 +9306,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<bool, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6937,6 +9345,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<bool, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -6969,6 +9384,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<bool, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7001,6 +9423,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<bool, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7033,6 +9462,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<bool, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7065,6 +9501,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<bool, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7097,6 +9540,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<bool, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7129,6 +9579,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<bool, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7161,6 +9618,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<bool, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7193,6 +9657,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<string, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7225,6 +9696,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<string, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7257,6 +9735,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<string, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7289,6 +9774,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<string, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7321,6 +9813,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<string, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7353,6 +9852,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<string, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7385,6 +9891,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<string, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7417,6 +9930,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<string, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7449,6 +9969,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<string, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7481,6 +10008,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<string, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7513,6 +10047,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<string, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7545,6 +10086,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<string, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7577,6 +10125,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<DateTime, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7609,6 +10164,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<DateTime, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7641,6 +10203,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<DateTime, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7673,6 +10242,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<DateTime, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7705,6 +10281,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<DateTime, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7737,6 +10320,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<DateTime, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7769,6 +10359,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<DateTime, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7801,6 +10398,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<DateTime, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7833,6 +10437,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<DateTime, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7865,6 +10476,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<DateTime, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7897,6 +10515,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<DateTime, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7929,6 +10554,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<DateTime, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7961,6 +10593,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<Ping_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -7990,6 +10629,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, Ping_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8022,6 +10668,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, Ping_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8054,6 +10707,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<Ping_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8083,6 +10743,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, Ping_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8115,6 +10782,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, Ping_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8147,6 +10821,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<ChatMsg_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8176,6 +10857,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, ChatMsg_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8208,6 +10896,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, ChatMsg_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8240,6 +10935,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<ChatMsg_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8269,6 +10971,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, ChatMsg_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8301,6 +11010,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, ChatMsg_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8333,6 +11049,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<ListTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8362,6 +11085,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, ListTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8394,6 +11124,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, ListTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8426,6 +11163,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<ListTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8455,6 +11199,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, ListTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8487,6 +11238,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, ListTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8519,6 +11277,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<DictionaryTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8548,6 +11313,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, DictionaryTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8580,6 +11352,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, DictionaryTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8612,6 +11391,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<DictionaryTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8641,6 +11427,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, DictionaryTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8673,6 +11466,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, DictionaryTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8705,6 +11505,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<ClassListTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8734,6 +11541,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, ClassListTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8766,6 +11580,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, ClassListTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8798,6 +11619,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<ClassListTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8827,6 +11655,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, ClassListTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8859,6 +11694,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, ClassListTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8891,6 +11733,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<ClassDictionaryTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8920,6 +11769,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, ClassDictionaryTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8952,6 +11808,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, ClassDictionaryTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -8984,6 +11847,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(List<ClassDictionaryTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -9013,6 +11883,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<int, ClassDictionaryTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -9045,6 +11922,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Dictionary<long, ClassDictionaryTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -9077,6 +11961,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Ping_RQ data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
 			
@@ -9111,6 +12002,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(Ping_RS data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
 			
@@ -9145,6 +12043,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(ChatMsg_RQ data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
 			
@@ -9190,6 +12095,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(ChatMsg_RS data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
 			
@@ -9235,6 +12147,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(ListTest_RQ data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
 			
@@ -9291,6 +12210,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(ListTest_RS data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
 			
@@ -9347,6 +12273,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(DictionaryTest_RQ data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
 			
@@ -9403,6 +12336,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(DictionaryTest_RS data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
 			
@@ -9459,6 +12399,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(ClassListTest_RQ data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
 			
@@ -9515,6 +12462,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(ClassListTest_RS data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
 			
@@ -9571,6 +12525,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(ClassDictionaryTest_RQ data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
 			
@@ -9627,6 +12588,13 @@ namespace ServerLib.Packet
 	
 		public static byte[] Serialize(ClassDictionaryTest_RS data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
 			
@@ -9683,6 +12651,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out int data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(int))
 			{
 				size = 0;
@@ -9697,6 +12672,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out uint data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(uint))
 			{
 				size = 0;
@@ -9711,6 +12693,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out short data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(short))
 			{
 				size = 0;
@@ -9725,6 +12714,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ushort data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(ushort))
 			{
 				size = 0;
@@ -9739,6 +12735,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out char data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(char))
 			{
 				size = 0;
@@ -9753,6 +12756,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out long data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(long))
 			{
 				size = 0;
@@ -9767,6 +12777,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ulong data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(ulong))
 			{
 				size = 0;
@@ -9781,6 +12798,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out float data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(float))
 			{
 				size = 0;
@@ -9795,6 +12819,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out double data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(double))
 			{
 				size = 0;
@@ -9809,6 +12840,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out bool data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(bool))
 			{
 				size = 0;
@@ -9823,6 +12861,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out string data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = String.Empty;
 
@@ -9842,6 +12887,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out DateTime data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(long))
 			{
 				size = 0;
@@ -9857,6 +12909,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<int>();
 
@@ -9887,6 +12946,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<uint>();
 
@@ -9917,6 +12983,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<short>();
 
@@ -9947,6 +13020,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<ushort>();
 
@@ -9977,6 +13057,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<char>();
 
@@ -10007,6 +13094,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<long>();
 
@@ -10037,6 +13131,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<ulong>();
 
@@ -10067,6 +13168,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<float>();
 
@@ -10097,6 +13205,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<double>();
 
@@ -10127,6 +13242,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<bool>();
 
@@ -10157,6 +13279,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<string>();
 
@@ -10187,6 +13316,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<DateTime>();
 
@@ -10217,6 +13353,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, int>();
 
@@ -10253,6 +13396,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, uint>();
 
@@ -10289,6 +13439,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, short>();
 
@@ -10325,6 +13482,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, ushort>();
 
@@ -10361,6 +13525,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, char>();
 
@@ -10397,6 +13568,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, long>();
 
@@ -10433,6 +13611,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, ulong>();
 
@@ -10469,6 +13654,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, float>();
 
@@ -10505,6 +13697,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, double>();
 
@@ -10541,6 +13740,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, bool>();
 
@@ -10577,6 +13783,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, string>();
 
@@ -10613,6 +13826,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, DateTime>();
 
@@ -10649,6 +13869,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<uint, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<uint, int>();
 
@@ -10685,6 +13912,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<uint, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<uint, uint>();
 
@@ -10721,6 +13955,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<uint, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<uint, short>();
 
@@ -10757,6 +13998,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<uint, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<uint, ushort>();
 
@@ -10793,6 +14041,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<uint, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<uint, char>();
 
@@ -10829,6 +14084,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<uint, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<uint, long>();
 
@@ -10865,6 +14127,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<uint, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<uint, ulong>();
 
@@ -10901,6 +14170,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<uint, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<uint, float>();
 
@@ -10937,6 +14213,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<uint, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<uint, double>();
 
@@ -10973,6 +14256,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<uint, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<uint, bool>();
 
@@ -11009,6 +14299,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<uint, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<uint, string>();
 
@@ -11045,6 +14342,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<uint, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<uint, DateTime>();
 
@@ -11081,6 +14385,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<short, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<short, int>();
 
@@ -11117,6 +14428,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<short, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<short, uint>();
 
@@ -11153,6 +14471,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<short, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<short, short>();
 
@@ -11189,6 +14514,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<short, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<short, ushort>();
 
@@ -11225,6 +14557,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<short, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<short, char>();
 
@@ -11261,6 +14600,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<short, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<short, long>();
 
@@ -11297,6 +14643,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<short, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<short, ulong>();
 
@@ -11333,6 +14686,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<short, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<short, float>();
 
@@ -11369,6 +14729,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<short, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<short, double>();
 
@@ -11405,6 +14772,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<short, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<short, bool>();
 
@@ -11441,6 +14815,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<short, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<short, string>();
 
@@ -11477,6 +14858,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<short, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<short, DateTime>();
 
@@ -11513,6 +14901,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ushort, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ushort, int>();
 
@@ -11549,6 +14944,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ushort, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ushort, uint>();
 
@@ -11585,6 +14987,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ushort, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ushort, short>();
 
@@ -11621,6 +15030,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ushort, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ushort, ushort>();
 
@@ -11657,6 +15073,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ushort, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ushort, char>();
 
@@ -11693,6 +15116,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ushort, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ushort, long>();
 
@@ -11729,6 +15159,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ushort, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ushort, ulong>();
 
@@ -11765,6 +15202,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ushort, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ushort, float>();
 
@@ -11801,6 +15245,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ushort, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ushort, double>();
 
@@ -11837,6 +15288,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ushort, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ushort, bool>();
 
@@ -11873,6 +15331,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ushort, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ushort, string>();
 
@@ -11909,6 +15374,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ushort, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ushort, DateTime>();
 
@@ -11945,6 +15417,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<char, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<char, int>();
 
@@ -11981,6 +15460,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<char, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<char, uint>();
 
@@ -12017,6 +15503,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<char, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<char, short>();
 
@@ -12053,6 +15546,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<char, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<char, ushort>();
 
@@ -12089,6 +15589,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<char, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<char, char>();
 
@@ -12125,6 +15632,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<char, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<char, long>();
 
@@ -12161,6 +15675,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<char, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<char, ulong>();
 
@@ -12197,6 +15718,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<char, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<char, float>();
 
@@ -12233,6 +15761,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<char, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<char, double>();
 
@@ -12269,6 +15804,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<char, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<char, bool>();
 
@@ -12305,6 +15847,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<char, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<char, string>();
 
@@ -12341,6 +15890,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<char, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<char, DateTime>();
 
@@ -12377,6 +15933,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, int>();
 
@@ -12413,6 +15976,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, uint>();
 
@@ -12449,6 +16019,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, short>();
 
@@ -12485,6 +16062,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, ushort>();
 
@@ -12521,6 +16105,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, char>();
 
@@ -12557,6 +16148,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, long>();
 
@@ -12593,6 +16191,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, ulong>();
 
@@ -12629,6 +16234,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, float>();
 
@@ -12665,6 +16277,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, double>();
 
@@ -12701,6 +16320,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, bool>();
 
@@ -12737,6 +16363,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, string>();
 
@@ -12773,6 +16406,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, DateTime>();
 
@@ -12809,6 +16449,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ulong, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ulong, int>();
 
@@ -12845,6 +16492,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ulong, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ulong, uint>();
 
@@ -12881,6 +16535,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ulong, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ulong, short>();
 
@@ -12917,6 +16578,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ulong, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ulong, ushort>();
 
@@ -12953,6 +16621,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ulong, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ulong, char>();
 
@@ -12989,6 +16664,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ulong, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ulong, long>();
 
@@ -13025,6 +16707,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ulong, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ulong, ulong>();
 
@@ -13061,6 +16750,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ulong, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ulong, float>();
 
@@ -13097,6 +16793,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ulong, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ulong, double>();
 
@@ -13133,6 +16836,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ulong, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ulong, bool>();
 
@@ -13169,6 +16879,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ulong, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ulong, string>();
 
@@ -13205,6 +16922,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<ulong, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<ulong, DateTime>();
 
@@ -13241,6 +16965,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<float, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<float, int>();
 
@@ -13277,6 +17008,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<float, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<float, uint>();
 
@@ -13313,6 +17051,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<float, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<float, short>();
 
@@ -13349,6 +17094,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<float, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<float, ushort>();
 
@@ -13385,6 +17137,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<float, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<float, char>();
 
@@ -13421,6 +17180,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<float, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<float, long>();
 
@@ -13457,6 +17223,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<float, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<float, ulong>();
 
@@ -13493,6 +17266,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<float, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<float, float>();
 
@@ -13529,6 +17309,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<float, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<float, double>();
 
@@ -13565,6 +17352,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<float, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<float, bool>();
 
@@ -13601,6 +17395,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<float, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<float, string>();
 
@@ -13637,6 +17438,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<float, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<float, DateTime>();
 
@@ -13673,6 +17481,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<double, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<double, int>();
 
@@ -13709,6 +17524,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<double, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<double, uint>();
 
@@ -13745,6 +17567,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<double, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<double, short>();
 
@@ -13781,6 +17610,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<double, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<double, ushort>();
 
@@ -13817,6 +17653,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<double, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<double, char>();
 
@@ -13853,6 +17696,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<double, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<double, long>();
 
@@ -13889,6 +17739,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<double, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<double, ulong>();
 
@@ -13925,6 +17782,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<double, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<double, float>();
 
@@ -13961,6 +17825,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<double, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<double, double>();
 
@@ -13997,6 +17868,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<double, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<double, bool>();
 
@@ -14033,6 +17911,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<double, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<double, string>();
 
@@ -14069,6 +17954,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<double, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<double, DateTime>();
 
@@ -14105,6 +17997,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<bool, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<bool, int>();
 
@@ -14141,6 +18040,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<bool, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<bool, uint>();
 
@@ -14177,6 +18083,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<bool, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<bool, short>();
 
@@ -14213,6 +18126,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<bool, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<bool, ushort>();
 
@@ -14249,6 +18169,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<bool, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<bool, char>();
 
@@ -14285,6 +18212,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<bool, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<bool, long>();
 
@@ -14321,6 +18255,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<bool, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<bool, ulong>();
 
@@ -14357,6 +18298,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<bool, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<bool, float>();
 
@@ -14393,6 +18341,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<bool, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<bool, double>();
 
@@ -14429,6 +18384,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<bool, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<bool, bool>();
 
@@ -14465,6 +18427,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<bool, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<bool, string>();
 
@@ -14501,6 +18470,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<bool, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<bool, DateTime>();
 
@@ -14537,6 +18513,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<string, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<string, int>();
 
@@ -14573,6 +18556,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<string, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<string, uint>();
 
@@ -14609,6 +18599,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<string, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<string, short>();
 
@@ -14645,6 +18642,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<string, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<string, ushort>();
 
@@ -14681,6 +18685,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<string, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<string, char>();
 
@@ -14717,6 +18728,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<string, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<string, long>();
 
@@ -14753,6 +18771,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<string, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<string, ulong>();
 
@@ -14789,6 +18814,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<string, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<string, float>();
 
@@ -14825,6 +18857,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<string, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<string, double>();
 
@@ -14861,6 +18900,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<string, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<string, bool>();
 
@@ -14897,6 +18943,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<string, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<string, string>();
 
@@ -14933,6 +18986,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<string, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<string, DateTime>();
 
@@ -14969,6 +19029,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<DateTime, int> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<DateTime, int>();
 
@@ -15005,6 +19072,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<DateTime, uint> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<DateTime, uint>();
 
@@ -15041,6 +19115,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<DateTime, short> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<DateTime, short>();
 
@@ -15077,6 +19158,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<DateTime, ushort> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<DateTime, ushort>();
 
@@ -15113,6 +19201,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<DateTime, char> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<DateTime, char>();
 
@@ -15149,6 +19244,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<DateTime, long> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<DateTime, long>();
 
@@ -15185,6 +19287,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<DateTime, ulong> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<DateTime, ulong>();
 
@@ -15221,6 +19330,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<DateTime, float> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<DateTime, float>();
 
@@ -15257,6 +19373,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<DateTime, double> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<DateTime, double>();
 
@@ -15293,6 +19416,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<DateTime, bool> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<DateTime, bool>();
 
@@ -15329,6 +19459,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<DateTime, string> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<DateTime, string>();
 
@@ -15365,6 +19502,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<DateTime, DateTime> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<DateTime, DateTime>();
 
@@ -15401,6 +19545,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<Ping_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<Ping_RQ>();
 
@@ -15431,6 +19582,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, Ping_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, Ping_RQ>();
 
@@ -15467,6 +19625,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, Ping_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, Ping_RQ>();
 
@@ -15503,6 +19668,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<Ping_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<Ping_RS>();
 
@@ -15533,6 +19705,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, Ping_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, Ping_RS>();
 
@@ -15569,6 +19748,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, Ping_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, Ping_RS>();
 
@@ -15605,6 +19791,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<ChatMsg_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<ChatMsg_RQ>();
 
@@ -15635,6 +19828,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, ChatMsg_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, ChatMsg_RQ>();
 
@@ -15671,6 +19871,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, ChatMsg_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, ChatMsg_RQ>();
 
@@ -15707,6 +19914,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<ChatMsg_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<ChatMsg_RS>();
 
@@ -15737,6 +19951,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, ChatMsg_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, ChatMsg_RS>();
 
@@ -15773,6 +19994,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, ChatMsg_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, ChatMsg_RS>();
 
@@ -15809,6 +20037,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<ListTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<ListTest_RQ>();
 
@@ -15839,6 +20074,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, ListTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, ListTest_RQ>();
 
@@ -15875,6 +20117,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, ListTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, ListTest_RQ>();
 
@@ -15911,6 +20160,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<ListTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<ListTest_RS>();
 
@@ -15941,6 +20197,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, ListTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, ListTest_RS>();
 
@@ -15977,6 +20240,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, ListTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, ListTest_RS>();
 
@@ -16013,6 +20283,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<DictionaryTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<DictionaryTest_RQ>();
 
@@ -16043,6 +20320,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, DictionaryTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, DictionaryTest_RQ>();
 
@@ -16079,6 +20363,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, DictionaryTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, DictionaryTest_RQ>();
 
@@ -16115,6 +20406,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<DictionaryTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<DictionaryTest_RS>();
 
@@ -16145,6 +20443,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, DictionaryTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, DictionaryTest_RS>();
 
@@ -16181,6 +20486,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, DictionaryTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, DictionaryTest_RS>();
 
@@ -16217,6 +20529,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<ClassListTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<ClassListTest_RQ>();
 
@@ -16247,6 +20566,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, ClassListTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, ClassListTest_RQ>();
 
@@ -16283,6 +20609,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, ClassListTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, ClassListTest_RQ>();
 
@@ -16319,6 +20652,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<ClassListTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<ClassListTest_RS>();
 
@@ -16349,6 +20689,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, ClassListTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, ClassListTest_RS>();
 
@@ -16385,6 +20732,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, ClassListTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, ClassListTest_RS>();
 
@@ -16421,6 +20775,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<ClassDictionaryTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<ClassDictionaryTest_RQ>();
 
@@ -16451,6 +20812,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, ClassDictionaryTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, ClassDictionaryTest_RQ>();
 
@@ -16487,6 +20855,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, ClassDictionaryTest_RQ> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, ClassDictionaryTest_RQ>();
 
@@ -16523,6 +20898,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<ClassDictionaryTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<ClassDictionaryTest_RS>();
 
@@ -16553,6 +20935,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<int, ClassDictionaryTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<int, ClassDictionaryTest_RS>();
 
@@ -16589,6 +20978,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<long, ClassDictionaryTest_RS> data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<long, ClassDictionaryTest_RS>();
 
@@ -16625,6 +21021,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Ping_RQ data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			data = new Ping_RQ();
 			size = 0;
 
@@ -16653,6 +21056,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Ping_RS data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			data = new Ping_RS();
 			size = 0;
 
@@ -16681,6 +21091,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ChatMsg_RQ data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			data = new ChatMsg_RQ();
 			size = 0;
 
@@ -16718,6 +21135,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ChatMsg_RS data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			data = new ChatMsg_RS();
 			size = 0;
 
@@ -16755,6 +21179,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ListTest_RQ data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			data = new ListTest_RQ();
 			size = 0;
 
@@ -16801,6 +21232,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ListTest_RS data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			data = new ListTest_RS();
 			size = 0;
 
@@ -16847,6 +21285,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out DictionaryTest_RQ data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			data = new DictionaryTest_RQ();
 			size = 0;
 
@@ -16893,6 +21338,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out DictionaryTest_RS data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			data = new DictionaryTest_RS();
 			size = 0;
 
@@ -16939,6 +21391,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ClassListTest_RQ data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			data = new ClassListTest_RQ();
 			size = 0;
 
@@ -16985,6 +21444,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ClassListTest_RS data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			data = new ClassListTest_RS();
 			size = 0;
 
@@ -17031,6 +21497,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ClassDictionaryTest_RQ data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			data = new ClassDictionaryTest_RQ();
 			size = 0;
 
@@ -17077,6 +21550,13 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ClassDictionaryTest_RS data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			data = new ClassDictionaryTest_RS();
 			size = 0;
 

@@ -19,6 +19,13 @@ namespace ServerLib.Packet
 	
     public class Ping_RQ : PacketBase
     {
+		/**************************************
+
+			이 파일은 자동 생성되는 파일입니다.
+				절대 직접 수정하지마세요.
+
+		**************************************/
+
 		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
@@ -33,6 +40,13 @@ namespace ServerLib.Packet
 	
     public class Ping_RS : PacketBase
     {
+		/**************************************
+
+			이 파일은 자동 생성되는 파일입니다.
+				절대 직접 수정하지마세요.
+
+		**************************************/
+
 		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
@@ -47,6 +61,13 @@ namespace ServerLib.Packet
 	
     public class ChatMsg_RQ : PacketBase
     {
+		/**************************************
+
+			이 파일은 자동 생성되는 파일입니다.
+				절대 직접 수정하지마세요.
+
+		**************************************/
+
 		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
@@ -63,6 +84,13 @@ namespace ServerLib.Packet
 	
     public class ChatMsg_RS : PacketBase
     {
+		/**************************************
+
+			이 파일은 자동 생성되는 파일입니다.
+				절대 직접 수정하지마세요.
+
+		**************************************/
+
 		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
@@ -79,6 +107,13 @@ namespace ServerLib.Packet
 	
     public class ListTest_RQ : PacketBase
     {
+		/**************************************
+
+			이 파일은 자동 생성되는 파일입니다.
+				절대 직접 수정하지마세요.
+
+		**************************************/
+
 		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
@@ -97,6 +132,13 @@ namespace ServerLib.Packet
 	
     public class ListTest_RS : PacketBase
     {
+		/**************************************
+
+			이 파일은 자동 생성되는 파일입니다.
+				절대 직접 수정하지마세요.
+
+		**************************************/
+
 		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
@@ -115,6 +157,13 @@ namespace ServerLib.Packet
 	
     public class DictionaryTest_RQ : PacketBase
     {
+		/**************************************
+
+			이 파일은 자동 생성되는 파일입니다.
+				절대 직접 수정하지마세요.
+
+		**************************************/
+
 		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
@@ -133,6 +182,13 @@ namespace ServerLib.Packet
 	
     public class DictionaryTest_RS : PacketBase
     {
+		/**************************************
+
+			이 파일은 자동 생성되는 파일입니다.
+				절대 직접 수정하지마세요.
+
+		**************************************/
+
 		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
@@ -151,6 +207,13 @@ namespace ServerLib.Packet
 	
     public class ClassListTest_RQ : PacketBase
     {
+		/**************************************
+
+			이 파일은 자동 생성되는 파일입니다.
+				절대 직접 수정하지마세요.
+
+		**************************************/
+
 		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
@@ -169,6 +232,13 @@ namespace ServerLib.Packet
 	
     public class ClassListTest_RS : PacketBase
     {
+		/**************************************
+
+			이 파일은 자동 생성되는 파일입니다.
+				절대 직접 수정하지마세요.
+
+		**************************************/
+
 		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
@@ -187,6 +257,13 @@ namespace ServerLib.Packet
 	
     public class ClassDictionaryTest_RQ : PacketBase
     {
+		/**************************************
+
+			이 파일은 자동 생성되는 파일입니다.
+				절대 직접 수정하지마세요.
+
+		**************************************/
+
 		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 
@@ -205,6 +282,13 @@ namespace ServerLib.Packet
 	
     public class ClassDictionaryTest_RS : PacketBase
     {
+		/**************************************
+
+			이 파일은 자동 생성되는 파일입니다.
+				절대 직접 수정하지마세요.
+
+		**************************************/
+
 		// 패킷의 고유 아이디
         public override ushort PacketId => Id;
 

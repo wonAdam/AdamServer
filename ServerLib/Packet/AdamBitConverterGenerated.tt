@@ -13,6 +13,13 @@
 	@"
 		public static byte[] Serialize(int data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	";
@@ -20,6 +27,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out int data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(int))
 			{
 				size = 0;
@@ -37,6 +51,13 @@
 	@"
 		public static byte[] Serialize(uint data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	";
@@ -44,6 +65,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out uint data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(uint))
 			{
 				size = 0;
@@ -61,6 +89,13 @@
 	@"
 		public static byte[] Serialize(short data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	";
@@ -68,6 +103,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out short data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(short))
 			{
 				size = 0;
@@ -85,6 +127,13 @@
 	@"
 		public static byte[] Serialize(ushort data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	";
@@ -92,6 +141,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ushort data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(ushort))
 			{
 				size = 0;
@@ -109,6 +165,13 @@
 	@"
 		public static byte[] Serialize(char data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	";
@@ -116,6 +179,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out char data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(char))
 			{
 				size = 0;
@@ -133,6 +203,13 @@
 	@"
 		public static byte[] Serialize(long data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	";
@@ -140,6 +217,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out long data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(long))
 			{
 				size = 0;
@@ -157,6 +241,13 @@
 	@"
 		public static byte[] Serialize(ulong data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	";
@@ -164,6 +255,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out ulong data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(ulong))
 			{
 				size = 0;
@@ -181,6 +279,13 @@
 	@"
 		public static byte[] Serialize(bool data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	";
@@ -188,6 +293,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out bool data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(bool))
 			{
 				size = 0;
@@ -205,6 +317,13 @@
 	@"
 		public static byte[] Serialize(double data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	";
@@ -212,6 +331,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out double data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(double))
 			{
 				size = 0;
@@ -229,6 +355,13 @@
 	@"
 		public static byte[] Serialize(float data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data);
 		}
 	";
@@ -236,6 +369,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out float data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(float))
 			{
 				size = 0;
@@ -253,6 +393,13 @@
 	@"
 		public static byte[] Serialize(string data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			byte[] buff = new byte[sizeof(int) + Encoding.UTF8.GetByteCount(data)];
 			byte[] lengthBuff = BitConverter.GetBytes(Encoding.UTF8.GetByteCount(data));
 			byte[] stringBuff = Encoding.UTF8.GetBytes(data);
@@ -266,6 +413,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out string data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = String.Empty;
 
@@ -288,6 +442,13 @@
 	@"
 		public static byte[] Serialize(DateTime data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			return BitConverter.GetBytes(data.Ticks);
 		}
 	";
@@ -295,6 +456,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out DateTime data)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < sizeof(long))
 			{
 				size = 0;
@@ -314,6 +482,13 @@
 	@"
 		public static byte[] Serialize(List<{0}> data)
 		{{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -346,6 +521,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out List<{0}> data)
 		{{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new List<{0}>();
 
@@ -381,6 +563,13 @@
 	@"
 		public static byte[] Serialize(Dictionary<{0}, {1}> data)
 		{{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 			int count = 0;
 			List<byte[]> buffs = new List<byte[]>();
@@ -417,6 +606,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out Dictionary<{0}, {1}> data)
 		{{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			data = new Dictionary<{0}, {1}>();
 
@@ -459,6 +655,13 @@
 	@"
 		public static byte[] Serialize({0} data)
 		{{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = PacketHeader.Size;
 			List<byte[]> buffs = new List<byte[]>();
 			
@@ -503,6 +706,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out {0} data)
 		{{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			data = new {0}();
 			size = 0;
 
@@ -538,6 +748,13 @@
 	@"
 		public static byte[] Serialize(PacketBase packet)
 		{{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			ArraySegment<byte> buff = new ArraySegment<byte>(new byte[packet.PacketSize + PacketHeader.Size]);
 
 			switch(packet.PacketId)
@@ -568,6 +785,13 @@
 	@"
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out PacketBase packet)
 		{{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			size = 0;
 			packet = null;
 			EDeserializeResult headerError = AdamBitConverter.Deserialize(buff, out int headerSize, out PacketHeader header);
@@ -667,6 +891,13 @@
 	@"
 		public static int SizeOf(List<{0}> data)
 		{{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach({0} e in data)
 			{{
@@ -682,6 +913,13 @@
 	@"
 		public static int SizeOf(Dictionary<{0}, {1}> data) 
 		{{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = sizeof(int);
 			foreach(var pair in data)
 			{{
@@ -700,6 +938,13 @@
 	@"
 		public static int SizeOf({0} packet)
 		{{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			int size = 0;
 
 			size += PacketHeader.Size;
@@ -1022,6 +1267,13 @@ namespace ServerLib.Packet
 
 		public static byte[] Serialize(PacketHeader header)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+				
 			byte[] buff = new byte[PacketHeader.Size];
 
 			byte[] packetSizeBuff = BitConverter.GetBytes(header.PacketSize);
@@ -1034,6 +1286,13 @@ namespace ServerLib.Packet
 
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out PacketHeader header)
 		{
+			/**************************************
+
+				이 파일은 자동 생성되는 파일입니다.
+					절대 직접 수정하지마세요.
+
+			**************************************/
+
 			if(buff.Count < PacketHeader.Size)
 			{
 				size = 0;
