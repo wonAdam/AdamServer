@@ -185,4 +185,40 @@ namespace ServerLib.Packet
 	
     }
 	
+    public class ClassDictionaryTest_RQ : PacketBase
+    {
+		// 패킷의 고유 아이디
+        public override ushort PacketId => Id;
+
+		// 헤더를 제외한 사이즈
+        public override ushort PacketSize => (ushort)(AdamBitConverter.SizeOf(chatList) + AdamBitConverter.SizeOf(time) + AdamBitConverter.SizeOf(nickname));
+        public const ushort Id = 10;
+
+		
+		public Dictionary<int, ChatMsg_RQ> chatList;
+	
+		public DateTime time;
+	
+		public string nickname;
+	
+    }
+	
+    public class ClassDictionaryTest_RS : PacketBase
+    {
+		// 패킷의 고유 아이디
+        public override ushort PacketId => Id;
+
+		// 헤더를 제외한 사이즈
+        public override ushort PacketSize => (ushort)(AdamBitConverter.SizeOf(chatList) + AdamBitConverter.SizeOf(time) + AdamBitConverter.SizeOf(nickname));
+        public const ushort Id = 11;
+
+		
+		public Dictionary<int, ChatMsg_RS> chatList;
+	
+		public DateTime time;
+	
+		public string nickname;
+	
+    }
+	
 }

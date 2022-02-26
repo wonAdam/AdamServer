@@ -28,7 +28,7 @@ namespace ClientBot
 
             while(true)
             {
-                ushort packetId = ClassListTest_RQ.Id;
+                ushort packetId = ClassDictionaryTest_RQ.Id;
 
                 PacketBase packetToSend = null;
 
@@ -75,6 +75,21 @@ namespace ClientBot
                         chat2.msgText = "Server!! ClassListTest!!";
                         packet.chatList.Add(chat1);
                         packet.chatList.Add(chat2);
+                        packet.nickname = "wondong";
+                        packet.time = DateTime.Now;
+                        break;
+                    }
+                    case ClassDictionaryTest_RQ.Id:
+                    {
+                        packetToSend = new ClassDictionaryTest_RQ();
+                        ClassDictionaryTest_RQ packet = (ClassDictionaryTest_RQ)packetToSend;
+                        packet.chatList = new Dictionary<int, ChatMsg_RQ>();
+                        ChatMsg_RQ chat1 = new ChatMsg_RQ();
+                        chat1.msgText = "Whassup!! ClassListTest!!";
+                        ChatMsg_RQ chat2 = new ChatMsg_RQ();
+                        chat2.msgText = "Server!! ClassListTest!!";
+                        packet.chatList.Add(0, chat1);
+                        packet.chatList.Add(1, chat2);
                         packet.nickname = "wondong";
                         packet.time = DateTime.Now;
                         break;
@@ -127,6 +142,16 @@ namespace ClientBot
                 foreach (var chat in ChatListTest.chatList)
                 {
                     Logger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] chat.msgText : {chat.msgText}");
+                }
+                Logger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] ChatListTest.nickname: {ChatListTest.nickname}");
+                Logger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] ChatListTest.time: {ChatListTest.time}");
+            }
+            else if (packet is ClassDictionaryTest_RS)
+            {
+                ClassDictionaryTest_RS ChatListTest = (ClassDictionaryTest_RS)packet;
+                foreach (var chat in ChatListTest.chatList)
+                {
+                    Logger.Log(LogLevel.Temp, $"[Recv::ClassDictionaryTest_RS] chat.msgText : {chat.Key} / {chat.Value.msgText}");
                 }
                 Logger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] ChatListTest.nickname: {ChatListTest.nickname}");
                 Logger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] ChatListTest.time: {ChatListTest.time}");

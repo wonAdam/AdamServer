@@ -83,4 +83,22 @@
     </Variables>
   </Class>
 
+  <Class>
+    <Name>ClassDictionaryTest_RQ</Name>
+    <Variables>
+      <Dictionary key = "int" value = "ChatMsg_RQ">chatList</Dictionary>
+      <DateTime>time</DateTime>
+      <string>nickname</string>
+    </Variables>
+  </Class>
+
+  <Class>
+    <Name>ClassDictionaryTest_RS</Name>
+    <Variables>
+      <Dictionary key = "int" value = "ChatMsg_RS">chatList</Dictionary>
+      <DateTime>time</DateTime>
+      <string>nickname</string>
+    </Variables>
+  </Class>
+
 </Packets>

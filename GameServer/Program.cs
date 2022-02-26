@@ -93,6 +93,25 @@ namespace GameServer
 
                 Send(packetToSend);
             }
+            else if (packet is ClassDictionaryTest_RQ)
+            {
+                ClassDictionaryTest_RQ ChatListTest = (ClassDictionaryTest_RQ)packet;
+                ClassDictionaryTest_RS packetToSend = new ClassDictionaryTest_RS();
+                packetToSend.chatList = new Dictionary<int, ChatMsg_RS>();
+                foreach (var chat in ChatListTest.chatList)
+                {
+                    Logger.Log(LogLevel.Temp, $"[Recv::ClassDictionaryTest_RQ] chat.msgText : {chat.Key} / {chat.Value.msgText}");
+                    ChatMsg_RS ChatToSend = new ChatMsg_RS();
+                    ChatToSend.msgText = chat.Value.msgText;
+                    ChatToSend.time = chat.Value.time;
+                    packetToSend.chatList.Add(chat.Key, ChatToSend);
+                }
+                Logger.Log(LogLevel.Temp, $"[Recv::ClassDictionaryTest_RQ] ChatListTest.time: {ChatListTest.time}");
+                packetToSend.nickname = ChatListTest.nickname;
+                packetToSend.time = ChatListTest.time;
+
+                Send(packetToSend);
+            }
             else
             {
                 Logger.Log(LogLevel.Temp, $"[Recv] {packet.GetType().Name}");
