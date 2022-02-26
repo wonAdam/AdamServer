@@ -2679,11 +2679,11 @@ namespace ServerLib.Packet
 	
 		public static EDeserializeResult Deserialize(ArraySegment<byte> buff, out int size, out PacketBase packet)
 		{
-			AdamBitConverter.Deserialize(buff, out int headerSize, out PacketHeader header);
-			size = headerSize;
+			size = 0;
 			packet = null;
-
-			buff = new ArraySegment<byte>(buff.Array, buff.Offset + headerSize, buff.Count - headerSize);
+			EDeserializeResult headerError = AdamBitConverter.Deserialize(buff, out int headerSize, out PacketHeader header);
+			if(headerError != EDeserializeResult.Success)
+				return headerError;
 
 			switch(header.PacketId)
 			{
@@ -9388,10 +9388,10 @@ namespace ServerLib.Packet
 			size = 0;
 			data = String.Empty;
 
-			if(buff.Count < sizeof(int))
-				return EDeserializeResult.PacketFragmentation;
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
 			size = sizeOfLength;
 
 			if(buff.Count < sizeof(int) + length)
@@ -9425,7 +9425,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9452,7 +9455,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9479,7 +9485,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9506,7 +9515,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9533,7 +9545,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9560,7 +9575,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9587,7 +9605,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9614,7 +9635,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9641,7 +9665,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9668,7 +9695,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9695,7 +9725,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9722,7 +9755,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9749,7 +9785,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9782,7 +9821,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9815,7 +9857,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9848,7 +9893,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9881,7 +9929,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9914,7 +9965,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9947,7 +10001,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -9980,7 +10037,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10013,7 +10073,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10046,7 +10109,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10079,7 +10145,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10112,7 +10181,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10145,7 +10217,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10178,7 +10253,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10211,7 +10289,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10244,7 +10325,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10277,7 +10361,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10310,7 +10397,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10343,7 +10433,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10376,7 +10469,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10409,7 +10505,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10442,7 +10541,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10475,7 +10577,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10508,7 +10613,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10541,7 +10649,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10574,7 +10685,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10607,7 +10721,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10640,7 +10757,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10673,7 +10793,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10706,7 +10829,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10739,7 +10865,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10772,7 +10901,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10805,7 +10937,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10838,7 +10973,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10871,7 +11009,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10904,7 +11045,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10937,7 +11081,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -10970,7 +11117,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11003,7 +11153,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11036,7 +11189,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11069,7 +11225,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11102,7 +11261,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11135,7 +11297,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11168,7 +11333,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11201,7 +11369,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11234,7 +11405,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11267,7 +11441,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11300,7 +11477,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11333,7 +11513,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11366,7 +11549,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11399,7 +11585,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11432,7 +11621,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11465,7 +11657,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11498,7 +11693,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11531,7 +11729,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11564,7 +11765,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11597,7 +11801,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11630,7 +11837,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11663,7 +11873,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11696,7 +11909,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11729,7 +11945,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11762,7 +11981,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11795,7 +12017,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11828,7 +12053,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11861,7 +12089,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11894,7 +12125,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11927,7 +12161,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11960,7 +12197,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -11993,7 +12233,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12026,7 +12269,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12059,7 +12305,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12092,7 +12341,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12125,7 +12377,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12158,7 +12413,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12191,7 +12449,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12224,7 +12485,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12257,7 +12521,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12290,7 +12557,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12323,7 +12593,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12356,7 +12629,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12389,7 +12665,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12422,7 +12701,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12455,7 +12737,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12488,7 +12773,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12521,7 +12809,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12554,7 +12845,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12587,7 +12881,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12620,7 +12917,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12653,7 +12953,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12686,7 +12989,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12719,7 +13025,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12752,7 +13061,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12785,7 +13097,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12818,7 +13133,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12851,7 +13169,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12884,7 +13205,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12917,7 +13241,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12950,7 +13277,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -12983,7 +13313,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13016,7 +13349,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13049,7 +13385,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13082,7 +13421,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13115,7 +13457,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13148,7 +13493,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13181,7 +13529,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13214,7 +13565,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13247,7 +13601,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13280,7 +13637,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13313,7 +13673,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13346,7 +13709,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13379,7 +13745,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13412,7 +13781,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13445,7 +13817,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13478,7 +13853,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13511,7 +13889,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13544,7 +13925,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13577,7 +13961,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13610,7 +13997,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13643,7 +14033,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13676,7 +14069,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13709,7 +14105,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13742,7 +14141,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13775,7 +14177,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13808,7 +14213,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13841,7 +14249,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13874,7 +14285,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13907,7 +14321,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13940,7 +14357,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -13973,7 +14393,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14006,7 +14429,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14039,7 +14465,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14072,7 +14501,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14105,7 +14537,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14138,7 +14573,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14171,7 +14609,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14204,7 +14645,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14237,7 +14681,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14270,7 +14717,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14303,7 +14753,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14336,7 +14789,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14369,7 +14825,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14402,7 +14861,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14435,7 +14897,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14468,7 +14933,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14501,7 +14969,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14528,7 +14999,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14561,7 +15035,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14594,7 +15071,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14621,7 +15101,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14654,7 +15137,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14687,7 +15173,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14714,7 +15203,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14747,7 +15239,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14780,7 +15275,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14807,7 +15305,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14840,7 +15341,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14873,7 +15377,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14900,7 +15407,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14933,7 +15443,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14966,7 +15479,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -14993,7 +15509,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -15026,7 +15545,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -15059,7 +15581,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -15086,7 +15611,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -15119,7 +15647,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -15152,7 +15683,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -15179,7 +15713,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -15212,7 +15749,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -15245,7 +15785,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -15272,7 +15815,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -15305,7 +15851,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -15338,7 +15887,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -15365,7 +15917,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 
@@ -15398,7 +15953,10 @@ namespace ServerLib.Packet
 			if(buff.Count < sizeof(int))
 				return EDeserializeResult.PacketFragmentation;
 
-			AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			EDeserializeResult lengthError = AdamBitConverter.Deserialize(buff, out int sizeOfLength, out int length);
+			if(lengthError != EDeserializeResult.Success)
+				return lengthError;
+
 			buff = new ArraySegment<byte>(buff.Array, buff.Offset + sizeOfLength, buff.Count - sizeOfLength);
 			size = sizeOfLength;
 

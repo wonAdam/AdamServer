@@ -151,7 +151,7 @@ namespace ServerLib
                     return;
                 }
 
-                if (receivedSize < 0)
+                if (receivedSize <= 0)
                     throw new Exception("Recved Size is Zero");
 
                 if(!_recvBuffer.OnWrite(receivedSize))

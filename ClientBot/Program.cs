@@ -28,38 +28,64 @@ namespace ClientBot
 
             while(true)
             {
-                //ChatMsg_RQ packetToSend = new ChatMsg_RQ();
-                //packetToSend.msgText = "Hello From Client!!";
-                //packetToSend.time = DateTime.UtcNow;
+                ushort packetId = ClassListTest_RQ.Id;
 
-                //ListTest_RQ packetToSend = new ListTest_RQ();
-                //packetToSend.sentences = new List<string>();
-                //packetToSend.sentences.Add("Whassup!!");
-                //packetToSend.sentences.Add("Server!!");
-                //packetToSend.nickname = "wondong";
-                //packetToSend.time = DateTime.Now;
+                PacketBase packetToSend = null;
 
-                //DictionaryTest_RQ packetToSend = new DictionaryTest_RQ();
-                //packetToSend.numOfCharacters = new Dictionary<int, string>();
-                //packetToSend.numOfCharacters.Add(0, "Whassup!!");
-                //packetToSend.numOfCharacters.Add(1, "Server!!");
-                //packetToSend.nickname = "wondong";
-                //packetToSend.time = DateTime.Now;
+                switch (packetId)
+                {
+                    case ChatMsg_RQ.Id:
+                    {
+                        packetToSend = new ChatMsg_RQ();
+                        ChatMsg_RQ packet = (ChatMsg_RQ)packetToSend;
+                        packet.msgText = "Hello From Client!!";
+                        packet.time = DateTime.UtcNow;
+                        break;
+                    }
+                    case ListTest_RQ.Id:
+                    {
+                        packetToSend = new ListTest_RQ();
+                        ListTest_RQ packet = (ListTest_RQ)packetToSend;
+                        packet.sentences = new List<string>();
+                        packet.sentences.Add("Whassup!!");
+                        packet.sentences.Add("Server!!");
+                        packet.nickname = "wondong";
+                        packet.time = DateTime.Now;
+                        break;
+                    }
+                    case DictionaryTest_RQ.Id:
+                    {
+                        packetToSend = new DictionaryTest_RQ();
+                        DictionaryTest_RQ packet = (DictionaryTest_RQ)packetToSend;
+                        packet.numOfCharacters = new Dictionary<int, string>();
+                        packet.numOfCharacters.Add(0, "Whassup!!");
+                        packet.numOfCharacters.Add(1, "Server!!");
+                        packet.nickname = "wondong";
+                        packet.time = DateTime.Now;
+                        break;
+                    }
+                    case ClassListTest_RQ.Id:
+                    {
+                        packetToSend = new ClassListTest_RQ();
+                        ClassListTest_RQ packet = (ClassListTest_RQ)packetToSend;
+                        packet.chatList = new List<ChatMsg_RQ>();
+                        ChatMsg_RQ chat1 = new ChatMsg_RQ();
+                        chat1.msgText = "Whassup!! ClassListTest!!";
+                        ChatMsg_RQ chat2 = new ChatMsg_RQ();
+                        chat2.msgText = "Server!! ClassListTest!!";
+                        packet.chatList.Add(chat1);
+                        packet.chatList.Add(chat2);
+                        packet.nickname = "wondong";
+                        packet.time = DateTime.Now;
+                        break;
+                    }
+                }
 
-                ClassListTest_RQ packetToSend = new ClassListTest_RQ();
-                packetToSend.chatList = new List<ChatMsg_RQ>();
-                ChatMsg_RQ chat1 = new ChatMsg_RQ();
-                chat1.msgText = "Whassup!! ClassListTest!!";
-                ChatMsg_RQ chat2 = new ChatMsg_RQ();
-                chat2.msgText = "Server!! ClassListTest!!";
-                packetToSend.chatList.Add(chat1);
-                packetToSend.chatList.Add(chat2);
-
-                packetToSend.nickname = "wondong";
-                packetToSend.time = DateTime.Now;
-
-                Send(packetToSend);
-                Thread.Sleep(1500);
+                if(packetToSend != null)
+                {
+                    Send(packetToSend);
+                    Thread.Sleep(1500);
+                }
             }
         }
 
