@@ -121,6 +121,7 @@ namespace ServerLib
         {
             try 
             {
+                _recvBuffer.Clean();
                 SocketError sockError;
                 ArraySegment<byte> writeSegment = _recvBuffer.WriteSegment;
                 if (writeSegment.Array == null)
