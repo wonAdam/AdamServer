@@ -1,0 +1,171 @@
+
+    syntax = "proto3";
+    package tutorial;
+
+    import "google/protobuf/timestamp.proto";
+
+    option csharp_namespace = "Google.Protobuf.Protocol.PacketGenerated";
+
+    
+    message Ping_RQ 
+    {
+        
+        google.protobuf.Timestamp Time = 1;
+
+
+    }
+
+
+    message Ping_RS 
+    {
+        
+        google.protobuf.Timestamp Time = 1;
+
+
+    }
+
+
+    message ChatMsg_RQ 
+    {
+        
+        string msgText = 1;
+
+
+        google.protobuf.Timestamp Time = 2;
+
+
+    }
+
+
+    message ChatMsg_RS 
+    {
+        
+        string msgText = 1;
+
+
+        google.protobuf.Timestamp Time = 2;
+
+
+    }
+
+
+    message ListTest_RQ 
+    {
+        
+        repeated string Sentences = 1;
+
+
+        google.protobuf.Timestamp Time = 2;
+
+
+        string Nickname = 3;
+
+
+    }
+
+
+    message ListTest_RS 
+    {
+        
+        repeated int32 NumOfSentences = 1;
+
+
+        google.protobuf.Timestamp Time = 2;
+
+
+        string Nickname = 3;
+
+
+    }
+
+
+    message DictionaryTest_RQ 
+    {
+        
+        map<int32, string> NumOfSentences = 1;
+
+
+        google.protobuf.Timestamp Time = 2;
+
+
+        string Nickname = 3;
+
+
+    }
+
+
+    message DictionaryTest_RS 
+    {
+        
+        map<string, int32> NumOfSentences = 1;
+
+
+        google.protobuf.Timestamp Time = 2;
+
+
+        string Nickname = 3;
+
+
+    }
+
+
+    message ClassListTest_RQ 
+    {
+        
+        repeated ChatMsg_RQ ChatLIst = 1;
+
+
+        google.protobuf.Timestamp Time = 2;
+
+
+        string Nickname = 3;
+
+
+    }
+
+
+    message ClassListTest_RS 
+    {
+        
+        repeated ChatMsg_RS ChatLIst = 1;
+
+
+        google.protobuf.Timestamp Time = 2;
+
+
+        string Nickname = 3;
+
+
+    }
+
+
+    message ClassDictionaryTest_RQ 
+    {
+        
+        map<int32, ChatMsg_RQ> ChatLIst = 1;
+
+
+        google.protobuf.Timestamp Time = 2;
+
+
+        string Nickname = 3;
+
+
+    }
+
+
+    message ClassDictionaryTest_RS 
+    {
+        
+        map<int32, ChatMsg_RS> ChatLIst = 1;
+
+
+        google.protobuf.Timestamp Time = 2;
+
+
+        string Nickname = 3;
+
+
+    }
+
+

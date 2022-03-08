@@ -1,0 +1,3 @@
+﻿using ProtobufCodeGenerator;
+
+CodeGenerator.Generate();

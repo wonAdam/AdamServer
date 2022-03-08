@@ -4,10 +4,44 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ServerLib", "ServerLib\ServerLib.csproj", "{7A78B41D-B066-4174-9B98-D83198B7425E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7EB24502-3206-405F-A8EA-08CF03F3D7F6} = {7EB24502-3206-405F-A8EA-08CF03F3D7F6}
+		{868FED93-4AAB-48C5-9B81-476521C0D648} = {868FED93-4AAB-48C5-9B81-476521C0D648}
+		{D7B9BBAB-650A-4D6E-B456-E69212434945} = {D7B9BBAB-650A-4D6E-B456-E69212434945}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientBot", "ClientBot\ClientBot.csproj", "{43D5D137-43DF-444D-8D69-7ADE9CF05787}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7EB24502-3206-405F-A8EA-08CF03F3D7F6} = {7EB24502-3206-405F-A8EA-08CF03F3D7F6}
+		{868FED93-4AAB-48C5-9B81-476521C0D648} = {868FED93-4AAB-48C5-9B81-476521C0D648}
+		{D7B9BBAB-650A-4D6E-B456-E69212434945} = {D7B9BBAB-650A-4D6E-B456-E69212434945}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameServer", "GameServer\GameServer.csproj", "{DAABE60C-4C00-404D-B949-E518B6C9D622}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7EB24502-3206-405F-A8EA-08CF03F3D7F6} = {7EB24502-3206-405F-A8EA-08CF03F3D7F6}
+		{868FED93-4AAB-48C5-9B81-476521C0D648} = {868FED93-4AAB-48C5-9B81-476521C0D648}
+		{D7B9BBAB-650A-4D6E-B456-E69212434945} = {D7B9BBAB-650A-4D6E-B456-E69212434945}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B12CAA91-3860-4EF1-B2B2-F1106EF1361C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServerCodeGenerators", "ServerCodeGenerators", "{B8D5D9F0-C01C-495C-98E9-7790CB96DBDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. ProtobufSourceGenerator", "1. ProtobufSourceGenerator", "{EF304002-4840-4EE0-9FC0-D348F6B3F826}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. AdamBitConverterCodeGenerator", "3. AdamBitConverterCodeGenerator", "{43E96A69-4D5A-4A55-A929-1BF29065DD7D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. ProtobufTargetGenerator", "2. ProtobufTargetGenerator", "{0C1617D6-6697-4ACD-91CB-59E364EDA4DB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtobufSourceGenerator", "ServerCodeGenerators\ProtobufSourceGenerator\ProtobufSourceGenerator.csproj", "{868FED93-4AAB-48C5-9B81-476521C0D648}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProtobufTargetGenerater", "ServerCodeGenerators\ProtobufTargetGenerater\ProtobufTargetGenerater.csproj", "{D7B9BBAB-650A-4D6E-B456-E69212434945}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdamBitConverterCodeGenerator", "ServerCodeGenerators\AdamBitConverterCodeGenerator\AdamBitConverterCodeGenerator.csproj", "{7EB24502-3206-405F-A8EA-08CF03F3D7F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +61,29 @@ Global
 		{DAABE60C-4C00-404D-B949-E518B6C9D622}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAABE60C-4C00-404D-B949-E518B6C9D622}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAABE60C-4C00-404D-B949-E518B6C9D622}.Release|Any CPU.Build.0 = Release|Any CPU
+		{868FED93-4AAB-48C5-9B81-476521C0D648}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{868FED93-4AAB-48C5-9B81-476521C0D648}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{868FED93-4AAB-48C5-9B81-476521C0D648}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{868FED93-4AAB-48C5-9B81-476521C0D648}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7B9BBAB-650A-4D6E-B456-E69212434945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7B9BBAB-650A-4D6E-B456-E69212434945}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7B9BBAB-650A-4D6E-B456-E69212434945}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7B9BBAB-650A-4D6E-B456-E69212434945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EB24502-3206-405F-A8EA-08CF03F3D7F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EB24502-3206-405F-A8EA-08CF03F3D7F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EB24502-3206-405F-A8EA-08CF03F3D7F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EB24502-3206-405F-A8EA-08CF03F3D7F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EF304002-4840-4EE0-9FC0-D348F6B3F826} = {B8D5D9F0-C01C-495C-98E9-7790CB96DBDE}
+		{43E96A69-4D5A-4A55-A929-1BF29065DD7D} = {B8D5D9F0-C01C-495C-98E9-7790CB96DBDE}
+		{0C1617D6-6697-4ACD-91CB-59E364EDA4DB} = {B8D5D9F0-C01C-495C-98E9-7790CB96DBDE}
+		{868FED93-4AAB-48C5-9B81-476521C0D648} = {EF304002-4840-4EE0-9FC0-D348F6B3F826}
+		{D7B9BBAB-650A-4D6E-B456-E69212434945} = {0C1617D6-6697-4ACD-91CB-59E364EDA4DB}
+		{7EB24502-3206-405F-A8EA-08CF03F3D7F6} = {43E96A69-4D5A-4A55-A929-1BF29065DD7D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F09F2342-3081-4FF5-B3B1-9D0C3C5FA93A}

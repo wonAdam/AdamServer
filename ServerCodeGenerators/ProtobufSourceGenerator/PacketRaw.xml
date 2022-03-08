@@ -1,0 +1,104 @@
+﻿<Packets>
+  <Class>
+    <Name>Ping_RQ</Name>
+    <Variables>
+      <DateTime>Time</DateTime>
+    </Variables>
+  </Class>
+
+  <Class>
+    <Name>Ping_RS</Name>
+    <Variables>
+      <DateTime>Time</DateTime>
+    </Variables>
+  </Class>
+
+  <Class>
+    <Name>ChatMsg_RQ</Name>
+    <Variables>
+      <string>msgText</string>
+      <DateTime>Time</DateTime>
+    </Variables>
+  </Class>
+
+  <Class>
+    <Name>ChatMsg_RS</Name>
+    <Variables>
+      <string>msgText</string>
+      <DateTime>Time</DateTime>
+    </Variables>
+  </Class>
+
+  <Class>
+    <Name>ListTest_RQ</Name>
+    <Variables>
+      <List element="string">Sentences</List>
+      <DateTime>Time</DateTime>
+      <string>Nickname</string>
+    </Variables>
+  </Class>
+
+  <Class>
+    <Name>ListTest_RS</Name>
+    <Variables>
+      <List element="int">NumOfSentences</List>
+      <DateTime>Time</DateTime>
+      <string>Nickname</string>
+    </Variables>
+  </Class>
+
+  <Class>
+    <Name>DictionaryTest_RQ</Name>
+    <Variables>
+      <Dictionary key ="int" value="string">NumOfSentences</Dictionary>
+      <DateTime>Time</DateTime>
+      <string>Nickname</string>
+    </Variables>
+  </Class>
+
+  <Class>
+    <Name>DictionaryTest_RS</Name>
+    <Variables>
+      <Dictionary key ="string" value="int">NumOfSentences</Dictionary>
+      <DateTime>Time</DateTime>
+      <string>Nickname</string>
+    </Variables>
+  </Class>
+
+  <Class>
+    <Name>ClassListTest_RQ</Name>
+    <Variables>
+      <List element = "ChatMsg_RQ">ChatLIst</List>
+      <DateTime>Time</DateTime>
+      <string>Nickname</string>
+    </Variables>
+  </Class>
+
+  <Class>
+    <Name>ClassListTest_RS</Name>
+    <Variables>
+      <List element = "ChatMsg_RS">ChatLIst</List>
+      <DateTime>Time</DateTime>
+      <string>Nickname</string>
+    </Variables>
+  </Class>
+
+  <Class>
+    <Name>ClassDictionaryTest_RQ</Name>
+    <Variables>
+      <Dictionary key = "int" value = "ChatMsg_RQ">ChatLIst</Dictionary>
+      <DateTime>Time</DateTime>
+      <string>Nickname</string>
+    </Variables>
+  </Class>
+
+  <Class>
+    <Name>ClassDictionaryTest_RS</Name>
+    <Variables>
+      <Dictionary key = "int" value = "ChatMsg_RS">ChatLIst</Dictionary>
+      <DateTime>Time</DateTime>
+      <string>Nickname</string>
+    </Variables>
+  </Class>
+
+</Packets>
