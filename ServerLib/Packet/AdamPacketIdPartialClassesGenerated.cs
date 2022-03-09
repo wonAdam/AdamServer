@@ -7,62 +7,134 @@ namespace Google.Protobuf.Protocol.PacketGenerated
     
     public partial class Ping_RQ
     {
+        public static JsonFormatter JsonFormatterInstace = new JsonFormatter(JsonFormatter.Settings.Default);
         public const ushort Id = 1;
+
+        public string ToJson()
+        {
+            return JsonFormatterInstace.Format(this);
+        }
     }
 
     public partial class Ping_RS
     {
+        public static JsonFormatter JsonFormatterInstace = new JsonFormatter(JsonFormatter.Settings.Default);
         public const ushort Id = 2;
+
+        public string ToJson()
+        {
+            return JsonFormatterInstace.Format(this);
+        }
     }
 
     public partial class ChatMsg_RQ
     {
+        public static JsonFormatter JsonFormatterInstace = new JsonFormatter(JsonFormatter.Settings.Default);
         public const ushort Id = 3;
+
+        public string ToJson()
+        {
+            return JsonFormatterInstace.Format(this);
+        }
     }
 
     public partial class ChatMsg_RS
     {
+        public static JsonFormatter JsonFormatterInstace = new JsonFormatter(JsonFormatter.Settings.Default);
         public const ushort Id = 4;
+
+        public string ToJson()
+        {
+            return JsonFormatterInstace.Format(this);
+        }
     }
 
     public partial class ListTest_RQ
     {
+        public static JsonFormatter JsonFormatterInstace = new JsonFormatter(JsonFormatter.Settings.Default);
         public const ushort Id = 5;
+
+        public string ToJson()
+        {
+            return JsonFormatterInstace.Format(this);
+        }
     }
 
     public partial class ListTest_RS
     {
+        public static JsonFormatter JsonFormatterInstace = new JsonFormatter(JsonFormatter.Settings.Default);
         public const ushort Id = 6;
+
+        public string ToJson()
+        {
+            return JsonFormatterInstace.Format(this);
+        }
     }
 
     public partial class DictionaryTest_RQ
     {
+        public static JsonFormatter JsonFormatterInstace = new JsonFormatter(JsonFormatter.Settings.Default);
         public const ushort Id = 7;
+
+        public string ToJson()
+        {
+            return JsonFormatterInstace.Format(this);
+        }
     }
 
     public partial class DictionaryTest_RS
     {
+        public static JsonFormatter JsonFormatterInstace = new JsonFormatter(JsonFormatter.Settings.Default);
         public const ushort Id = 8;
+
+        public string ToJson()
+        {
+            return JsonFormatterInstace.Format(this);
+        }
     }
 
     public partial class ClassListTest_RQ
     {
+        public static JsonFormatter JsonFormatterInstace = new JsonFormatter(JsonFormatter.Settings.Default);
         public const ushort Id = 9;
+
+        public string ToJson()
+        {
+            return JsonFormatterInstace.Format(this);
+        }
     }
 
     public partial class ClassListTest_RS
     {
+        public static JsonFormatter JsonFormatterInstace = new JsonFormatter(JsonFormatter.Settings.Default);
         public const ushort Id = 10;
+
+        public string ToJson()
+        {
+            return JsonFormatterInstace.Format(this);
+        }
     }
 
     public partial class ClassDictionaryTest_RQ
     {
+        public static JsonFormatter JsonFormatterInstace = new JsonFormatter(JsonFormatter.Settings.Default);
         public const ushort Id = 11;
+
+        public string ToJson()
+        {
+            return JsonFormatterInstace.Format(this);
+        }
     }
 
     public partial class ClassDictionaryTest_RS
     {
+        public static JsonFormatter JsonFormatterInstace = new JsonFormatter(JsonFormatter.Settings.Default);
         public const ushort Id = 12;
+
+        public string ToJson()
+        {
+            return JsonFormatterInstace.Format(this);
+        }
     }
 
 }

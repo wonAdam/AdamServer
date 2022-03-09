@@ -17,16 +17,21 @@ namespace ServerLib
         Socket Sock;
         AdamRecvBuffer RecvBuffer = new AdamRecvBuffer(ServerConstData.RecvBufferSize);
         AdamSendBuffer SendBuffer = new AdamSendBuffer(ServerConstData.SendBufferSize);
-
-        object SendLock = new object();
         Queue<IMessage> SendQueue = new Queue<IMessage>();
+        object SendLock = new object();
         bool bIsSending = false;
         int Disconnected = 0;
 
-        protected abstract void OnRecv(PacketHeader Header, IMessage Packet);
-        protected abstract void OnSend(int SendSize);
-        public abstract void OnConnect(IPEndPoint EndPoint);
-        protected abstract void OnDisconnect();
+        public Action<PacketHeader, IMessage> OnRecvEvent;
+        protected virtual void OnRecv(PacketHeader Header, IMessage Packet) { OnRecvEvent?.Invoke(Header, Packet); }
+        public Action<PacketHeader, IMessage> OnPreSendEvent;
+        protected virtual void OnPreSend(PacketHeader Header, IMessage Packet) { OnPreSendEvent?.Invoke(Header, Packet); }
+        public Action<int> OnSendEvent;
+        protected virtual void OnSend(int SendSize) { OnSendEvent?.Invoke(SendSize); }
+        public Action OnConnectEvent;
+        public virtual void OnConnect(IPEndPoint EndPoint) { OnConnectEvent?.Invoke(); }
+        public Action OnDisconnectEvent;
+        protected virtual void OnDisconnect() { OnDisconnectEvent?.Invoke(); }
 
         public void Start(Socket InSock)
         {
@@ -55,7 +60,7 @@ namespace ServerLib
             }
         }
 
-        void BeginSend()
+        private void BeginSend()
         {
             try
             {
@@ -72,6 +77,8 @@ namespace ServerLib
                     Buffs.Add(PacketBodyBuff);
                     PacketSizeSum += PacketHeaderBuff.Length;
                     PacketSizeSum += PacketBodyBuff.Length;
+
+                    OnPreSend(Header, Packet);
                 }
 
                 ArraySegment<byte> SendBufferOpen = SendBufferHelper.Open(PacketSizeSum);
@@ -97,7 +104,7 @@ namespace ServerLib
 
         }
 
-        void SendCallback(IAsyncResult Ar)
+        private void SendCallback(IAsyncResult Ar)
         {
             try
             {
@@ -123,7 +130,7 @@ namespace ServerLib
             }
         }
 
-        void BeginRecv()
+        private void BeginRecv()
         {
             try 
             {
@@ -146,7 +153,7 @@ namespace ServerLib
             }
         }
 
-        void RecvCallback(IAsyncResult ar)
+        private void RecvCallback(IAsyncResult ar)
         {
             try
             {

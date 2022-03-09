@@ -85,7 +85,13 @@ namespace ServerLib.Packet
 @"
     public partial class {0}
     {{
+        public static JsonFormatter JsonFormatterInstace = new JsonFormatter(JsonFormatter.Settings.Default);
         public const ushort Id = {1};
+
+        public string ToJson()
+        {{
+            return JsonFormatterInstace.Format(this);
+        }}
     }}
 ";
 

@@ -15,7 +15,7 @@ namespace AdamBitConverterCodeGenerator
         {
             XmlDocument Doc = PacketXmlReader.ReadPacketRaw();
             AdamBitConverterGenerator.Generate(Doc);
-            AdamNetworkHandlerGenerator.Generate(Doc);
+            AdamPacketHandlerGenerator.Generate(Doc);
             AdamPacketIdPartialClassesGenerator.Generate(Doc);
             CopyGeneratedFilesToServerLib();
         }
