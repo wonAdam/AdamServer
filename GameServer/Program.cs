@@ -1,4 +1,7 @@
-﻿using ServerLib;
+﻿using Google.Protobuf;
+using Google.Protobuf.Collections;
+using Google.Protobuf.Protocol.PacketGenerated;
+using ServerLib;
 using ServerLib.Packet;
 using System;
 using System.Collections.Generic;
@@ -11,130 +14,136 @@ using System.Xml;
 
 namespace GameServer
 {
-    class LobbySession : Session
+    class LobbySession : AdamSession
     {
         static int msgNo = 0;
 
         public override void OnConnect(IPEndPoint endPoint)
         {
-            Logger.Log(LogLevel.Temp, $"[Connect] {endPoint.ToString()}");
+            AdamLogger.Log(LogLevel.Temp, $"[Connect] {endPoint.ToString()}");
         }
 
         protected override void OnDisconnect()
         {
-            Logger.Log(LogLevel.Temp, $"[Disconnect]");
+            AdamLogger.Log(LogLevel.Temp, $"[Disconnect]");
         }
 
-        protected override void OnRecv(PacketBase packet)
+        protected override void OnRecv(PacketHeader Header, IMessage Packet)
         {
-            if(packet is ChatMsg_RQ)
+            if (Packet is ChatMsg_RQ)
             {
-                ChatMsg_RQ ChatMsg = (ChatMsg_RQ)packet;
-                Logger.Log(LogLevel.Temp, $"[Recv::ChatMsg_RQ] {ChatMsg.msgText} / {ChatMsg.time}");
+                ChatMsg_RQ ChatMsg = (ChatMsg_RQ)Packet;
+                AdamLogger.Log(LogLevel.Temp, $"[Recv::ChatMsg_RQ] {ChatMsg.MsgText} / {ChatMsg.Time}");
 
-                ChatMsg_RS packetToSend = new ChatMsg_RS();
-                packetToSend.msgText = "Hello From Server!!";
-                packetToSend.time = DateTime.UtcNow;
+                ChatMsg_RS PacketToSend = new ChatMsg_RS();
+                PacketToSend.MsgText = "Hello From Server!!";
+                PacketToSend.Time = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow);
 
-                Send(packetToSend);
+                Send(PacketToSend);
             }
-            else if(packet is ListTest_RQ)
+            else if (Packet is ListTest_RQ)
             {
-                ListTest_RQ ListTest = (ListTest_RQ)packet;
+                ListTest_RQ ListTest = (ListTest_RQ)Packet;
                 ListTest_RS packetToSend = new ListTest_RS();
-                packetToSend.numOfCharacters = new List<int>();
-                foreach (var sentence in ListTest.sentences)
+                List<int> NumOfSentences = new List<int>();
+                foreach (var Sentence in ListTest.Sentences)
                 {
-                    Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] sentences: {sentence}");
-                    packetToSend.numOfCharacters.Add(sentence.Length);
+                    AdamLogger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] Sentence: {Sentence}");
+                    NumOfSentences.Add(Sentence.Length);
                 }
-                Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] nickname: {ListTest.nickname}");
-                Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] time: {ListTest.time}");
+                packetToSend.NumOfSentences.Add(NumOfSentences);
 
-                packetToSend.nickname = ListTest.nickname;
-                packetToSend.time = ListTest.time;
+                AdamLogger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] Nickname: {ListTest.Nickname}");
+                AdamLogger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] Time {ListTest.Time}");
+
+                packetToSend.Nickname = ListTest.Nickname;
+                packetToSend.Time = ListTest.Time;
 
                 Send(ListTest);
             }
-            else if (packet is DictionaryTest_RQ)
+            else if (Packet is DictionaryTest_RQ)
             {
-                DictionaryTest_RQ DictTest = (DictionaryTest_RQ)packet;
-                DictionaryTest_RS packetToSend = new DictionaryTest_RS();
-                packetToSend.numOfCharacters = new Dictionary<string, int>();
-                foreach (var pair in DictTest.numOfCharacters)
+                DictionaryTest_RQ DictTest = (DictionaryTest_RQ)Packet;
+                DictionaryTest_RS PacketToSend = new DictionaryTest_RS();
+                Dictionary<string, int> NumOfSentences = new Dictionary<string, int>();
+                foreach (var pair in DictTest.NumOfSentences)
                 {
-                    Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] key: {pair.Key} / value: {pair.Value}");
-                    packetToSend.numOfCharacters.Add(pair.Value, pair.Key);
+                    AdamLogger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] key: {pair.Key} / value: {pair.Value}");
+                    NumOfSentences.Add(pair.Value, pair.Key);
                 }
-                Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] nickname: {DictTest.nickname}");
-                Logger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] time: {DictTest.time}");
+                PacketToSend.NumOfSentences.Add(NumOfSentences);
 
-                packetToSend.nickname = DictTest.nickname;
-                packetToSend.time = DictTest.time;
+                AdamLogger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] nickname: {DictTest.Nickname}");
+                AdamLogger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] time: {DictTest.Time}");
 
-                Send(packetToSend);
+                PacketToSend.Nickname = DictTest.Nickname;
+                PacketToSend.Time = DictTest.Time;
+
+                Send(PacketToSend);
             }
-            else if (packet is ClassListTest_RQ)
+            else if (Packet is ClassListTest_RQ)
             {
-                ClassListTest_RQ ChatListTest = (ClassListTest_RQ)packet;
-                ClassListTest_RS packetToSend = new ClassListTest_RS();
-                packetToSend.chatList = new List<ChatMsg_RS>();
-                foreach (var chat in ChatListTest.chatList)
+                ClassListTest_RQ ChatListTest = (ClassListTest_RQ)Packet;
+                ClassListTest_RS PacketToSend = new ClassListTest_RS();
+                List<ChatMsg_RS> ChatList = new List<ChatMsg_RS>();
+                foreach (var Chat in ChatListTest.ChatLIst)
                 {
-                    Logger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] chat.msgText : {chat.msgText}");
+                    AdamLogger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] chat.msgText : {Chat.MsgText}");
                     ChatMsg_RS ChatToSend = new ChatMsg_RS();
-                    ChatToSend.msgText = chat.msgText;
-                    ChatToSend.time = chat.time;
-                    packetToSend.chatList.Add(ChatToSend);
+                    ChatToSend.MsgText = Chat.MsgText;
+                    ChatToSend.Time = Chat.Time;
+                    ChatList.Add(ChatToSend);
                 }
-                Logger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] ChatListTest.time: {ChatListTest.time}");
-                packetToSend.nickname = ChatListTest.nickname;
-                packetToSend.time = ChatListTest.time;
+                PacketToSend.ChatLIst.Add(ChatList);
+                AdamLogger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] ChatListTest.time: {ChatListTest.Time}");
+                PacketToSend.Nickname = ChatListTest.Nickname;
+                PacketToSend.Time = ChatListTest.Time;
 
-                Send(packetToSend);
+                Send(PacketToSend);
             }
-            else if (packet is ClassDictionaryTest_RQ)
+            else if (Packet is ClassDictionaryTest_RQ)
             {
-                ClassDictionaryTest_RQ ChatListTest = (ClassDictionaryTest_RQ)packet;
-                ClassDictionaryTest_RS packetToSend = new ClassDictionaryTest_RS();
-                packetToSend.chatList = new Dictionary<int, ChatMsg_RS>();
-                foreach (var chat in ChatListTest.chatList)
+                ClassDictionaryTest_RQ ChatListTest = (ClassDictionaryTest_RQ)Packet;
+                ClassDictionaryTest_RS PacketToSend = new ClassDictionaryTest_RS();
+                Dictionary<int, ChatMsg_RS>  ChatList = new Dictionary<int, ChatMsg_RS>();
+                foreach (var chat in ChatListTest.ChatLIst)
                 {
-                    Logger.Log(LogLevel.Temp, $"[Recv::ClassDictionaryTest_RQ] chat.msgText : {chat.Key} / {chat.Value.msgText}");
+                    AdamLogger.Log(LogLevel.Temp, $"[Recv::ClassDictionaryTest_RQ] chat.msgText : {chat.Key} / {chat.Value.MsgText}");
                     ChatMsg_RS ChatToSend = new ChatMsg_RS();
-                    ChatToSend.msgText = chat.Value.msgText;
-                    ChatToSend.time = chat.Value.time;
-                    packetToSend.chatList.Add(chat.Key, ChatToSend);
+                    ChatToSend.MsgText = chat.Value.MsgText;
+                    ChatToSend.Time = chat.Value.Time;
+                    ChatList.Add(chat.Key, ChatToSend);
                 }
-                Logger.Log(LogLevel.Temp, $"[Recv::ClassDictionaryTest_RQ] ChatListTest.time: {ChatListTest.time}");
-                packetToSend.nickname = ChatListTest.nickname;
-                packetToSend.time = ChatListTest.time;
+                PacketToSend.ChatLIst.Add(ChatList);
+                AdamLogger.Log(LogLevel.Temp, $"[Recv::ClassDictionaryTest_RQ] ChatListTest.time: {ChatListTest.Time}");
+                PacketToSend.Nickname = ChatListTest.Nickname;
+                PacketToSend.Time = ChatListTest.Time;
 
-                Send(packetToSend);
+                Send(PacketToSend);
             }
             else
             {
-                Logger.Log(LogLevel.Temp, $"[Recv] {packet.GetType().Name}");
+                AdamLogger.Log(LogLevel.Temp, $"[Recv] {Packet.GetType().Name}");
             }
 
         }
 
         protected override void OnSend(int sendSize)
         {
-            Logger.Log(LogLevel.Temp, $"[Send] Send Size : {sendSize}");
+            AdamLogger.Log(LogLevel.Temp, $"[Send] Send Size : {sendSize}");
         }
     }
 
     class Program
     {
-        static Listener _listener = new Listener();
+        static AdamListener Listener = new AdamListener();
         static void Main(string[] args)
         {
-            _listener.Init(() => { return new LobbySession(); });
+            Listener.Init(() => { return new LobbySession(); });
 
             while (true)
             {
             }
         }
-    }
+    }   
 }

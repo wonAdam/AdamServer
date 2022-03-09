@@ -1,4 +1,4 @@
-﻿using ProtobufCodeGenerator;
+﻿using ProtobufSourceGenerator;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

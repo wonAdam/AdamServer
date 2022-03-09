@@ -8,14 +8,14 @@ namespace ServerLib
 {
     public class SendBufferHelper
     {
-        public static ThreadLocal<SendBuffer> CurrentBuffer = new ThreadLocal<SendBuffer>(() => { return null; });
+        public static ThreadLocal<AdamSendBuffer> CurrentBuffer = new ThreadLocal<AdamSendBuffer>(() => { return null; });
         public static ArraySegment<byte> Open(int reservedSize)
         {
             if (CurrentBuffer.Value == null)
-                CurrentBuffer.Value = new SendBuffer(ServerConstData.SendBufferSize);
+                CurrentBuffer.Value = new AdamSendBuffer(ServerConstData.SendBufferSize);
 
             if (CurrentBuffer.Value.FreeSize < reservedSize)
-                CurrentBuffer.Value = new SendBuffer(ServerConstData.SendBufferSize);
+                CurrentBuffer.Value = new AdamSendBuffer(ServerConstData.SendBufferSize);
 
             return CurrentBuffer.Value.Open(reservedSize);
         }
@@ -26,14 +26,14 @@ namespace ServerLib
         }
     }
 
-    public class SendBuffer
+    public class AdamSendBuffer
     {
         byte[] _buffer;
         int _usedSize = 0;
 
         public int FreeSize { get { return _buffer.Length - _usedSize; } }
 
-        public SendBuffer(int chunkSize)
+        public AdamSendBuffer(int chunkSize)
         {
             _buffer = new byte[chunkSize];
         }

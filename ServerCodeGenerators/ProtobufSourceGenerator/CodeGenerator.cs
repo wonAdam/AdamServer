@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace ProtobufCodeGenerator
+namespace ProtobufSourceGenerator
 {
     public class CodeGenerator
     {
@@ -14,9 +14,7 @@ namespace ProtobufCodeGenerator
         internal static void Generate()
         {
             // 1. Xml 파일 읽기
-            DirectoryInfo SolutionDirInfo = PathManager.TryGetSolutionDirectoryInfo();
-            XmlDocument Doc = new XmlDocument();
-            Doc.Load(Path.Combine(SolutionDirInfo.FullName, "ServerCodeGenerators", "ProtobufSourceGenerator", "PacketRaw.xml"));
+            XmlDocument Doc = PacketXmlReader.ReadPacketRaw();
 
             // 2. Xml 파일로 .proto 파일 만들기
             MakeProtobufSource(Doc);

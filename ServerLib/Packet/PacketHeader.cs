@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Google.Protobuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using Google.Protobuf.Protocol.PacketGenerated;
+using Google.Protobuf.Reflection;
 
 namespace ServerLib.Packet
 {
@@ -22,20 +25,18 @@ namespace ServerLib.Packet
         public ushort PacketSize { get; set; }
         public ushort PacketId { get; set; }
 
+        public MessageDescriptor Descriptor => throw new NotImplementedException();
+
         public PacketHeader()
         {
         }
 
-        public PacketHeader(PacketBase packet)
+        public PacketHeader(IMessage Packet)
         {
-            PacketSize = packet.PacketSize;
-            PacketId = packet.PacketId;
+            PacketSize = (ushort)Packet.CalculateSize();
+            PacketId = PacketToIdConverterGenerated.GetId(Packet);
         }
+
     }
 
-    public abstract class PacketBase
-    {
-        public abstract ushort PacketId { get; }
-        public abstract ushort PacketSize { get; }
-    }
 }

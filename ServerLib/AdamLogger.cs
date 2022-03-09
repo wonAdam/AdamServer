@@ -13,7 +13,7 @@ namespace ServerLib
         Error
     }
 
-    public class Logger
+    public class AdamLogger
     {
         public static void Log(LogLevel level, string log)
         {

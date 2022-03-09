@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ServerLib
 {
-    internal class RecvBuffer
+    internal class AdamRecvBuffer
     {
         ArraySegment<byte> _buffer;
         int _readPos;
         int _writePos;
 
-        public RecvBuffer(int bufferSize)
+        public AdamRecvBuffer(int bufferSize)
         {
             _buffer = new ArraySegment<byte>(new byte[bufferSize], 0, bufferSize);
         }

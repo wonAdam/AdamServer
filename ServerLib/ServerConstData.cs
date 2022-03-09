@@ -12,12 +12,4 @@ namespace ServerLib
         static public int SendBufferSize = (int)Math.Pow(2, 16);
     }
 
-    public enum EError
-    { 
-        None,
-        Exception,
-        PacketFragmentation,
-    
-    }
-
 }
