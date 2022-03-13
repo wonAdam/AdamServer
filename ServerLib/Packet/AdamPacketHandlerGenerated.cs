@@ -1,4 +1,5 @@
 
+using System;
 using Google.Protobuf;
 using Google.Protobuf.Protocol.PacketGenerated;
 using ServerLib.Packet;
@@ -24,25 +25,29 @@ namespace ServerLib.Adam
 
         public Action<Ping_RS> OnRecvEventPing_RS;
 
-        public Action<ChatMsg_RQ> OnRecvEventChatMsg_RQ;
+        public Action<CreateAccount_RQ> OnRecvEventCreateAccount_RQ;
 
-        public Action<ChatMsg_RS> OnRecvEventChatMsg_RS;
+        public Action<CreateAccount_RS> OnRecvEventCreateAccount_RS;
 
-        public Action<ListTest_RQ> OnRecvEventListTest_RQ;
+        public Action<Dummy2_RQ> OnRecvEventDummy2_RQ;
 
-        public Action<ListTest_RS> OnRecvEventListTest_RS;
+        public Action<Dummy2_RS> OnRecvEventDummy2_RS;
 
-        public Action<DictionaryTest_RQ> OnRecvEventDictionaryTest_RQ;
+        public Action<Dummy1_RQ> OnRecvEventDummy1_RQ;
 
-        public Action<DictionaryTest_RS> OnRecvEventDictionaryTest_RS;
+        public Action<Dummy1_RS> OnRecvEventDummy1_RS;
 
-        public Action<ClassListTest_RQ> OnRecvEventClassListTest_RQ;
+        public Action<Login_RQ> OnRecvEventLogin_RQ;
 
-        public Action<ClassListTest_RS> OnRecvEventClassListTest_RS;
+        public Action<Login_RS> OnRecvEventLogin_RS;
 
-        public Action<ClassDictionaryTest_RQ> OnRecvEventClassDictionaryTest_RQ;
+        public Action<DummyDbUpdate_RQ> OnRecvEventDummyDbUpdate_RQ;
 
-        public Action<ClassDictionaryTest_RS> OnRecvEventClassDictionaryTest_RS;
+        public Action<DummyDbUpdate_RS> OnRecvEventDummyDbUpdate_RS;
+
+        public Action<GetPlayerDbIdByPlayerNickname_RQ> OnRecvEventGetPlayerDbIdByPlayerNickname_RQ;
+
+        public Action<GetPlayerDbIdByPlayerNickname_RS> OnRecvEventGetPlayerDbIdByPlayerNickname_RS;
 
 
         
@@ -54,43 +59,51 @@ namespace ServerLib.Adam
         {
         }
 
-        protected virtual void OnRecvChatMsg_RQ(ChatMsg_RQ Packet)
+        protected virtual void OnRecvCreateAccount_RQ(CreateAccount_RQ Packet)
         {
         }
 
-        protected virtual void OnRecvChatMsg_RS(ChatMsg_RS Packet)
+        protected virtual void OnRecvCreateAccount_RS(CreateAccount_RS Packet)
         {
         }
 
-        protected virtual void OnRecvListTest_RQ(ListTest_RQ Packet)
+        protected virtual void OnRecvDummy2_RQ(Dummy2_RQ Packet)
         {
         }
 
-        protected virtual void OnRecvListTest_RS(ListTest_RS Packet)
+        protected virtual void OnRecvDummy2_RS(Dummy2_RS Packet)
         {
         }
 
-        protected virtual void OnRecvDictionaryTest_RQ(DictionaryTest_RQ Packet)
+        protected virtual void OnRecvDummy1_RQ(Dummy1_RQ Packet)
         {
         }
 
-        protected virtual void OnRecvDictionaryTest_RS(DictionaryTest_RS Packet)
+        protected virtual void OnRecvDummy1_RS(Dummy1_RS Packet)
         {
         }
 
-        protected virtual void OnRecvClassListTest_RQ(ClassListTest_RQ Packet)
+        protected virtual void OnRecvLogin_RQ(Login_RQ Packet)
         {
         }
 
-        protected virtual void OnRecvClassListTest_RS(ClassListTest_RS Packet)
+        protected virtual void OnRecvLogin_RS(Login_RS Packet)
         {
         }
 
-        protected virtual void OnRecvClassDictionaryTest_RQ(ClassDictionaryTest_RQ Packet)
+        protected virtual void OnRecvDummyDbUpdate_RQ(DummyDbUpdate_RQ Packet)
         {
         }
 
-        protected virtual void OnRecvClassDictionaryTest_RS(ClassDictionaryTest_RS Packet)
+        protected virtual void OnRecvDummyDbUpdate_RS(DummyDbUpdate_RS Packet)
+        {
+        }
+
+        protected virtual void OnRecvGetPlayerDbIdByPlayerNickname_RQ(GetPlayerDbIdByPlayerNickname_RQ Packet)
+        {
+        }
+
+        protected virtual void OnRecvGetPlayerDbIdByPlayerNickname_RS(GetPlayerDbIdByPlayerNickname_RS Packet)
         {
         }
 
@@ -132,73 +145,87 @@ namespace ServerLib.Adam
                     break;
                 }
 
-                case ChatMsg_RQ.Id:
+                case CreateAccount_RQ.Id:
                 {
-                    OnRecvEventChatMsg_RQ?.Invoke((ChatMsg_RQ)Packet);
-                    OnRecvChatMsg_RQ((ChatMsg_RQ)Packet);
+                    OnRecvEventCreateAccount_RQ?.Invoke((CreateAccount_RQ)Packet);
+                    OnRecvCreateAccount_RQ((CreateAccount_RQ)Packet);
                     break;
                 }
 
-                case ChatMsg_RS.Id:
+                case CreateAccount_RS.Id:
                 {
-                    OnRecvEventChatMsg_RS?.Invoke((ChatMsg_RS)Packet);
-                    OnRecvChatMsg_RS((ChatMsg_RS)Packet);
+                    OnRecvEventCreateAccount_RS?.Invoke((CreateAccount_RS)Packet);
+                    OnRecvCreateAccount_RS((CreateAccount_RS)Packet);
                     break;
                 }
 
-                case ListTest_RQ.Id:
+                case Dummy2_RQ.Id:
                 {
-                    OnRecvEventListTest_RQ?.Invoke((ListTest_RQ)Packet);
-                    OnRecvListTest_RQ((ListTest_RQ)Packet);
+                    OnRecvEventDummy2_RQ?.Invoke((Dummy2_RQ)Packet);
+                    OnRecvDummy2_RQ((Dummy2_RQ)Packet);
                     break;
                 }
 
-                case ListTest_RS.Id:
+                case Dummy2_RS.Id:
                 {
-                    OnRecvEventListTest_RS?.Invoke((ListTest_RS)Packet);
-                    OnRecvListTest_RS((ListTest_RS)Packet);
+                    OnRecvEventDummy2_RS?.Invoke((Dummy2_RS)Packet);
+                    OnRecvDummy2_RS((Dummy2_RS)Packet);
                     break;
                 }
 
-                case DictionaryTest_RQ.Id:
+                case Dummy1_RQ.Id:
                 {
-                    OnRecvEventDictionaryTest_RQ?.Invoke((DictionaryTest_RQ)Packet);
-                    OnRecvDictionaryTest_RQ((DictionaryTest_RQ)Packet);
+                    OnRecvEventDummy1_RQ?.Invoke((Dummy1_RQ)Packet);
+                    OnRecvDummy1_RQ((Dummy1_RQ)Packet);
                     break;
                 }
 
-                case DictionaryTest_RS.Id:
+                case Dummy1_RS.Id:
                 {
-                    OnRecvEventDictionaryTest_RS?.Invoke((DictionaryTest_RS)Packet);
-                    OnRecvDictionaryTest_RS((DictionaryTest_RS)Packet);
+                    OnRecvEventDummy1_RS?.Invoke((Dummy1_RS)Packet);
+                    OnRecvDummy1_RS((Dummy1_RS)Packet);
                     break;
                 }
 
-                case ClassListTest_RQ.Id:
+                case Login_RQ.Id:
                 {
-                    OnRecvEventClassListTest_RQ?.Invoke((ClassListTest_RQ)Packet);
-                    OnRecvClassListTest_RQ((ClassListTest_RQ)Packet);
+                    OnRecvEventLogin_RQ?.Invoke((Login_RQ)Packet);
+                    OnRecvLogin_RQ((Login_RQ)Packet);
                     break;
                 }
 
-                case ClassListTest_RS.Id:
+                case Login_RS.Id:
                 {
-                    OnRecvEventClassListTest_RS?.Invoke((ClassListTest_RS)Packet);
-                    OnRecvClassListTest_RS((ClassListTest_RS)Packet);
+                    OnRecvEventLogin_RS?.Invoke((Login_RS)Packet);
+                    OnRecvLogin_RS((Login_RS)Packet);
                     break;
                 }
 
-                case ClassDictionaryTest_RQ.Id:
+                case DummyDbUpdate_RQ.Id:
                 {
-                    OnRecvEventClassDictionaryTest_RQ?.Invoke((ClassDictionaryTest_RQ)Packet);
-                    OnRecvClassDictionaryTest_RQ((ClassDictionaryTest_RQ)Packet);
+                    OnRecvEventDummyDbUpdate_RQ?.Invoke((DummyDbUpdate_RQ)Packet);
+                    OnRecvDummyDbUpdate_RQ((DummyDbUpdate_RQ)Packet);
                     break;
                 }
 
-                case ClassDictionaryTest_RS.Id:
+                case DummyDbUpdate_RS.Id:
                 {
-                    OnRecvEventClassDictionaryTest_RS?.Invoke((ClassDictionaryTest_RS)Packet);
-                    OnRecvClassDictionaryTest_RS((ClassDictionaryTest_RS)Packet);
+                    OnRecvEventDummyDbUpdate_RS?.Invoke((DummyDbUpdate_RS)Packet);
+                    OnRecvDummyDbUpdate_RS((DummyDbUpdate_RS)Packet);
+                    break;
+                }
+
+                case GetPlayerDbIdByPlayerNickname_RQ.Id:
+                {
+                    OnRecvEventGetPlayerDbIdByPlayerNickname_RQ?.Invoke((GetPlayerDbIdByPlayerNickname_RQ)Packet);
+                    OnRecvGetPlayerDbIdByPlayerNickname_RQ((GetPlayerDbIdByPlayerNickname_RQ)Packet);
+                    break;
+                }
+
+                case GetPlayerDbIdByPlayerNickname_RS.Id:
+                {
+                    OnRecvEventGetPlayerDbIdByPlayerNickname_RS?.Invoke((GetPlayerDbIdByPlayerNickname_RS)Packet);
+                    OnRecvGetPlayerDbIdByPlayerNickname_RS((GetPlayerDbIdByPlayerNickname_RS)Packet);
                     break;
                 }
 

@@ -25,145 +25,115 @@
     }
 
 
-    message ChatMsg_RQ 
+    message CreateAccount_RQ 
     {
         
-        string msgText = 1;
+        string Nickname = 1;
 
 
-        google.protobuf.Timestamp Time = 2;
+        string Password = 2;
 
 
     }
 
 
-    message ChatMsg_RS 
+    message CreateAccount_RS 
     {
         
-        string msgText = 1;
+    }
 
 
-        google.protobuf.Timestamp Time = 2;
+    message Dummy2_RQ 
+    {
+        
+        repeated string DummyStrings = 1;
 
 
     }
 
 
-    message ListTest_RQ 
+    message Dummy2_RS 
     {
         
-        repeated string Sentences = 1;
-
-
-        google.protobuf.Timestamp Time = 2;
-
-
-        string Nickname = 3;
+        string DummyString = 1;
 
 
     }
 
 
-    message ListTest_RS 
+    message Dummy1_RQ 
     {
         
-        repeated int32 NumOfSentences = 1;
-
-
-        google.protobuf.Timestamp Time = 2;
-
-
-        string Nickname = 3;
+        string DummyString = 1;
 
 
     }
 
 
-    message DictionaryTest_RQ 
+    message Dummy1_RS 
     {
         
-        map<int32, string> NumOfSentences = 1;
-
-
-        google.protobuf.Timestamp Time = 2;
-
-
-        string Nickname = 3;
+        repeated string DummyStrings = 1;
 
 
     }
 
 
-    message DictionaryTest_RS 
+    message Login_RQ 
     {
         
-        map<string, int32> NumOfSentences = 1;
+        string Nickname = 1;
 
 
-        google.protobuf.Timestamp Time = 2;
-
-
-        string Nickname = 3;
+        string Password = 2;
 
 
     }
 
 
-    message ClassListTest_RQ 
+    message Login_RS 
     {
         
-        repeated ChatMsg_RQ ChatLIst = 1;
-
-
-        google.protobuf.Timestamp Time = 2;
-
-
-        string Nickname = 3;
+        bool LoginSuccess = 1;
 
 
     }
 
 
-    message ClassListTest_RS 
+    message DummyDbUpdate_RQ 
     {
         
-        repeated ChatMsg_RS ChatLIst = 1;
+        int64 PlayerDbId = 1;
 
 
-        google.protobuf.Timestamp Time = 2;
-
-
-        string Nickname = 3;
+        int32 Value = 2;
 
 
     }
 
 
-    message ClassDictionaryTest_RQ 
+    message DummyDbUpdate_RS 
     {
         
-        map<int32, ChatMsg_RQ> ChatLIst = 1;
-
-
-        google.protobuf.Timestamp Time = 2;
-
-
-        string Nickname = 3;
+        int32 Value = 1;
 
 
     }
 
 
-    message ClassDictionaryTest_RS 
+    message GetPlayerDbIdByPlayerNickname_RQ 
     {
         
-        map<int32, ChatMsg_RS> ChatLIst = 1;
+        string Nickname = 1;
 
 
-        google.protobuf.Timestamp Time = 2;
+    }
 
 
-        string Nickname = 3;
+    message GetPlayerDbIdByPlayerNickname_RS 
+    {
+        
+        int64 PlayerDbId = 1;
 
 
     }

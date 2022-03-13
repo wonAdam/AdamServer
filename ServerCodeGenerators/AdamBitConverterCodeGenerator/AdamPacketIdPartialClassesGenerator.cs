@@ -1,6 +1,7 @@
 ﻿using ProtobufSourceGenerator;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,11 +33,13 @@ namespace AdamBitConverterCodeGenerator
                 }
 
                 string ClassName = ClassNode.SelectSingleNode("Name").InnerText;
+                string PacketType = ClassNode.Attributes["type"].Value;
+                string PacketClassName = PacketXmlReader.MakePacketClassName(ClassName, PacketType);
 
-                string SerializeFunc = String.Format(PartialClassFormat, ClassName, Id);
+                string SerializeFunc = String.Format(PartialClassFormat, PacketClassName, Id);
                 SbPartialClasses.Append(SerializeFunc);
 
-                string IfStatement = String.Format(Id == 1 ? GetIdIfFormat : GetIdElseIfFormat, ClassName);
+                string IfStatement = String.Format(Id == 1 ? GetIdIfFormat : GetIdElseIfFormat, PacketClassName);
                 SbGetIdIfStatements.Append(IfStatement);
 
                 Id++;
@@ -52,6 +55,7 @@ namespace AdamBitConverterCodeGenerator
         // 1: if문들
         private static string AdamPacketIdPartialClassesFormat =
 @"
+using System;
 using Google.Protobuf;
 using Google.Protobuf.Protocol.PacketGenerated;
 

@@ -1,4 +1,5 @@
 
+using System;
 using Google.Protobuf;
 using Google.Protobuf.Protocol.PacketGenerated;
 using ServerLib.Packet;
@@ -61,54 +62,64 @@ namespace ServerLib.Adam
                     return Serialize((Ping_RS)Data);
                 }
 
-                case ChatMsg_RQ.Id:
+                case CreateAccount_RQ.Id:
                 {
-                    return Serialize((ChatMsg_RQ)Data);
+                    return Serialize((CreateAccount_RQ)Data);
                 }
 
-                case ChatMsg_RS.Id:
+                case CreateAccount_RS.Id:
                 {
-                    return Serialize((ChatMsg_RS)Data);
+                    return Serialize((CreateAccount_RS)Data);
                 }
 
-                case ListTest_RQ.Id:
+                case Dummy2_RQ.Id:
                 {
-                    return Serialize((ListTest_RQ)Data);
+                    return Serialize((Dummy2_RQ)Data);
                 }
 
-                case ListTest_RS.Id:
+                case Dummy2_RS.Id:
                 {
-                    return Serialize((ListTest_RS)Data);
+                    return Serialize((Dummy2_RS)Data);
                 }
 
-                case DictionaryTest_RQ.Id:
+                case Dummy1_RQ.Id:
                 {
-                    return Serialize((DictionaryTest_RQ)Data);
+                    return Serialize((Dummy1_RQ)Data);
                 }
 
-                case DictionaryTest_RS.Id:
+                case Dummy1_RS.Id:
                 {
-                    return Serialize((DictionaryTest_RS)Data);
+                    return Serialize((Dummy1_RS)Data);
                 }
 
-                case ClassListTest_RQ.Id:
+                case Login_RQ.Id:
                 {
-                    return Serialize((ClassListTest_RQ)Data);
+                    return Serialize((Login_RQ)Data);
                 }
 
-                case ClassListTest_RS.Id:
+                case Login_RS.Id:
                 {
-                    return Serialize((ClassListTest_RS)Data);
+                    return Serialize((Login_RS)Data);
                 }
 
-                case ClassDictionaryTest_RQ.Id:
+                case DummyDbUpdate_RQ.Id:
                 {
-                    return Serialize((ClassDictionaryTest_RQ)Data);
+                    return Serialize((DummyDbUpdate_RQ)Data);
                 }
 
-                case ClassDictionaryTest_RS.Id:
+                case DummyDbUpdate_RS.Id:
                 {
-                    return Serialize((ClassDictionaryTest_RS)Data);
+                    return Serialize((DummyDbUpdate_RS)Data);
+                }
+
+                case GetPlayerDbIdByPlayerNickname_RQ.Id:
+                {
+                    return Serialize((GetPlayerDbIdByPlayerNickname_RQ)Data);
+                }
+
+                case GetPlayerDbIdByPlayerNickname_RS.Id:
+                {
+                    return Serialize((GetPlayerDbIdByPlayerNickname_RS)Data);
                 }
 
                 default: 
@@ -140,72 +151,86 @@ namespace ServerLib.Adam
                     return Result;
                 }
 
-                case ChatMsg_RQ.Id:
+                case CreateAccount_RQ.Id:
                 {
-                    EDeserializeResult Result = Deserialize(Buff, Header, out ChatMsg_RQ? PacketData);
+                    EDeserializeResult Result = Deserialize(Buff, Header, out CreateAccount_RQ? PacketData);
                     Data = PacketData;
                     return Result;
                 }
 
-                case ChatMsg_RS.Id:
+                case CreateAccount_RS.Id:
                 {
-                    EDeserializeResult Result = Deserialize(Buff, Header, out ChatMsg_RS? PacketData);
+                    EDeserializeResult Result = Deserialize(Buff, Header, out CreateAccount_RS? PacketData);
                     Data = PacketData;
                     return Result;
                 }
 
-                case ListTest_RQ.Id:
+                case Dummy2_RQ.Id:
                 {
-                    EDeserializeResult Result = Deserialize(Buff, Header, out ListTest_RQ? PacketData);
+                    EDeserializeResult Result = Deserialize(Buff, Header, out Dummy2_RQ? PacketData);
                     Data = PacketData;
                     return Result;
                 }
 
-                case ListTest_RS.Id:
+                case Dummy2_RS.Id:
                 {
-                    EDeserializeResult Result = Deserialize(Buff, Header, out ListTest_RS? PacketData);
+                    EDeserializeResult Result = Deserialize(Buff, Header, out Dummy2_RS? PacketData);
                     Data = PacketData;
                     return Result;
                 }
 
-                case DictionaryTest_RQ.Id:
+                case Dummy1_RQ.Id:
                 {
-                    EDeserializeResult Result = Deserialize(Buff, Header, out DictionaryTest_RQ? PacketData);
+                    EDeserializeResult Result = Deserialize(Buff, Header, out Dummy1_RQ? PacketData);
                     Data = PacketData;
                     return Result;
                 }
 
-                case DictionaryTest_RS.Id:
+                case Dummy1_RS.Id:
                 {
-                    EDeserializeResult Result = Deserialize(Buff, Header, out DictionaryTest_RS? PacketData);
+                    EDeserializeResult Result = Deserialize(Buff, Header, out Dummy1_RS? PacketData);
                     Data = PacketData;
                     return Result;
                 }
 
-                case ClassListTest_RQ.Id:
+                case Login_RQ.Id:
                 {
-                    EDeserializeResult Result = Deserialize(Buff, Header, out ClassListTest_RQ? PacketData);
+                    EDeserializeResult Result = Deserialize(Buff, Header, out Login_RQ? PacketData);
                     Data = PacketData;
                     return Result;
                 }
 
-                case ClassListTest_RS.Id:
+                case Login_RS.Id:
                 {
-                    EDeserializeResult Result = Deserialize(Buff, Header, out ClassListTest_RS? PacketData);
+                    EDeserializeResult Result = Deserialize(Buff, Header, out Login_RS? PacketData);
                     Data = PacketData;
                     return Result;
                 }
 
-                case ClassDictionaryTest_RQ.Id:
+                case DummyDbUpdate_RQ.Id:
                 {
-                    EDeserializeResult Result = Deserialize(Buff, Header, out ClassDictionaryTest_RQ? PacketData);
+                    EDeserializeResult Result = Deserialize(Buff, Header, out DummyDbUpdate_RQ? PacketData);
                     Data = PacketData;
                     return Result;
                 }
 
-                case ClassDictionaryTest_RS.Id:
+                case DummyDbUpdate_RS.Id:
                 {
-                    EDeserializeResult Result = Deserialize(Buff, Header, out ClassDictionaryTest_RS? PacketData);
+                    EDeserializeResult Result = Deserialize(Buff, Header, out DummyDbUpdate_RS? PacketData);
+                    Data = PacketData;
+                    return Result;
+                }
+
+                case GetPlayerDbIdByPlayerNickname_RQ.Id:
+                {
+                    EDeserializeResult Result = Deserialize(Buff, Header, out GetPlayerDbIdByPlayerNickname_RQ? PacketData);
+                    Data = PacketData;
+                    return Result;
+                }
+
+                case GetPlayerDbIdByPlayerNickname_RS.Id:
+                {
+                    EDeserializeResult Result = Deserialize(Buff, Header, out GetPlayerDbIdByPlayerNickname_RS? PacketData);
                     Data = PacketData;
                     return Result;
                 }
@@ -236,54 +261,64 @@ namespace ServerLib.Adam
                     return SizeOf((Ping_RS)Data);
                 }
 
-                case ChatMsg_RQ.Id:
+                case CreateAccount_RQ.Id:
                 {
-                    return SizeOf((ChatMsg_RQ)Data);
+                    return SizeOf((CreateAccount_RQ)Data);
                 }
 
-                case ChatMsg_RS.Id:
+                case CreateAccount_RS.Id:
                 {
-                    return SizeOf((ChatMsg_RS)Data);
+                    return SizeOf((CreateAccount_RS)Data);
                 }
 
-                case ListTest_RQ.Id:
+                case Dummy2_RQ.Id:
                 {
-                    return SizeOf((ListTest_RQ)Data);
+                    return SizeOf((Dummy2_RQ)Data);
                 }
 
-                case ListTest_RS.Id:
+                case Dummy2_RS.Id:
                 {
-                    return SizeOf((ListTest_RS)Data);
+                    return SizeOf((Dummy2_RS)Data);
                 }
 
-                case DictionaryTest_RQ.Id:
+                case Dummy1_RQ.Id:
                 {
-                    return SizeOf((DictionaryTest_RQ)Data);
+                    return SizeOf((Dummy1_RQ)Data);
                 }
 
-                case DictionaryTest_RS.Id:
+                case Dummy1_RS.Id:
                 {
-                    return SizeOf((DictionaryTest_RS)Data);
+                    return SizeOf((Dummy1_RS)Data);
                 }
 
-                case ClassListTest_RQ.Id:
+                case Login_RQ.Id:
                 {
-                    return SizeOf((ClassListTest_RQ)Data);
+                    return SizeOf((Login_RQ)Data);
                 }
 
-                case ClassListTest_RS.Id:
+                case Login_RS.Id:
                 {
-                    return SizeOf((ClassListTest_RS)Data);
+                    return SizeOf((Login_RS)Data);
                 }
 
-                case ClassDictionaryTest_RQ.Id:
+                case DummyDbUpdate_RQ.Id:
                 {
-                    return SizeOf((ClassDictionaryTest_RQ)Data);
+                    return SizeOf((DummyDbUpdate_RQ)Data);
                 }
 
-                case ClassDictionaryTest_RS.Id:
+                case DummyDbUpdate_RS.Id:
                 {
-                    return SizeOf((ClassDictionaryTest_RS)Data);
+                    return SizeOf((DummyDbUpdate_RS)Data);
+                }
+
+                case GetPlayerDbIdByPlayerNickname_RQ.Id:
+                {
+                    return SizeOf((GetPlayerDbIdByPlayerNickname_RQ)Data);
+                }
+
+                case GetPlayerDbIdByPlayerNickname_RS.Id:
+                {
+                    return SizeOf((GetPlayerDbIdByPlayerNickname_RS)Data);
                 }
 
                 default: 
@@ -308,52 +343,62 @@ namespace ServerLib.Adam
             return Data.ToByteArray();
         }
 
-        public static byte[] Serialize(ChatMsg_RQ Data)
+        public static byte[] Serialize(CreateAccount_RQ Data)
         {
             return Data.ToByteArray();
         }
 
-        public static byte[] Serialize(ChatMsg_RS Data)
+        public static byte[] Serialize(CreateAccount_RS Data)
         {
             return Data.ToByteArray();
         }
 
-        public static byte[] Serialize(ListTest_RQ Data)
+        public static byte[] Serialize(Dummy2_RQ Data)
         {
             return Data.ToByteArray();
         }
 
-        public static byte[] Serialize(ListTest_RS Data)
+        public static byte[] Serialize(Dummy2_RS Data)
         {
             return Data.ToByteArray();
         }
 
-        public static byte[] Serialize(DictionaryTest_RQ Data)
+        public static byte[] Serialize(Dummy1_RQ Data)
         {
             return Data.ToByteArray();
         }
 
-        public static byte[] Serialize(DictionaryTest_RS Data)
+        public static byte[] Serialize(Dummy1_RS Data)
         {
             return Data.ToByteArray();
         }
 
-        public static byte[] Serialize(ClassListTest_RQ Data)
+        public static byte[] Serialize(Login_RQ Data)
         {
             return Data.ToByteArray();
         }
 
-        public static byte[] Serialize(ClassListTest_RS Data)
+        public static byte[] Serialize(Login_RS Data)
         {
             return Data.ToByteArray();
         }
 
-        public static byte[] Serialize(ClassDictionaryTest_RQ Data)
+        public static byte[] Serialize(DummyDbUpdate_RQ Data)
         {
             return Data.ToByteArray();
         }
 
-        public static byte[] Serialize(ClassDictionaryTest_RS Data)
+        public static byte[] Serialize(DummyDbUpdate_RS Data)
+        {
+            return Data.ToByteArray();
+        }
+
+        public static byte[] Serialize(GetPlayerDbIdByPlayerNickname_RQ Data)
+        {
+            return Data.ToByteArray();
+        }
+
+        public static byte[] Serialize(GetPlayerDbIdByPlayerNickname_RS Data)
         {
             return Data.ToByteArray();
         }
@@ -368,7 +413,7 @@ namespace ServerLib.Adam
                 return EDeserializeResult.PacketFragmentation;
             }
 
-            Data = Ping_RQ.Parser.ParseFrom(Buff);
+            Data = Ping_RQ.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
             return EDeserializeResult.Success;
         }
 
@@ -380,11 +425,11 @@ namespace ServerLib.Adam
                 return EDeserializeResult.PacketFragmentation;
             }
 
-            Data = Ping_RS.Parser.ParseFrom(Buff);
+            Data = Ping_RS.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
             return EDeserializeResult.Success;
         }
 
-        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out ChatMsg_RQ? Data)
+        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out CreateAccount_RQ? Data)
         {
             if(Buff.Count < Header.PacketSize)
             {
@@ -392,11 +437,11 @@ namespace ServerLib.Adam
                 return EDeserializeResult.PacketFragmentation;
             }
 
-            Data = ChatMsg_RQ.Parser.ParseFrom(Buff);
+            Data = CreateAccount_RQ.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
             return EDeserializeResult.Success;
         }
 
-        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out ChatMsg_RS? Data)
+        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out CreateAccount_RS? Data)
         {
             if(Buff.Count < Header.PacketSize)
             {
@@ -404,11 +449,11 @@ namespace ServerLib.Adam
                 return EDeserializeResult.PacketFragmentation;
             }
 
-            Data = ChatMsg_RS.Parser.ParseFrom(Buff);
+            Data = CreateAccount_RS.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
             return EDeserializeResult.Success;
         }
 
-        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out ListTest_RQ? Data)
+        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out Dummy2_RQ? Data)
         {
             if(Buff.Count < Header.PacketSize)
             {
@@ -416,11 +461,11 @@ namespace ServerLib.Adam
                 return EDeserializeResult.PacketFragmentation;
             }
 
-            Data = ListTest_RQ.Parser.ParseFrom(Buff);
+            Data = Dummy2_RQ.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
             return EDeserializeResult.Success;
         }
 
-        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out ListTest_RS? Data)
+        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out Dummy2_RS? Data)
         {
             if(Buff.Count < Header.PacketSize)
             {
@@ -428,11 +473,11 @@ namespace ServerLib.Adam
                 return EDeserializeResult.PacketFragmentation;
             }
 
-            Data = ListTest_RS.Parser.ParseFrom(Buff);
+            Data = Dummy2_RS.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
             return EDeserializeResult.Success;
         }
 
-        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out DictionaryTest_RQ? Data)
+        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out Dummy1_RQ? Data)
         {
             if(Buff.Count < Header.PacketSize)
             {
@@ -440,11 +485,11 @@ namespace ServerLib.Adam
                 return EDeserializeResult.PacketFragmentation;
             }
 
-            Data = DictionaryTest_RQ.Parser.ParseFrom(Buff);
+            Data = Dummy1_RQ.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
             return EDeserializeResult.Success;
         }
 
-        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out DictionaryTest_RS? Data)
+        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out Dummy1_RS? Data)
         {
             if(Buff.Count < Header.PacketSize)
             {
@@ -452,11 +497,11 @@ namespace ServerLib.Adam
                 return EDeserializeResult.PacketFragmentation;
             }
 
-            Data = DictionaryTest_RS.Parser.ParseFrom(Buff);
+            Data = Dummy1_RS.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
             return EDeserializeResult.Success;
         }
 
-        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out ClassListTest_RQ? Data)
+        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out Login_RQ? Data)
         {
             if(Buff.Count < Header.PacketSize)
             {
@@ -464,11 +509,11 @@ namespace ServerLib.Adam
                 return EDeserializeResult.PacketFragmentation;
             }
 
-            Data = ClassListTest_RQ.Parser.ParseFrom(Buff);
+            Data = Login_RQ.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
             return EDeserializeResult.Success;
         }
 
-        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out ClassListTest_RS? Data)
+        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out Login_RS? Data)
         {
             if(Buff.Count < Header.PacketSize)
             {
@@ -476,11 +521,11 @@ namespace ServerLib.Adam
                 return EDeserializeResult.PacketFragmentation;
             }
 
-            Data = ClassListTest_RS.Parser.ParseFrom(Buff);
+            Data = Login_RS.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
             return EDeserializeResult.Success;
         }
 
-        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out ClassDictionaryTest_RQ? Data)
+        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out DummyDbUpdate_RQ? Data)
         {
             if(Buff.Count < Header.PacketSize)
             {
@@ -488,11 +533,11 @@ namespace ServerLib.Adam
                 return EDeserializeResult.PacketFragmentation;
             }
 
-            Data = ClassDictionaryTest_RQ.Parser.ParseFrom(Buff);
+            Data = DummyDbUpdate_RQ.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
             return EDeserializeResult.Success;
         }
 
-        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out ClassDictionaryTest_RS? Data)
+        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out DummyDbUpdate_RS? Data)
         {
             if(Buff.Count < Header.PacketSize)
             {
@@ -500,7 +545,31 @@ namespace ServerLib.Adam
                 return EDeserializeResult.PacketFragmentation;
             }
 
-            Data = ClassDictionaryTest_RS.Parser.ParseFrom(Buff);
+            Data = DummyDbUpdate_RS.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
+            return EDeserializeResult.Success;
+        }
+
+        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out GetPlayerDbIdByPlayerNickname_RQ? Data)
+        {
+            if(Buff.Count < Header.PacketSize)
+            {
+                Data = null;
+                return EDeserializeResult.PacketFragmentation;
+            }
+
+            Data = GetPlayerDbIdByPlayerNickname_RQ.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
+            return EDeserializeResult.Success;
+        }
+
+        public static EDeserializeResult Deserialize(ArraySegment<byte> Buff, PacketHeader Header, out GetPlayerDbIdByPlayerNickname_RS? Data)
+        {
+            if(Buff.Count < Header.PacketSize)
+            {
+                Data = null;
+                return EDeserializeResult.PacketFragmentation;
+            }
+
+            Data = GetPlayerDbIdByPlayerNickname_RS.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
             return EDeserializeResult.Success;
         }
 
@@ -516,52 +585,62 @@ namespace ServerLib.Adam
             return Data.CalculateSize();
         }
 
-        public static int SizeOf(ChatMsg_RQ Data)
+        public static int SizeOf(CreateAccount_RQ Data)
         {
             return Data.CalculateSize();
         }
 
-        public static int SizeOf(ChatMsg_RS Data)
+        public static int SizeOf(CreateAccount_RS Data)
         {
             return Data.CalculateSize();
         }
 
-        public static int SizeOf(ListTest_RQ Data)
+        public static int SizeOf(Dummy2_RQ Data)
         {
             return Data.CalculateSize();
         }
 
-        public static int SizeOf(ListTest_RS Data)
+        public static int SizeOf(Dummy2_RS Data)
         {
             return Data.CalculateSize();
         }
 
-        public static int SizeOf(DictionaryTest_RQ Data)
+        public static int SizeOf(Dummy1_RQ Data)
         {
             return Data.CalculateSize();
         }
 
-        public static int SizeOf(DictionaryTest_RS Data)
+        public static int SizeOf(Dummy1_RS Data)
         {
             return Data.CalculateSize();
         }
 
-        public static int SizeOf(ClassListTest_RQ Data)
+        public static int SizeOf(Login_RQ Data)
         {
             return Data.CalculateSize();
         }
 
-        public static int SizeOf(ClassListTest_RS Data)
+        public static int SizeOf(Login_RS Data)
         {
             return Data.CalculateSize();
         }
 
-        public static int SizeOf(ClassDictionaryTest_RQ Data)
+        public static int SizeOf(DummyDbUpdate_RQ Data)
         {
             return Data.CalculateSize();
         }
 
-        public static int SizeOf(ClassDictionaryTest_RS Data)
+        public static int SizeOf(DummyDbUpdate_RS Data)
+        {
+            return Data.CalculateSize();
+        }
+
+        public static int SizeOf(GetPlayerDbIdByPlayerNickname_RQ Data)
+        {
+            return Data.CalculateSize();
+        }
+
+        public static int SizeOf(GetPlayerDbIdByPlayerNickname_RS Data)
         {
             return Data.CalculateSize();
         }

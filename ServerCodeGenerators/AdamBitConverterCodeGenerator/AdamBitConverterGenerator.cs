@@ -1,6 +1,7 @@
 ﻿using ProtobufSourceGenerator;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,23 +36,25 @@ namespace AdamBitConverterCodeGenerator
                 }
 
                 string ClassName = ClassNode.SelectSingleNode("Name").InnerText;
+                string PacketType = ClassNode.Attributes["type"].Value;
+                string PacketClassName = PacketXmlReader.MakePacketClassName(ClassName, PacketType);
 
-                string SerializeFunc = String.Format(SerializeFormat, ClassName);
+                string SerializeFunc = String.Format(SerializeFormat, PacketClassName);
                 SbSerializeFuncs.Append(SerializeFunc);
 
-                string DeserializeFunc = String.Format(DeserializeFormat, ClassName);
+                string DeserializeFunc = String.Format(DeserializeFormat, PacketClassName);
                 SbDeserializeFuncs.Append(DeserializeFunc);
 
-                string SizeOfFunc = String.Format(SizeOfFormat, ClassName);
+                string SizeOfFunc = String.Format(SizeOfFormat, PacketClassName);
                 SbSizeOfFuncs.Append(SizeOfFunc);
 
-                string SerializeCase = String.Format(SerializeCaseFormat, ClassName);
+                string SerializeCase = String.Format(SerializeCaseFormat, PacketClassName);
                 SbSerializeCaseFuncs.Append(SerializeCase);
 
-                string DeserializeCase = String.Format(DeserializeCaseFormat, ClassName);
+                string DeserializeCase = String.Format(DeserializeCaseFormat, PacketClassName);
                 SbDeserializeCaseFuncs.Append(DeserializeCase);
 
-                string SizeOfCase = String.Format(SizeOfCaseFormat, ClassName);
+                string SizeOfCase = String.Format(SizeOfCaseFormat, PacketClassName);
                 SbSizeOfCaseFuncs.Append(SizeOfCase);
             }
 
@@ -77,6 +80,7 @@ namespace AdamBitConverterCodeGenerator
         // 4: Deserialize Case
         private static string AdamBitConverterFormat =
 @"
+using System;
 using Google.Protobuf;
 using Google.Protobuf.Protocol.PacketGenerated;
 using ServerLib.Packet;
@@ -229,7 +233,7 @@ namespace ServerLib.Adam
                 return EDeserializeResult.PacketFragmentation;
             }}
 
-            Data = {0}.Parser.ParseFrom(Buff);
+            Data = {0}.Parser.ParseFrom(new ArraySegment<byte>(Buff.Array, Buff.Offset, Header.PacketSize));
             return EDeserializeResult.Success;
         }}
 ";

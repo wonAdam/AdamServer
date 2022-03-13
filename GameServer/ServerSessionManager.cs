@@ -15,6 +15,7 @@ namespace GameServer
 		HashSet<int> AvailableSessionIds = new HashSet<int>();
 		Dictionary<int, ServerSession> Sessions = new Dictionary<int, ServerSession>();
 		Dictionary<int, ServerPacketHandler> PacketHandlers = new Dictionary<int, ServerPacketHandler>();
+		Dictionary<int, long> PlayerDbIds = new Dictionary<int, long>();
 		object ManagerLock = new object();
 
 		public ServerSession Generate(Func<ServerSession> SessionFactory)
@@ -23,13 +24,9 @@ namespace GameServer
 			{
 				int SessionIdToUse ;
 				if (AvailableSessionIds.Count > 0)
-				{
 					SessionIdToUse = AvailableSessionIds.ToArray()[0];
-				}
                 else 
-				{
 					SessionIdToUse = SessionIdMax;
-				}
 
 				ServerSession Session = SessionFactory.Invoke();
 				ServerPacketHandler PacketHandler = new ServerPacketHandler(Session);
@@ -43,15 +40,36 @@ namespace GameServer
 			}
 		}
 
-		public ServerSession Find(int SessionId)
+		public ServerSession? FindSession(int SessionId)
 		{
 			lock (ManagerLock)
 			{
-				ServerSession Session = null;
+				ServerSession? Session = null;
 				Sessions.TryGetValue(SessionId, out Session);
 				return Session;
 			}
 		}
+
+		public long FindPlayerDbId(int SessionId)
+		{
+			lock (ManagerLock)
+			{
+				long PlayerDbId = -1;
+				PlayerDbIds.TryGetValue(SessionId, out PlayerDbId);
+				return PlayerDbId;
+			}
+		}
+
+		public ServerPacketHandler? FindPacketHandler(int SessionId)
+		{
+			lock (ManagerLock)
+			{
+				ServerPacketHandler? PacketHandler = null;
+				PacketHandlers.TryGetValue(SessionId, out PacketHandler);
+				return PacketHandler;
+			}
+		}
+
 
 		public void Remove(ServerSession Session)
 		{

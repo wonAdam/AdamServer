@@ -1,6 +1,7 @@
 ﻿using ProtobufSourceGenerator;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,14 +33,16 @@ namespace AdamBitConverterCodeGenerator
                 }
 
                 string ClassName = ClassNode.SelectSingleNode("Name").InnerText;
+                string PacketType = ClassNode.Attributes["type"].Value;
+                string PacketClassName = PacketXmlReader.MakePacketClassName(ClassName, PacketType);
 
-                string SerializeFunc = String.Format(OnRecvActionFormat, ClassName);
+                string SerializeFunc = String.Format(OnRecvActionFormat, PacketClassName);
                 SbActionMembers.Append(SerializeFunc);
 
-                string DeserializeFunc = String.Format(GetTypeSwitchCaseFormat, ClassName);
+                string DeserializeFunc = String.Format(GetTypeSwitchCaseFormat, PacketClassName);
                 SbSwitchCaseStatements.Append(DeserializeFunc);
 
-                string OnRecvFunc = String.Format(OnRecvFuncFormat, ClassName);
+                string OnRecvFunc = String.Format(OnRecvFuncFormat, PacketClassName);
                 SbOnRecvVirtualFuncs.Append(OnRecvFunc);
             }
 
@@ -60,6 +63,7 @@ namespace AdamBitConverterCodeGenerator
         // 1: OnRecv{패킷이름들}
         private static string AdamPacketHandlerFormat =
 @"
+using System;
 using Google.Protobuf;
 using Google.Protobuf.Protocol.PacketGenerated;
 using ServerLib.Packet;

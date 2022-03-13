@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Google.Protobuf;
 using ServerLib.Adam;
@@ -33,13 +34,13 @@ namespace ServerLib
         public Action OnDisconnectEvent;
         protected virtual void OnDisconnect() { OnDisconnectEvent?.Invoke(); }
 
-        public void Start(Socket InSock)
+        public virtual void Start(Socket InSock)
         {
             Sock = InSock;
             BeginRecv();
         }
 
-        public void Disconnect()
+        public virtual void Disconnect()
         {
             // 이미 disconnect됐음
             if (Interlocked.Exchange(ref Disconnected, 1) == 1)
@@ -49,7 +50,7 @@ namespace ServerLib
             Sock.Close();
         }
 
-        public void Send(IMessage Packet)
+        public virtual void Send(IMessage Packet)
         {
             lock (SendLock)
             {

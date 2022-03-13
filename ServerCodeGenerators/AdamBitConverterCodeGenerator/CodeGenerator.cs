@@ -1,5 +1,4 @@
-﻿using Google.Protobuf.Protocol.PacketGenerated;
-using ProtobufSourceGenerator;
+﻿using ProtobufSourceGenerator;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,17 +16,6 @@ namespace AdamBitConverterCodeGenerator
             AdamBitConverterGenerator.Generate(Doc);
             AdamPacketHandlerGenerator.Generate(Doc);
             AdamPacketIdPartialClassesGenerator.Generate(Doc);
-            CopyGeneratedFilesToServerLib();
         }
-
-        private static void CopyGeneratedFilesToServerLib()
-        {
-            DirectoryInfo SolutionDir = PathManager.TryGetSolutionDirectoryInfo();
-            string PacketGenFilePath = Path.Combine(SolutionDir.FullName, "ServerCodeGenerators", "ProtobufTargetGenerater", "PacketGenerated.cs");
-            string PacketGenDestFilePath = Path.Combine(SolutionDir.FullName, "ServerLib", "Packet", "PacketGenerated.cs");
-            File.Copy(PacketGenFilePath, PacketGenDestFilePath, true);
-        }
-
-
     }
 }

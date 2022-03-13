@@ -21,6 +21,8 @@ namespace GameServer
         {
             Listener.Init(() => ServerSessionManager.Instance.Generate(() => new ServerLobbySession()));
 
+            ThreadPool.SetMaxThreads((int)Math.Pow(2.0, 17.0), (int)Math.Pow(2.0, 12.0));
+
             while (true)
             {
             }

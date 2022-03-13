@@ -1,16 +1,15 @@
 @echo off
 
 echo [database drop]
-dotnet ef database drop --project ServerLib -f 
+dotnet ef database drop --project GameServer -f 
 
 echo [migrations remove]
-dotnet ef migrations remove --project ServerLib -f
+dotnet ef migrations remove --project GameServer -f
 
 echo [migrations add]
-dotnet ef migrations add SDDBMigration --project ServerLib 
+dotnet ef migrations add SDDBMigration --project GameServer 
 
 echo [database update]
-dotnet ef database update SDDBMigration --project ServerLib 
+dotnet ef database update SDDBMigration --project GameServer 
 
-CALL rake
 pause

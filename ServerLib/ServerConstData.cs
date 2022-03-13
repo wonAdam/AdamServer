@@ -8,8 +8,8 @@ namespace ServerLib
 {
     public class ServerConstData
     {
-        static public int RecvBufferSize = (int)Math.Pow(2, 16);
-        static public int SendBufferSize = (int)Math.Pow(2, 16);
+        static public int RecvBufferSize = (int)Math.Pow(2, 20);
+        static public int SendBufferSize = (int)Math.Pow(2, 20);
     }
 
 }

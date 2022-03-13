@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,8 +36,10 @@ namespace ProtobufSourceGenerator
                 }
 
                 string ClassName = ClassNode.SelectSingleNode("Name").InnerText;
+                string PacketType = ClassNode.Attributes["type"].Value;
+                string PacketClassName = PacketXmlReader.MakePacketClassName(ClassName, PacketType);
 
-                if(PacketNames.Contains(ClassName))
+                if (PacketNames.Contains(PacketClassName))
                 {
                     Console.WriteLine($"패킷 이름은 중복되면 안됩니다. ClassName: {ClassName}");
                     Environment.Exit(999);
@@ -54,6 +57,8 @@ namespace ProtobufSourceGenerator
                 }
 
                 string ClassName = ClassNode.SelectSingleNode("Name").InnerText;
+                string PacketType = ClassNode.Attributes["type"].Value;
+                string PacketClassName = PacketXmlReader.MakePacketClassName(ClassName, PacketType);
 
                 StringBuilder SbMembers = new StringBuilder();
                 int FieldNumber = 1;
@@ -69,7 +74,7 @@ namespace ProtobufSourceGenerator
                     SbMembers.AppendLine();
                 }
 
-                string ClassLine = String.Format(ProtobufClassFormat, ClassName, SbMembers.ToString());
+                string ClassLine = String.Format(ProtobufClassFormat, PacketClassName, SbMembers.ToString());
 
                 SbClasses.Append(ClassLine);
                 SbClasses.AppendLine();

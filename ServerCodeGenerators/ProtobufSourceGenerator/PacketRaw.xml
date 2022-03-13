@@ -1,103 +1,101 @@
 ﻿<Packets>
-  <Class>
-    <Name>Ping_RQ</Name>
+  <Class type="Request">
+    <Name>Ping</Name>
     <Variables>
       <DateTime>Time</DateTime>
     </Variables>
   </Class>
 
-  <Class>
-    <Name>Ping_RS</Name>
+  <Class type="Response"> 
+    <Name>Ping</Name>
     <Variables>
       <DateTime>Time</DateTime>
     </Variables>
   </Class>
 
-  <Class>
-    <Name>ChatMsg_RQ</Name>
+  <Class type="Request">
+    <Name>CreateAccount</Name>
     <Variables>
-      <string>msgText</string>
-      <DateTime>Time</DateTime>
+      <string>Nickname</string>
+      <string>Password</string>
     </Variables>
   </Class>
 
-  <Class>
-    <Name>ChatMsg_RS</Name>
+  <Class type="Response">
+    <Name>CreateAccount</Name>
     <Variables>
-      <string>msgText</string>
-      <DateTime>Time</DateTime>
     </Variables>
   </Class>
 
-  <Class>
-    <Name>ListTest_RQ</Name>
+  <Class type="Request">
+    <Name>Dummy2</Name>
     <Variables>
-      <List element="string">Sentences</List>
-      <DateTime>Time</DateTime>
+      <List element="string">DummyStrings</List>
+    </Variables>
+  </Class>
+
+  <Class type="Response">
+    <Name>Dummy2</Name>
+    <Variables>
+      <string>DummyString</string>
+    </Variables>
+  </Class>
+
+  <Class type="Request">
+    <Name>Dummy1</Name>
+    <Variables>
+      <string>DummyString</string>
+    </Variables>
+  </Class>
+
+  <Class type="Response">
+    <Name>Dummy1</Name>
+    <Variables>
+      <List element="string">DummyStrings</List>
+    </Variables>
+  </Class>
+
+  <Class type="Request">
+    <Name>Login</Name>
+    <Variables>
+      <string>Nickname</string>
+      <string>Password</string>
+    </Variables>
+  </Class>
+
+  <Class type="Response">
+    <Name>Login</Name>
+    <Variables>
+      <bool>LoginSuccess</bool>
+    </Variables>
+  </Class>
+
+  <Class type="Request">
+    <Name>DummyDbUpdate</Name>
+    <Variables>
+      <long>PlayerDbId</long>
+      <int>Value</int>
+    </Variables>
+  </Class>
+
+  <Class type="Response">
+    <Name>DummyDbUpdate</Name>
+    <Variables>
+      <int>Value</int>
+    </Variables>
+  </Class>
+
+  <Class type="Request">
+    <Name>GetPlayerDbIdByPlayerNickname</Name>
+    <Variables>
       <string>Nickname</string>
     </Variables>
   </Class>
 
-  <Class>
-    <Name>ListTest_RS</Name>
+  <Class type="Response">
+    <Name>GetPlayerDbIdByPlayerNickname</Name>
     <Variables>
-      <List element="int">NumOfSentences</List>
-      <DateTime>Time</DateTime>
-      <string>Nickname</string>
-    </Variables>
-  </Class>
-
-  <Class>
-    <Name>DictionaryTest_RQ</Name>
-    <Variables>
-      <Dictionary key ="int" value="string">NumOfSentences</Dictionary>
-      <DateTime>Time</DateTime>
-      <string>Nickname</string>
-    </Variables>
-  </Class>
-
-  <Class>
-    <Name>DictionaryTest_RS</Name>
-    <Variables>
-      <Dictionary key ="string" value="int">NumOfSentences</Dictionary>
-      <DateTime>Time</DateTime>
-      <string>Nickname</string>
-    </Variables>
-  </Class>
-
-  <Class>
-    <Name>ClassListTest_RQ</Name>
-    <Variables>
-      <List element = "ChatMsg_RQ">ChatLIst</List>
-      <DateTime>Time</DateTime>
-      <string>Nickname</string>
-    </Variables>
-  </Class>
-
-  <Class>
-    <Name>ClassListTest_RS</Name>
-    <Variables>
-      <List element = "ChatMsg_RS">ChatLIst</List>
-      <DateTime>Time</DateTime>
-      <string>Nickname</string>
-    </Variables>
-  </Class>
-
-  <Class>
-    <Name>ClassDictionaryTest_RQ</Name>
-    <Variables>
-      <Dictionary key = "int" value = "ChatMsg_RQ">ChatLIst</Dictionary>
-      <DateTime>Time</DateTime>
-      <string>Nickname</string>
-    </Variables>
-  </Class>
-
-  <Class>
-    <Name>ClassDictionaryTest_RS</Name>
-    <Variables>
-      <Dictionary key = "int" value = "ChatMsg_RS">ChatLIst</Dictionary>
-      <DateTime>Time</DateTime>
-      <string>Nickname</string>
+      <long>PlayerDbId</long>
     </Variables>
   </Class>
 

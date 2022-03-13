@@ -1,5 +1,7 @@
-﻿using Google.Protobuf;
+﻿using GameServer.Model;
+using Google.Protobuf;
 using Google.Protobuf.Protocol.PacketGenerated;
+using Microsoft.EntityFrameworkCore;
 using ServerLib;
 using ServerLib.Adam;
 using ServerLib.Packet;
@@ -8,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 
 namespace GameServer
 {
@@ -23,125 +26,153 @@ namespace GameServer
 
             Ping_RS PacketToSend = new Ping_RS()
             { 
-                Time = Packet.Time,
+                Time = Google.Protobuf.WellKnownTypes.Timestamp.FromDateTime(DateTime.UtcNow),
             };
 
             Session.Send(PacketToSend);
         }
 
-        protected override void OnRecvPing_RS(Ping_RS Packet)
+        protected override async void OnRecvCreateAccount_RQ(CreateAccount_RQ Packet)
         {
-            AdamLogger.Log(LogLevel.Temp, $"[Recv::Ping_RS] {Packet.ToJson()}");
-        }
+            base.OnRecvCreateAccount_RQ(Packet);
 
-        protected override void OnRecvChatMsg_RQ(ChatMsg_RQ Packet)
-        {
-            AdamLogger.Log(LogLevel.Temp, $"[Recv::ChatMsg_RQ] {Packet.ToJson()}");
+            AdamLogger.Log(LogLevel.Temp, $"[Recv::CreateAccount_RQ] {Packet.ToJson()}");
 
-            ChatMsg_RS PacketToSend = new ChatMsg_RS()
+            using (var Context = new SDDbContext())
             {
-                Time = Packet.Time,
-                MsgText = Packet.MsgText,
-            };
+                Account? DuplicateAccount = Context.Accounts
+                    .Where((Account Target) => Target.Nickname == Packet.Nickname)
+                    .FirstOrDefault();
 
-            Session.Send(PacketToSend);
+                if (DuplicateAccount != null)
+                    return;
+
+                HashSalt ResultHashSalt = HashHelper.Hash(Packet.Password);
+
+                var Entry = Context.Accounts.Add(new Account { 
+                    Nickname = Packet.Nickname, 
+                    PasswordHash = ResultHashSalt.Hash, 
+                    PasswordSalt = ResultHashSalt.Salt 
+                });
+
+                await Context
+                .SaveChangesAsync()
+                .ContinueWith(SaveTask =>
+                    {
+                        CreateAccount_RS Response = new CreateAccount_RS();
+                        Session.Send(Response);
+                    });
+            }
         }
 
-        protected override void OnRecvChatMsg_RS(ChatMsg_RS Packet)
+        protected override void OnRecvLogin_RQ(Login_RQ Packet)
         {
-            AdamLogger.Log(LogLevel.Temp, $"[Recv::ChatMsg_RS] {Packet.ToJson()}");
-        }
+            base.OnRecvLogin_RQ(Packet);
 
-        protected override void OnRecvListTest_RQ(ListTest_RQ Packet)
-        {
-            AdamLogger.Log(LogLevel.Temp, $"[Recv::ListTest_RQ] {Packet.ToJson()}");
+            AdamLogger.Log(LogLevel.Temp, $"[Recv::Login_RQ] {Packet.ToJson()}");
 
-            List<int> NumOfSentences = new List<int>();
-            foreach (var Sentence in Packet.Sentences)
-                NumOfSentences.Add(Sentence.Length);
-
-            ListTest_RS PacketToSend = new ListTest_RS()
+            using (var Context = new SDDbContext())
             {
-                Time = Packet.Time,
-                Nickname = Packet.Nickname,
-            };
-            PacketToSend.NumOfSentences.Add(NumOfSentences);
+                Account? NicknameMatchAccount = Context.Accounts
+                    .Where((Account) => Account.Nickname == Packet.Nickname)
+                    .FirstOrDefault();
 
-            Session.Send(PacketToSend);
+                if (NicknameMatchAccount == null)
+                    return; // todo.wondong Error 패킷 보내기
+
+                bool PasswordMatch = HashHelper.Verify(
+                    Packet.Password, 
+                    new HashSalt() { 
+                        Hash = NicknameMatchAccount.PasswordHash,
+                        Salt = NicknameMatchAccount.PasswordSalt
+                    });
+
+                Login_RS Response = new Login_RS() { LoginSuccess = PasswordMatch };
+                Session.Send(Response);
+            }
         }
 
-        protected override void OnRecvListTest_RS(ListTest_RS Packet)
+        protected override void OnRecvGetPlayerDbIdByPlayerNickname_RQ(GetPlayerDbIdByPlayerNickname_RQ Packet)
         {
-            AdamLogger.Log(LogLevel.Temp, $"[Recv::ListTest_RS] {Packet.ToJson()}");
-        }
+            base.OnRecvGetPlayerDbIdByPlayerNickname_RQ(Packet);
 
-        protected override void OnRecvDictionaryTest_RQ(DictionaryTest_RQ Packet)
-        {
-            AdamLogger.Log(LogLevel.Temp, $"[Recv::DictionaryTest_RQ] {Packet.ToJson()}");
+            AdamLogger.Log(LogLevel.Temp, $"[Recv::OnRecvGetPlayerDbIdByPlayerNickname_RQ] {Packet.ToJson()}");
 
-            Dictionary<string, int> NumOfSentences = new Dictionary<string, int>();
-            foreach (var Pair in Packet.NumOfSentences)
-                NumOfSentences.Add(Pair.Value, Pair.Key);
-
-            DictionaryTest_RS PacketToSend = new DictionaryTest_RS()
+            using (var Context = new SDDbContext())
             {
-                Time = Packet.Time,
-                Nickname = Packet.Nickname,
+                Account? NicknameMatchAccount = Context.Accounts
+                    .Where((Account) => Account.Nickname == Packet.Nickname)
+                    .FirstOrDefault();
+
+                if (NicknameMatchAccount == null)
+                    return; // todo.wondong Error 패킷 보내기
+
+                GetPlayerDbIdByPlayerNickname_RS Response = new GetPlayerDbIdByPlayerNickname_RS() { PlayerDbId = NicknameMatchAccount.DbId };
+                Session.Send(Response);
+            }
+        }
+
+        protected override void OnRecvDummy1_RQ(Dummy1_RQ Packet)
+        {
+            base.OnRecvDummy1_RQ(Packet);
+
+            AdamLogger.Log(LogLevel.Temp, $"[Recv::OnRecvDummyDbUpdate_RQ] {Packet.ToJson()}");
+
+            Dummy1_RS Response = new Dummy1_RS()
+            { 
+                DummyStrings =
+                {
+                    "dqwdieurqoqiuofnasdlfnoisdajhfois",
+                    "dqiwjodijaslknkljsznvoizsjfoisd",
+                    Packet.DummyString,
+                }
+            
             };
-            PacketToSend.NumOfSentences.Add(NumOfSentences);
 
-            Session.Send(PacketToSend);
+            Session.Send(Response);
         }
 
-        protected override void OnRecvDictionaryTest_RS(DictionaryTest_RS Packet)
+        protected override void OnRecvDummy2_RQ(Dummy2_RQ Packet)
         {
-            AdamLogger.Log(LogLevel.Temp, $"[Recv::DictionaryTest_RS] {Packet.ToJson()}");
-        }
+            base.OnRecvDummy2_RQ(Packet);
 
-        protected override void OnRecvClassListTest_RQ(ClassListTest_RQ Packet)
-        {
-            AdamLogger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] {Packet.ToJson()}");
+            AdamLogger.Log(LogLevel.Temp, $"[Recv::OnRecvDummyDbUpdate_RQ] {Packet.ToJson()}");
 
-            List<ChatMsg_RS> ChatLIst = new List<ChatMsg_RS>();
-            foreach (var Chat in Packet.ChatLIst)
-                ChatLIst.Add(new ChatMsg_RS() { MsgText = Chat.MsgText, Time = Chat.Time });
-
-            ClassListTest_RS PacketToSend = new ClassListTest_RS()
+            Dummy2_RS Response = new Dummy2_RS()
             {
-                Time = Packet.Time,
-                Nickname = Packet.Nickname,
+                DummyString = Packet.DummyStrings[0]
+
             };
-            PacketToSend.ChatLIst.Add(ChatLIst);
 
-            Session.Send(PacketToSend);
+            Session.Send(Response);
         }
 
-        protected override void OnRecvClassListTest_RS(ClassListTest_RS Packet)
+        protected override async void OnRecvDummyDbUpdate_RQ(DummyDbUpdate_RQ Packet)
         {
-            AdamLogger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RS] {Packet.ToJson()}");
-        }
+            base.OnRecvDummyDbUpdate_RQ(Packet);
 
-        protected override void OnRecvClassDictionaryTest_RQ(ClassDictionaryTest_RQ Packet)
-        {
-            AdamLogger.Log(LogLevel.Temp, $"[Recv::ClassListTest_RQ] {Packet.ToJson()}");
+            AdamLogger.Log(LogLevel.Temp, $"[Recv::OnRecvDummyDbUpdate_RQ] {Packet.ToJson()}");
 
-            Dictionary<int, ChatMsg_RS> ChatLIst = new Dictionary<int, ChatMsg_RS>();
-            foreach (var Pair in Packet.ChatLIst)
-                ChatLIst.Add(Pair.Key, new ChatMsg_RS() { MsgText = Pair.Value.MsgText, Time = Pair.Value.Time });
-
-            ClassDictionaryTest_RS PacketToSend = new ClassDictionaryTest_RS()
+            using (var Context = new SDDbContext())
             {
-                Time = Packet.Time,
-                Nickname = Packet.Nickname,
-            };
-            PacketToSend.ChatLIst.Add(ChatLIst);
+                DummyDBUpdate? DbUpdate = Context.DummyDBUpdates
+                    .Where((Update) => Update.PlayerDbId == Packet.PlayerDbId)
+                    .FirstOrDefault();
 
-            Session.Send(PacketToSend);
-        }
+                if (DbUpdate == null)
+                    Context.DummyDBUpdates.Add(new DummyDBUpdate() { PlayerDbId = Packet.PlayerDbId, Value = Packet.Value });
+                else
+                    DbUpdate.Value = Packet.Value;
 
-        protected override void OnRecvClassDictionaryTest_RS(ClassDictionaryTest_RS Packet)
-        {
-            AdamLogger.Log(LogLevel.Temp, $"[Recv::ClassDictionaryTest_RS] {Packet.ToJson()}");
+                await Context
+                .SaveChangesAsync()
+                .ContinueWith((SaveTask) =>
+                {
+                    DummyDbUpdate_RS Response = new DummyDbUpdate_RS() { Value = Packet.Value };
+                    Session.Send(Response);
+                });
+            }
         }
     }
+
 }
